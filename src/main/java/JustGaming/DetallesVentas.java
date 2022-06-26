@@ -33,6 +33,7 @@ public class DetallesVentas extends javax.swing.JFrame {
         btnConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Detalles Venta");
 
         tableDetallesVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
