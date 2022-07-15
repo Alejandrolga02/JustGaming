@@ -112,7 +112,7 @@ public class Clientes extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        jButton3.setText("Limpiar");
+        jButton3.setText("Eliminar");
 
         ListEstatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "En espera", "Entregado" }));
         ListEstatus.addActionListener(new java.awt.event.ActionListener() {
@@ -145,10 +145,10 @@ public class Clientes extends javax.swing.JFrame {
                                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton3)
-                                            .addComponent(jButton2)
-                                            .addComponent(jButton1)))
+                                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(bgLayout.createSequentialGroup()
                                         .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(112, 112, 112))))
