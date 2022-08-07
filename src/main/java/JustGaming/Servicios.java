@@ -29,9 +29,9 @@ public class Servicios extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        lblConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblServicios = new javax.swing.JTable();
+        btnIngresar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Servicios");
@@ -52,9 +52,6 @@ public class Servicios extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
 
-        lblConsultar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblConsultar.setText("Consultar tabla");
-
         tblServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -64,6 +61,9 @@ public class Servicios extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tblServicios);
+
+        btnIngresar1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnIngresar1.setText("Actualizar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,14 +85,12 @@ public class Servicios extends javax.swing.JFrame {
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(lblConsultar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 20, Short.MAX_VALUE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 20, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnIngresar1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -116,11 +114,11 @@ public class Servicios extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(btnIngresar)))
-                .addGap(70, 70, 70)
-                .addComponent(lblConsultar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnIngresar1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,9 +161,9 @@ public class Servicios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnIngresar1;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton lblConsultar;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblServicios;
     private javax.swing.JTable tblServicios;

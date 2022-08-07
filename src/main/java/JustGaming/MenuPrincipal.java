@@ -115,7 +115,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         lblProveedores.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblProveedores.setLabelFor(btnVentas);
-        lblProveedores.setText("Proveedores");
+        lblProveedores.setText("Compras");
         lblProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButton1.setText("Cerrar Sesión");

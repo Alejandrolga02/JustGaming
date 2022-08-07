@@ -34,7 +34,6 @@ public class Empleados extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnConsultar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEmpleado1 = new javax.swing.JTable();
 
@@ -68,10 +67,7 @@ public class Empleados extends javax.swing.JFrame {
         btnIngresar.setText("Ingresar");
 
         btnEliminar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
-
-        btnConsultar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnConsultar.setText("Consultar tabla");
+        btnEliminar.setText("Actualizar");
 
         tblEmpleado1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,12 +101,8 @@ public class Empleados extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDomicilio)
                         .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(105, 105, 105)
-                                .addComponent(btnConsultar)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                        .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpiar)
                     .addComponent(btnIngresar)
@@ -152,9 +144,7 @@ public class Empleados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaNac)
                     .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(btnConsultar)
-                .addContainerGap(447, Short.MAX_VALUE))
+                .addContainerGap(498, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(277, Short.MAX_VALUE)
@@ -201,7 +191,6 @@ public class Empleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnLimpiar;

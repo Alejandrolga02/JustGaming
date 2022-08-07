@@ -32,7 +32,6 @@ public class Proveedores extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        btnConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProveedores = new javax.swing.JTable();
         btnLimpiar1 = new javax.swing.JButton();
@@ -72,14 +71,6 @@ public class Proveedores extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
 
-        btnConsultar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnConsultar.setText("Consultar Tabla");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
-            }
-        });
-
         tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -100,9 +91,7 @@ public class Proveedores extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(btnConsultar)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDireccion)
@@ -143,18 +132,12 @@ public class Proveedores extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addComponent(btnIngresar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(btnConsultar)
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,7 +175,6 @@ public class Proveedores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLimpiar1;
