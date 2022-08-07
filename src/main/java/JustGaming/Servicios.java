@@ -25,13 +25,10 @@ public class Servicios extends javax.swing.JFrame {
 
         lblServicios = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
-        lblIdInsumo = new javax.swing.JLabel();
         txtServicios = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
-        txtIdInsumo = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         lblConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblServicios = new javax.swing.JTable();
@@ -45,23 +42,15 @@ public class Servicios extends javax.swing.JFrame {
         lblPrecio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblPrecio.setText("Precio:");
 
-        lblIdInsumo.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblIdInsumo.setText("Id Insumo:");
-
         txtServicios.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         txtPrecio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-
-        txtIdInsumo.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnLimpiar.setText("Limpiar");
 
         btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
-
-        btnEliminar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
 
         lblConsultar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblConsultar.setText("Consultar tabla");
@@ -84,20 +73,17 @@ public class Servicios extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblPrecio)
-                            .addComponent(lblIdInsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblServicios)
+                            .addComponent(lblPrecio))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtServicios, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                            .addComponent(txtPrecio)
-                            .addComponent(txtIdInsumo))
+                            .addComponent(txtPrecio))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -130,16 +116,7 @@ public class Servicios extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(btnIngresar)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblIdInsumo)
-                            .addComponent(txtIdInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(btnEliminar)))
-                .addGap(21, 21, 21)
+                .addGap(70, 70, 70)
                 .addComponent(lblConsultar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,16 +162,13 @@ public class Servicios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton lblConsultar;
-    private javax.swing.JLabel lblIdInsumo;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblServicios;
     private javax.swing.JTable tblServicios;
-    private javax.swing.JTextField txtIdInsumo;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtServicios;
     // End of variables declaration//GEN-END:variables

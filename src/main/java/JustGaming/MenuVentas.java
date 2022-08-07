@@ -33,11 +33,10 @@ public class MenuVentas extends javax.swing.JFrame {
         lblVentas = new javax.swing.JLabel();
         lblDetalles = new javax.swing.JLabel();
         btnDetalles = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Ventas");
-
-        btnVentas.setIcon(new javax.swing.ImageIcon("F:\\Trabajos UPSIN\\6to-Cuatrimestre\\Programacion Orientada a Objetos\\JustGaming\\src\\main\\java\\JustGaming\\img\\shopping-cart.png")); // NOI18N
 
         lblVentas.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblVentas.setLabelFor(btnVentas);
@@ -47,27 +46,34 @@ public class MenuVentas extends javax.swing.JFrame {
         lblDetalles.setLabelFor(btnDetalles);
         lblDetalles.setText("Detalles");
 
-        btnDetalles.setIcon(new javax.swing.ImageIcon("F:\\Trabajos UPSIN\\6to-Cuatrimestre\\Programacion Orientada a Objetos\\JustGaming\\src\\main\\java\\JustGaming\\img\\detalles.png")); // NOI18N
+        jButton1.setText("Regresar");
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVentas))
-                .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDetalles))
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblVentas))
+                        .addGap(18, 18, 18)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDetalles)))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jButton1)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(10, 10, 10)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLayout.createSequentialGroup()
                         .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -77,7 +83,7 @@ public class MenuVentas extends javax.swing.JFrame {
                         .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(lblVentas)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,6 +139,7 @@ public class MenuVentas extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private javax.swing.JButton btnDetalles;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblDetalles;
     private javax.swing.JLabel lblVentas;
     // End of variables declaration//GEN-END:variables

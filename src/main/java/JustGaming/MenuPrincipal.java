@@ -41,11 +41,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblServicios = new javax.swing.JLabel();
         lblEmpleados = new javax.swing.JLabel();
         lblProveedores = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
 
-        btnVentas.setIcon(new javax.swing.ImageIcon("F:\\Trabajos UPSIN\\6to-Cuatrimestre\\Programacion Orientada a Objetos\\JustGaming\\src\\main\\java\\JustGaming\\img\\shopping-cart.png")); // NOI18N
+        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JustGaming/img/shopping-cart.png"))); // NOI18N
         btnVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentasActionPerformed(evt);
@@ -57,7 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblVentas.setText("Ventas");
         lblVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btnInsumos.setIcon(new javax.swing.ImageIcon("F:\\Trabajos UPSIN\\6to-Cuatrimestre\\Programacion Orientada a Objetos\\JustGaming\\src\\main\\java\\JustGaming\\img\\insumos.png")); // NOI18N
+        btnInsumos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JustGaming/img/insumos.png"))); // NOI18N
         btnInsumos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsumosActionPerformed(evt);
@@ -69,7 +70,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblInsumos.setText("Insumos");
         lblInsumos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btnClientes.setIcon(new javax.swing.ImageIcon("F:\\Trabajos UPSIN\\6to-Cuatrimestre\\Programacion Orientada a Objetos\\JustGaming\\src\\main\\java\\JustGaming\\img\\clients.jpg")); // NOI18N
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JustGaming/img/clients.jpg"))); // NOI18N
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClientesActionPerformed(evt);
@@ -81,21 +82,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblClientes.setText("Clientes");
         lblClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btnProveedores.setIcon(new javax.swing.ImageIcon("F:\\Trabajos UPSIN\\6to-Cuatrimestre\\Programacion Orientada a Objetos\\JustGaming\\src\\main\\java\\JustGaming\\img\\supplier.jpg")); // NOI18N
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JustGaming/img/supplier.jpg"))); // NOI18N
         btnProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProveedoresActionPerformed(evt);
             }
         });
 
-        btnEmpleados.setIcon(new javax.swing.ImageIcon("F:\\Trabajos UPSIN\\6to-Cuatrimestre\\Programacion Orientada a Objetos\\JustGaming\\src\\main\\java\\JustGaming\\img\\employees.png")); // NOI18N
+        btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JustGaming/img/employees.png"))); // NOI18N
         btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmpleadosActionPerformed(evt);
             }
         });
 
-        btnServicios.setIcon(new javax.swing.ImageIcon("F:\\Trabajos UPSIN\\6to-Cuatrimestre\\Programacion Orientada a Objetos\\JustGaming\\src\\main\\java\\JustGaming\\img\\services.png")); // NOI18N
+        btnServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JustGaming/img/services.png"))); // NOI18N
         btnServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnServiciosActionPerformed(evt);
@@ -117,41 +118,47 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblProveedores.setText("Proveedores");
         lblProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jButton1.setText("Cerrar Sesión");
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVentas)
-                    .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblProveedores))
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEmpleados))
+                            .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblVentas)
+                            .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblProveedores))
                         .addGap(18, 18, 18)
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(btnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblServicios)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblEmpleados))
+                                .addGap(18, 18, 18)
+                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                    .addComponent(btnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblServicios)
+                                    .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblClientes)))
                             .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblClientes))))
+                                .addComponent(btnInsumos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblInsumos))))
                     .addGroup(bgLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(btnInsumos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblInsumos))))
+                        .addGap(21, 21, 21)
+                        .addComponent(jButton1)))
                 .addGap(18, 18, 18))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addComponent(jButton1)
+                .addGap(8, 8, 8)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLayout.createSequentialGroup()
                         .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,6 +274,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblEmpleados;
     private javax.swing.JLabel lblInsumos;

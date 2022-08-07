@@ -28,6 +28,7 @@ public class Clientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton3 = new javax.swing.JButton();
         bg = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -37,13 +38,12 @@ public class Clientes extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         txtDomicilio = new javax.swing.JTextField();
         lblDomicilio = new javax.swing.JLabel();
-        lblEstatus = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        lblEntrega = new javax.swing.JLabel();
-        txtEntrega = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        ListEstatus = new javax.swing.JComboBox();
+        jButton4 = new javax.swing.JButton();
+
+        jButton3.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        jButton3.setText("Limpiar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clientes");
@@ -92,34 +92,14 @@ public class Clientes extends javax.swing.JFrame {
         lblDomicilio.setLabelFor(txtDomicilio);
         lblDomicilio.setText("Domicilio:");
 
-        lblEstatus.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblEstatus.setText("Estatus de la PC:");
-
         jButton1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jButton1.setText("Limpiar");
 
         jButton2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jButton2.setText("Ingresar");
 
-        lblEntrega.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblEntrega.setText("Fecha de entrega:");
-
-        txtEntrega.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        txtEntrega.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEntregaActionPerformed(evt);
-            }
-        });
-
-        jButton3.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        jButton3.setText("Limpiar");
-
-        ListEstatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "En espera", "Entregado" }));
-        ListEstatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListEstatusActionPerformed(evt);
-            }
-        });
+        jButton4.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        jButton4.setText("Actualizar");
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
@@ -127,40 +107,25 @@ public class Clientes extends javax.swing.JFrame {
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTelefono)
+                    .addComponent(lblNombre)
+                    .addComponent(lblCorreo)
+                    .addComponent(lblDomicilio))
+                .addGap(18, 18, 18)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLayout.createSequentialGroup()
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblTelefono)
-                            .addComponent(lblNombre)
-                            .addComponent(lblCorreo)
-                            .addComponent(lblDomicilio)
-                            .addComponent(lblEstatus))
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(bgLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(bgLayout.createSequentialGroup()
-                                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButton3)
-                                            .addComponent(jButton2)
-                                            .addComponent(jButton1)))
-                                    .addGroup(bgLayout.createSequentialGroup()
-                                        .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(112, 112, 112))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(ListEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(bgLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblEntrega)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(txtEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1)
+                            .addComponent(jButton4)))
+                    .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,20 +144,12 @@ public class Clientes extends javax.swing.JFrame {
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCorreo)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDomicilio)
                     .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEstatus)
-                    .addComponent(ListEstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEntrega)
-                    .addComponent(txtEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,7 +162,7 @@ public class Clientes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 221, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,14 +183,6 @@ public class Clientes extends javax.swing.JFrame {
     private void txtDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDomicilioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDomicilioActionPerformed
-
-    private void txtEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntregaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEntregaActionPerformed
-
-    private void ListEstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListEstatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ListEstatusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,20 +221,17 @@ public class Clientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox ListEstatus;
     private javax.swing.JPanel bg;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblDomicilio;
-    private javax.swing.JLabel lblEntrega;
-    private javax.swing.JLabel lblEstatus;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDomicilio;
-    private javax.swing.JTextField txtEntrega;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables

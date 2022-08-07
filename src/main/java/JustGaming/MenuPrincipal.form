@@ -46,36 +46,39 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="btnVentas" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                      <Component id="lblVentas" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnProveedores" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                      <Component id="lblProveedores" alignment="2" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="btnEmpleados" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="lblEmpleados" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnVentas" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="lblVentas" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnProveedores" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="lblProveedores" alignment="2" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="btnServicios" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="lblServicios" alignment="2" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="2" groupAlignment="2" attributes="0">
-                                  <Component id="btnClientes" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <Component id="lblClientes" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="2" attributes="0">
+                                      <Component id="btnEmpleados" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="lblEmpleados" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="2" attributes="0">
+                                      <Component id="btnServicios" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="lblServicios" alignment="2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnClientes" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="lblClientes" alignment="2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="2" attributes="0">
+                                  <Component id="btnInsumos" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <Component id="lblInsumos" alignment="2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="btnInsumos" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="lblInsumos" alignment="2" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -85,7 +88,9 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="btnClientes" min="-2" pref="160" max="-2" attributes="0"/>
@@ -130,7 +135,7 @@
         <Component class="javax.swing.JButton" name="btnVentas">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\Trabajos UPSIN\6to-Cuatrimestre\Programacion Orientada a Objetos\JustGaming\src\main\java\JustGaming\img\shopping-cart.png"/>
+              <Image iconType="3" name="/JustGaming/img/shopping-cart.png"/>
             </Property>
           </Properties>
           <Events>
@@ -154,7 +159,7 @@
         <Component class="javax.swing.JButton" name="btnInsumos">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\Trabajos UPSIN\6to-Cuatrimestre\Programacion Orientada a Objetos\JustGaming\src\main\java\JustGaming\img\insumos.png"/>
+              <Image iconType="3" name="/JustGaming/img/insumos.png"/>
             </Property>
           </Properties>
           <Events>
@@ -178,7 +183,7 @@
         <Component class="javax.swing.JButton" name="btnClientes">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\Trabajos UPSIN\6to-Cuatrimestre\Programacion Orientada a Objetos\JustGaming\src\main\java\JustGaming\img\clients.jpg"/>
+              <Image iconType="3" name="/JustGaming/img/clients.jpg"/>
             </Property>
           </Properties>
           <Events>
@@ -202,7 +207,7 @@
         <Component class="javax.swing.JButton" name="btnProveedores">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\Trabajos UPSIN\6to-Cuatrimestre\Programacion Orientada a Objetos\JustGaming\src\main\java\JustGaming\img\supplier.jpg"/>
+              <Image iconType="3" name="/JustGaming/img/supplier.jpg"/>
             </Property>
           </Properties>
           <Events>
@@ -212,7 +217,7 @@
         <Component class="javax.swing.JButton" name="btnEmpleados">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\Trabajos UPSIN\6to-Cuatrimestre\Programacion Orientada a Objetos\JustGaming\src\main\java\JustGaming\img\employees.png"/>
+              <Image iconType="3" name="/JustGaming/img/employees.png"/>
             </Property>
           </Properties>
           <Events>
@@ -222,7 +227,7 @@
         <Component class="javax.swing.JButton" name="btnServicios">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\Trabajos UPSIN\6to-Cuatrimestre\Programacion Orientada a Objetos\JustGaming\src\main\java\JustGaming\img\services.png"/>
+              <Image iconType="3" name="/JustGaming/img/services.png"/>
             </Property>
           </Properties>
           <Events>
@@ -269,6 +274,11 @@
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor Por defecto"/>
             </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
           </Properties>
         </Component>
       </SubComponents>
