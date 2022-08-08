@@ -1,16 +1,19 @@
 /*
-Descripción: Creación de la ventana donde se escogen las opciones de compras
-Nombre: López Robles Jesús Daniel
-Fecha: 26-junio-2022
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package JustGaming;
 
-import java.awt.Container;
-
+/**
+ *
+ * @author software_02
+ */
 public class MenuCompras extends javax.swing.JFrame {
-    Container contenedor = this.getContentPane();
-    
-    
+
+    /**
+     * Creates new form MenuCompras
+     */
     public MenuCompras() {
         initComponents();
     }
@@ -24,53 +27,81 @@ public class MenuCompras extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg = new javax.swing.JPanel();
         btnCompras = new javax.swing.JButton();
         lblCompras = new javax.swing.JLabel();
+        lblDetalles = new javax.swing.JLabel();
         btnDetalles = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menú de Compras");
+        setTitle("Menu Compras");
 
-        btnCompras.setIcon(new javax.swing.ImageIcon("C:\\Users\\laptop\\Documents\\GitHub\\JustGaming\\src\\main\\java\\JustGaming\\img\\MenuComprasCompra.png")); // NOI18N
+        bg.setToolTipText("");
+        bg.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
 
-        lblCompras.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JustGaming/img/MenuComprasCompra.png"))); // NOI18N
+
+        lblCompras.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblCompras.setText("Compras");
 
-        btnDetalles.setIcon(new javax.swing.ImageIcon("C:\\Users\\laptop\\Documents\\GitHub\\JustGaming\\src\\main\\java\\JustGaming\\img\\MenuComprasDetalles.png")); // NOI18N
+        lblDetalles.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblDetalles.setText("Detalles");
 
-        jLabel1.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
-        jLabel1.setText("Detalles");
+        btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JustGaming/img/MenuComprasDetalles.png"))); // NOI18N
+
+        btnRegresar.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JustGaming/img/regreso.png"))); // NOI18N
+        btnRegresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
+        bg.setLayout(bgLayout);
+        bgLayout.setHorizontalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(btnCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCompras))
+                        .addGap(18, 18, 18)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDetalles)))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        bgLayout.setVerticalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(lblDetalles))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addComponent(btnCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(lblCompras)))
+                .addGap(10, 10, 10))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(btnCompras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addComponent(btnDetalles)
-                .addGap(15, 15, 15))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(lblCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54))
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCompras)
-                    .addComponent(btnDetalles))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCompras)
-                    .addComponent(jLabel1))
-                .addContainerGap(43, Short.MAX_VALUE))
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -112,9 +143,11 @@ public class MenuCompras extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bg;
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnDetalles;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel lblCompras;
+    private javax.swing.JLabel lblDetalles;
     // End of variables declaration//GEN-END:variables
 }

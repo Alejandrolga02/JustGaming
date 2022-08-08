@@ -28,13 +28,20 @@
               <Component id="bg" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="bg" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,39 +53,31 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="btnVentas" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="lblVentas" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnProveedores" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="lblProveedores" alignment="2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="2" attributes="0">
+                              <Component id="btnEmpleados" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="lblEmpleados" alignment="2" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="btnVentas" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="lblVentas" alignment="2" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnProveedores" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="lblProveedores" alignment="2" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="2" attributes="0">
-                                      <Component id="btnEmpleados" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <Component id="lblEmpleados" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="2" attributes="0">
-                                      <Component id="btnServicios" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <Component id="lblServicios" alignment="2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnClientes" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                                      <Component id="lblClientes" alignment="2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="2" attributes="0">
-                                  <Component id="btnInsumos" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <Component id="lblInsumos" alignment="2" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="btnServicios" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="lblServicios" alignment="2" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnClientes" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="lblClientes" alignment="2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="2" attributes="0">
+                          <Component id="btnInsumos" alignment="2" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="lblInsumos" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -88,9 +87,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="btnClientes" min="-2" pref="160" max="-2" attributes="0"/>
@@ -276,12 +273,19 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Consolas" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
+        <Property name="actionCommand" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
