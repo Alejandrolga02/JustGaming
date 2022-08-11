@@ -6,12 +6,18 @@
 
 package JustGaming;
 
-/**
- *
- * @author los67
- */
-public class Ventas extends javax.swing.JFrame {
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
+public class Ventas extends javax.swing.JFrame {
+    Connection con;
     /**
      * Creates new form Ventas
      */
@@ -31,15 +37,15 @@ public class Ventas extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         lblCliente = new javax.swing.JLabel();
         lblServicio = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        tblResultados = new javax.swing.JTable();
+        btnRegresar = new javax.swing.JButton();
+        comboxCliente = new javax.swing.JComboBox<>();
+        comboxServicio = new javax.swing.JComboBox<>();
+        btnTerminar = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventas");
@@ -50,36 +56,36 @@ public class Ventas extends javax.swing.JFrame {
         lblServicio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblServicio.setText("Servicio:");
 
-        jButton1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        jButton1.setText("Limpiar");
+        btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
 
-        jButton2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        jButton2.setText("Ingresar");
+        btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnIngresar.setText("Ingresar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblResultados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblResultados);
 
-        jButton3.setText("Regresar");
+        btnRegresar.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        btnRegresar.setText("Regresar");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboxCliente.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        comboxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboxServicio.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        comboxServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton4.setText("Terminar venta");
+        btnTerminar.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        btnTerminar.setText("Terminar venta");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Añadir Ventas");
+        lblTitulo.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        lblTitulo.setText("Añadir Ventas");
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
@@ -87,50 +93,51 @@ public class Ventas extends javax.swing.JFrame {
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLayout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel1))
+                        .addComponent(btnRegresar)
+                        .addGap(83, 83, 83)
+                        .addComponent(lblTitulo)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(bgLayout.createSequentialGroup()
                         .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(bgLayout.createSequentialGroup()
                                 .addComponent(lblCliente)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgLayout.createSequentialGroup()
                                 .addComponent(lblServicio)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(comboxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)))
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jLabel1))
+                    .addComponent(btnRegresar)
+                    .addComponent(lblTitulo))
                 .addGap(17, 17, 17)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCliente)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(comboxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiar))
                 .addGap(16, 16, 16)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnIngresar)
                     .addComponent(lblServicio)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(btnTerminar)
                 .addGap(18, 18, 18))
         );
 
@@ -185,16 +192,16 @@ public class Ventas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btnTerminar;
+    private javax.swing.JComboBox<String> comboxCliente;
+    private javax.swing.JComboBox<String> comboxServicio;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblServicio;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tblResultados;
     // End of variables declaration//GEN-END:variables
 }
