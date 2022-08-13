@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+Descripción: Creación del controlador para la tabla de empleados
+Nombre: López Robles Jesús Damiel
+Fecha: 13-agosto-2022
+*/
 package Controlador;
 
 /**
