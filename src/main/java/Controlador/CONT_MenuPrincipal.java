@@ -6,14 +6,12 @@
 
 package Controlador;
 
-import Modelo.Conexion;
 import Vista.MenuPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class CONT_MenuPrincipal implements ActionListener, MouseListener{
     private MenuPrincipal vista;
@@ -40,15 +38,45 @@ public class CONT_MenuPrincipal implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnVentas == evento.getSource()) {
-            Vista.MenuVentas menuVentas = new Vista.MenuVentas();
-            Controlador.CONT_MenuVentas CONT_menuVentas = new Controlador.CONT_MenuVentas(menuVentas);
-            CONT_menuVentas.iniciarVista();
+            /*Vista.MenuVentas Nvista = new Vista.MenuVentas();
+            Controlador.CONT_MenuVentas Ncontrolador = new Controlador.CONT_MenuVentas(Nvista);
+            Ncontrolador.iniciarVista();*/
             vista.dispose();
         } else if (vista.btnInsumos == evento.getSource()) {
-            Vista.Insumos insumos = new Vista.Insumos();
-            Controlador.Insumos CONT_insumos = new ControladorInsumos(menuVentas);
-            CONT_insumos.iniciarVista();
+            /*Vista.Insumos Nvista = new Vista.Insumos();
+            Modelo.MDL_Insumos Nmodelo = new Modelo.MDL_Insumos();
+            Controlador.CONT_Insumos Ncontrolador = new ControladorInsumos(Nmodelo, Nvista);
+            Ncontrolador.iniciarVista();*/
+            vista.dispose();
+        } else if (vista.btnClientes == evento.getSource()) {
+            /*Vista.Clientes Nvista = new Vista.Clientes();
+            Modelo.MDL_Clientes Nmodelo = new Modelo.MDL_Clientes();
+            Controlador.CONT_Clientes Ncontrolador = new Controlador.CONT_MenuVentas(Nmodelo, Nvista);
+            Ncontrolador.iniciarVista();*/
+            vista.dispose();
+        } else if (vista.btnCompras == evento.getSource()) {
+            /*Vista.MenuCompras Nvista = new Vista.MenuVentas();
+            Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuVentas(Nvista);
+            Ncontrolador.iniciarVista();*/
+            vista.dispose();
+        } else if (vista.btnEmpleados == evento.getSource()) {
+            /*Vista.Empleados Nvista = new Vista.Empleados();
+            Modelo.MDL_Empleados Nmodelo = new Modelo.MDL_Empleados();
+            Controlador.CONT_Empleados Ncontrolador = new Controlador.CONT_MenuVentas(Nmodelo, Nvista);
+            Ncontrolador.iniciarVista();*/
+            vista.dispose();
+        } else if (vista.btnServicios == evento.getSource()) {
+            /*Vista.Servicios Nvista = new Vista.Servicios();
+            Modelo.MDL_Servicios Nmodelo = new Modelo.MDL_Servicios();
+            Controlador.CONT_Servicios Ncontrolador = new Controlador.CONT_MenuVentas(Nmodelo, Nvista);
+            Ncontrolador.iniciarVista();*/
             vista.dispose();            
+        } else if (vista.btnLogout == evento.getSource()) {
+            Vista.InicioSesion Nvista = new Vista.InicioSesion();
+            Modelo.MDL_InicioSesion Nmodelo = new Modelo.MDL_InicioSesion();
+            Controlador.CONT_InicioSesion Ncontrolador = new Controlador.CONT_InicioSesion(Nmodelo, Nvista);
+            Ncontrolador.iniciarVista();
+            vista.dispose();
         }
     }
 

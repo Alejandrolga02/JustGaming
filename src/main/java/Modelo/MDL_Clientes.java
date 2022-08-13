@@ -11,7 +11,6 @@ package Modelo;
  */
 public class MDL_Clientes {
     //Atributos de la clase
-    private MDL_Conexion conn = new MDL_Conexion();
     
     //Método para insertar en la tabla clientes.
     

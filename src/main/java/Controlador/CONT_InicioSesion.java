@@ -44,9 +44,9 @@ public class CONT_InicioSesion implements ActionListener, MouseListener{
             
             if(modelo.login()) {
                 JOptionPane.showMessageDialog(null, "Sesión Iniciada Correctamente");
-                Vista.MenuPrincipal menuP = new Vista.MenuPrincipal();
-                //Controlador.CONT_MenuPrincipal CONT_menu = new Controlador.CONT_MenuPrincipal(menuP);
-                //CONT_menu.iniciarVista();
+                Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
+                Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
+                Ncontrolador.iniciarVista();
                 vista.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Datos erroneos");
