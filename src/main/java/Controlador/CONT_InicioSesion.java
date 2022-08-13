@@ -33,9 +33,7 @@ public class CONT_InicioSesion implements ActionListener, MouseListener{
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
-    }
-    
-    
+    }   
 
     @Override
     public void actionPerformed(ActionEvent evento) {
