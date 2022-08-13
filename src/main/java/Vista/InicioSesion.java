@@ -5,15 +5,7 @@
  */
 package Vista;
 
-import Modelo.MDL_Conexion;
-import static Modelo.MDL_Conexion.*;
-import java.sql.*;
-import javax.swing.JOptionPane;
-
 public class InicioSesion extends javax.swing.JFrame {
-    Connection conn = null;
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
     
     /**
      * Creates new form InicioSesion
@@ -54,11 +46,6 @@ public class InicioSesion extends javax.swing.JFrame {
 
         btnEntrar.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         btnEntrar.setText("Entrar");
-        btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEntrarMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
@@ -104,36 +91,6 @@ public class InicioSesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
-        try {
-            conn = getConnection(txtUsuario.getText(), txtPass.getText());
-            String query = "SELECT usuario, contraseña FROM empleado WHERE usuario=\""+txtUsuario.getText()+"\"";
-            stmt = conn.prepareStatement(query);
-            rs = stmt.executeQuery();
-            
-            while(rs.next()) {
-                System.out.println("Usuario: " + rs.getString("usuario"));
-                System.out.println("Contraseña: " + rs.getString("contraseña"));
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Datos erroneos");
-            ex.printStackTrace(System.out);
-            conn = null;
-        } finally {
-            try {
-                MDL_Conexion.close(rs);
-                MDL_Conexion.close(stmt);
-                MDL_Conexion.close(conn);
-            } catch (SQLException ex) {
-                ex.printStackTrace(System.out);
-            }
-        }
-        
-        //MenuPrincipal menu = new MenuPrincipal();
-        //menu.setVisible(true);
-        //this.dispose();
-    }//GEN-LAST:event_btnEntrarMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -171,10 +128,10 @@ public class InicioSesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.JButton btnEntrar;
+    public javax.swing.JButton btnEntrar;
     private javax.swing.JLabel lblContra;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JPasswordField txtPass;
-    private javax.swing.JTextField txtUsuario;
+    public javax.swing.JPasswordField txtPass;
+    public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

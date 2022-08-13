@@ -1,5 +1,5 @@
 /*
- * Descripcion: MDL_Conexion con la base de datos usando JDBC
+ * Descripcion: Conexion con la base de datos usando JDBC
  * Autor: Alejandro Ivan Lizarraga Rojas
  * Fecha: 11 08 2022
  */
@@ -7,7 +7,7 @@ package Modelo;
 
 import java.sql.*;
 
-public class MDL_Conexion {
+public class Conexion {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/justgaming";
 
     public static Connection getConnection(String user, String pass) throws SQLException {
