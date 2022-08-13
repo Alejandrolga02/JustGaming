@@ -5,8 +5,8 @@
  */
 package Vista;
 
-import Modelo.Conexion;
-import static Modelo.Conexion.*;
+import Modelo.MDL_Conexion;
+import static Modelo.MDL_Conexion.*;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -121,9 +121,9 @@ public class InicioSesion extends javax.swing.JFrame {
             conn = null;
         } finally {
             try {
-                Conexion.close(rs);
-                Conexion.close(stmt);
-                Conexion.close(conn);
+                MDL_Conexion.close(rs);
+                MDL_Conexion.close(stmt);
+                MDL_Conexion.close(conn);
             } catch (SQLException ex) {
                 ex.printStackTrace(System.out);
             }
