@@ -8,7 +8,7 @@ package Modelo;
 import java.sql.*;
 
 public class Conexion {
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/justgaming";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/justgaming?useSSL=false&useTimezone=true&serverTimezone=GMT-6&allowPublicKeyRetrieval=true";
     private static String JDBC_USER;
     private static String JDBC_PASS;
     private static int USER_ID;

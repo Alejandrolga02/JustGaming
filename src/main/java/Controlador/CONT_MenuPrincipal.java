@@ -66,10 +66,10 @@ public class CONT_MenuPrincipal implements ActionListener, MouseListener{
             Ncontrolador.iniciarVista();*/
             vista.dispose();
         } else if (vista.btnServicios == evento.getSource()) {
-            /*Vista.Servicios Nvista = new Vista.Servicios();
+            Vista.Servicios Nvista = new Vista.Servicios();
             Modelo.MDL_Servicios Nmodelo = new Modelo.MDL_Servicios();
-            Controlador.CONT_Servicios Ncontrolador = new Controlador.CONT_MenuVentas(Nmodelo, Nvista);
-            Ncontrolador.iniciarVista();*/
+            Controlador.CONT_Servicios Ncontrolador = new Controlador.CONT_Servicios(Nmodelo, Nvista);
+            Ncontrolador.iniciarVista();
             vista.dispose();            
         } else if (vista.btnLogout == evento.getSource()) {
             Vista.InicioSesion Nvista = new Vista.InicioSesion();
@@ -82,27 +82,27 @@ public class CONT_MenuPrincipal implements ActionListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     
