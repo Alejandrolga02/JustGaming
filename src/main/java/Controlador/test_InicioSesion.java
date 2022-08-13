@@ -4,9 +4,8 @@
  * Fecha: 12 de Agosto de 2022
  */
 
-package test;
+package Controlador;
 
-import Controlador.CONT_InicioSesion;
 import Modelo.MDL_InicioSesion;
 import Vista.InicioSesion;
 

@@ -35,73 +35,31 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblInsumos = new javax.swing.JLabel();
         btnClientes = new javax.swing.JButton();
         lblClientes = new javax.swing.JLabel();
-        btnProveedores = new javax.swing.JButton();
+        btnCompras = new javax.swing.JButton();
         btnEmpleados = new javax.swing.JButton();
         btnServicios = new javax.swing.JButton();
         lblServicios = new javax.swing.JLabel();
         lblEmpleados = new javax.swing.JLabel();
         lblProveedores = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
-
-        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/shopping-cart.png"))); // NOI18N
-        btnVentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentasActionPerformed(evt);
-            }
-        });
 
         lblVentas.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblVentas.setLabelFor(btnVentas);
         lblVentas.setText("Ventas");
         lblVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btnInsumos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/insumos.png"))); // NOI18N
-        btnInsumos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsumosActionPerformed(evt);
-            }
-        });
-
         lblInsumos.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblInsumos.setLabelFor(btnVentas);
         lblInsumos.setText("Insumos");
         lblInsumos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/clients.jpg"))); // NOI18N
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
-            }
-        });
-
         lblClientes.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblClientes.setLabelFor(btnVentas);
         lblClientes.setText("Clientes");
         lblClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/supplier.jpg"))); // NOI18N
-        btnProveedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProveedoresActionPerformed(evt);
-            }
-        });
-
-        btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/employees.png"))); // NOI18N
-        btnEmpleados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpleadosActionPerformed(evt);
-            }
-        });
-
-        btnServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/img/services.png"))); // NOI18N
-        btnServicios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnServiciosActionPerformed(evt);
-            }
-        });
 
         lblServicios.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblServicios.setLabelFor(btnVentas);
@@ -118,7 +76,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblProveedores.setText("Compras");
         lblProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButton1.setText("Cerrar Sesión");
+        btnLogout.setText("Cerrar Sesión");
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
@@ -131,7 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblVentas)
-                            .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblProveedores))
                         .addGap(18, 18, 18)
                         .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,15 +108,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                 .addComponent(lblInsumos))))
                     .addGroup(bgLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jButton1)))
+                        .addComponent(btnLogout)))
                 .addGap(18, 18, 18))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jButton1)
-                .addGap(8, 8, 8)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogout)
+                .addGap(18, 18, 18)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLayout.createSequentialGroup()
                         .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,7 +141,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(lblEmpleados))
                     .addGroup(bgLayout.createSequentialGroup()
-                        .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(lblProveedores)))
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -206,30 +164,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVentasActionPerformed
-
-    private void btnInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsumosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInsumosActionPerformed
-
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnClientesActionPerformed
-
-    private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnProveedoresActionPerformed
-
-    private void btnEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEmpleadosActionPerformed
-
-    private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServiciosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnServiciosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,13 +202,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
-    private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnEmpleados;
-    private javax.swing.JButton btnInsumos;
-    private javax.swing.JButton btnProveedores;
-    private javax.swing.JButton btnServicios;
-    private javax.swing.JButton btnVentas;
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton btnClientes;
+    public javax.swing.JButton btnCompras;
+    public javax.swing.JButton btnEmpleados;
+    public javax.swing.JButton btnInsumos;
+    public javax.swing.JButton btnLogout;
+    public javax.swing.JButton btnServicios;
+    public javax.swing.JButton btnVentas;
     private javax.swing.JLabel lblClientes;
     private javax.swing.JLabel lblEmpleados;
     private javax.swing.JLabel lblInsumos;

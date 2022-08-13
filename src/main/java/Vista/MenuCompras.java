@@ -26,8 +26,10 @@ public class MenuCompras extends javax.swing.JFrame {
 
         btnCompras = new javax.swing.JButton();
         lblCompras = new javax.swing.JLabel();
+        btnProveedores = new javax.swing.JButton();
+        lblDetalles = new javax.swing.JLabel();
         btnDetalles = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblProveedores = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú de Compras");
@@ -35,38 +37,48 @@ public class MenuCompras extends javax.swing.JFrame {
         lblCompras.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         lblCompras.setText("Compras");
 
-        jLabel1.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
-        jLabel1.setText("Detalles");
+        lblDetalles.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        lblDetalles.setText("Detalles");
+
+        lblProveedores.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        lblProveedores.setLabelFor(btnProveedores);
+        lblProveedores.setText("Proveedores");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(btnCompras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addComponent(btnDetalles)
-                .addGap(15, 15, 15))
+                .addGap(18, 18, 18)
+                .addComponent(btnCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(58, 58, 58)
                 .addComponent(lblCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99)
+                .addComponent(lblDetalles)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54))
+                .addComponent(lblProveedores)
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCompras)
-                    .addComponent(btnDetalles))
+                    .addComponent(btnCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCompras)
-                    .addComponent(jLabel1))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(lblDetalles)
+                    .addComponent(lblProveedores))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -110,7 +122,9 @@ public class MenuCompras extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnDetalles;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnProveedores;
     private javax.swing.JLabel lblCompras;
+    private javax.swing.JLabel lblDetalles;
+    private javax.swing.JLabel lblProveedores;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@
 
 package Controlador;
 
+import Modelo.Conexion;
 import Modelo.MDL_InicioSesion;
 import Vista.InicioSesion;
 
@@ -14,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class CONT_InicioSesion implements ActionListener, MouseListener{
     private MDL_InicioSesion modelo;
@@ -32,12 +34,23 @@ public class CONT_InicioSesion implements ActionListener, MouseListener{
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
     }
+    
+    
 
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnEntrar == evento.getSource()) {
-            MDL_InicioSesion inicioSesion = new MDL_InicioSesion();
-            inicioSesion.login(vista.txtUsuario.getText(), vista.txtPass.getText());            
+            Conexion.setJDBC(vista.txtUsuario.getText(), vista.txtPass.getText());
+            
+            if(modelo.login()) {
+                JOptionPane.showMessageDialog(null, "Sesión Iniciada Correctamente");
+                Vista.MenuPrincipal menuP = new Vista.MenuPrincipal();
+                //Controlador.CONT_MenuPrincipal CONT_menu = new Controlador.CONT_MenuPrincipal(menuP);
+                //CONT_menu.iniciarVista();
+                vista.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos erroneos");
+            }
         }
     }
 
