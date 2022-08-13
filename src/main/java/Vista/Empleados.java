@@ -33,11 +33,12 @@ public class Empleados extends javax.swing.JFrame {
         txtFechaNac = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblEmpleado1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
@@ -68,8 +69,8 @@ public class Empleados extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
 
-        btnEliminar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnEliminar.setText("Actualizar");
+        btnActualizar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnActualizar.setText("Actualizar");
 
         tblEmpleado1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +84,9 @@ public class Empleados extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jLabel1.setText("Empleados");
+
+        btnEliminar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnEliminar.setText("Eliminar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +118,9 @@ public class Empleados extends javax.swing.JFrame {
                                         .addGap(2, 2, 2)
                                         .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnLimpiar))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnLimpiar)
+                                    .addComponent(btnEliminar)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblFechaNac)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -123,7 +129,7 @@ public class Empleados extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnEliminar)))))
+                                        .addComponent(btnActualizar)))))
                         .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
@@ -138,11 +144,16 @@ public class Empleados extends javax.swing.JFrame {
                     .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiar))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefono)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTelefono)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnEliminar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDomicilio)
                     .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,12 +161,12 @@ public class Empleados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFechaNac)
                     .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnActualizar))
                 .addGap(18, 18, 18)
                 .addComponent(btnIngresar)
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,6 +208,7 @@ public class Empleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnLimpiar;
