@@ -33,7 +33,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
     
     //Método para iniciar la vista
     public void iniciarVista(){
-        vista.setTitle("Servicios");
+        vista.setTitle("Clientes");
         vista.pack();
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
@@ -54,8 +54,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnIngresar == evento.getSource()){
-            if((vista.txtNombre.getText().isEmpty()) && (vista.txtDomicilio.getText().isEmpty()) && (vista.txtCorreo.getText().isEmpty()) && 
-                    (vista.txtTelefono.getText().isEmpty())){
+            if((vista.txtNombre.getText().isBlank()) && (vista.txtDomicilio.getText().isBlank()) && (vista.txtCorreo.getText().isBlank()) && (vista.txtTelefono.getText().isBlank())){
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
             }else if(modelo.clientesInsertar(vista.txtNombre.getText(), vista.txtTelefono.getText(), 
                     vista.txtCorreo.getText(), vista.txtDomicilio.getText())){
@@ -104,7 +103,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
     public void mouseClicked(MouseEvent evento) {
        if(vista.tblClientes == evento.getSource()){
            int fila = vista.tblClientes.rowAtPoint(evento.getPoint());
-           if(fila > 1){
+           if(fila > -1){
                vista.txtIdCliente.setText(String.valueOf(vista.tblClientes.getValueAt(fila, 0)));
                vista.txtNombre.setText(String.valueOf(vista.tblClientes.getValueAt(fila, 1)));
                vista.txtTelefono.setText(String.valueOf(vista.tblClientes.getValueAt(fila, 2)));

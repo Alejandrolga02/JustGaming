@@ -44,7 +44,7 @@ public class MDL_Clientes {
             //Abrir la conexion
             conn = getConnection();
             //Preparando la instruccion
-            String sql = "SELECT * FROM cliente WHERE cliente.estatus = 1;";
+            String sql = "SELECT idCliente,nombreCompleto,telefono,correoElectronico,domicilio FROM cliente WHERE cliente.estatus = 1;";
             //Ejecucución de la sentencia
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(sql);
@@ -61,7 +61,7 @@ public class MDL_Clientes {
             // Ciclo para las filas
             while(rs.next()){
                 Object[] fila = new Object[columnas];
-                for(int i = 1; i < columnas; i++){
+                for(int i = 0; i < columnas; i++){
                     fila[i] = rs.getObject(i+1);
                 }
                 dtm.addRow(fila);
