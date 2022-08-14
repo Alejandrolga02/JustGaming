@@ -40,7 +40,14 @@ public class CONT_Clientes implements ActionListener, MouseListener{
         vista.setVisible(true);
     }
     
-    
+    //Método para limpiar las cajas de texto
+    public void limpiarCajastexto(){
+        vista.txtCorreo.setText("");
+        vista.txtDomicilio.setText("");
+        vista.txtIdCliente.setText("");
+        vista.txtNombre.setText("");
+        vista.txtTelefono.setText("");
+    }
     
     
     @Override
