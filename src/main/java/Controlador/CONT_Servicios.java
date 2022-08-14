@@ -40,14 +40,15 @@ public class CONT_Servicios implements ActionListener, MouseListener {
     }
     
     public void limpiarCajasTexto(){
-        vista.txtServicios.setText("");
+        vista.txtServicio.setText("");
         vista.txtPrecio.setText("");
+        vista.txtIdServicio.setText("");
     }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnIngresar == evento.getSource()) {
-            if(modelo.ingresar(vista.txtServicios.getText(), Float.parseFloat(vista.txtPrecio.getText()))){
+            if(modelo.ingresar(vista.txtServicio.getText(), Float.parseFloat(vista.txtPrecio.getText()))){
                 JOptionPane.showMessageDialog(null, "Registro insertado exitosamente");
                 this.vista.tblServicios.setModel(modelo.consultar());
                 limpiarCajasTexto();
@@ -55,25 +56,22 @@ public class CONT_Servicios implements ActionListener, MouseListener {
                 JOptionPane.showMessageDialog(null, "No se pudo insertar");
             }
         }else if(vista.btnEliminar == evento.getSource()){
-            /*if(modelo.usuariosEliminar(Integer.parseInt(vista.txtId.getText()))){
+            if(modelo.borrar(Integer.parseInt(vista.txtIdServicio.getText()))){
                 JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
-                this.vista.tbUsuarios.setModel(modelo.usuariosConsultar());
-                ocultarContraseñaEnTabla();
+                this.vista.tblServicios.setModel(modelo.consultar());
                 limpiarCajasTexto();
             }else{
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar");
-            }*/
+            }
         }else if(vista.btnActualizar == evento.getSource()){
-            /*if(modelo.usuariosActualizar(
-                    Integer.parseInt(vista.txtId.getText()),
-                    vista.txtNombre.getText(),vista.txtContrasena.getText(),vista.txtCorreo.getText())){
+            if(modelo.actualizar(vista.txtServicio.getText(), 
+        Float.parseFloat(vista.txtPrecio.getText()), Integer.parseInt(vista.txtIdServicio.getText()))) {
                 JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
-                this.vista.tbUsuarios.setModel(modelo.usuariosConsultar());                
-                ocultarContraseñaEnTabla();                            
+                this.vista.tblServicios.setModel(modelo.consultar());                
                 limpiarCajasTexto();
             }else{
                 JOptionPane.showMessageDialog(null, "No se pudo actualizar");
-            }*/        
+            }
         } else if (vista.btnLimpiar == evento.getSource()) {
             limpiarCajasTexto();
         } else if (vista.btnRegresar == evento.getSource()) {
@@ -85,8 +83,15 @@ public class CONT_Servicios implements ActionListener, MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void mouseClicked(MouseEvent evento) {
+        if(vista.tblServicios == evento.getSource()){
+            int  fila = vista.tblServicios.rowAtPoint(evento.getPoint());
+            if (fila > -1){
+                vista.txtIdServicio.setText(String.valueOf(vista.tblServicios.getValueAt(fila, 0)));
+                vista.txtServicio.setText(String.valueOf(vista.tblServicios.getValueAt(fila, 1)));
+                vista.txtPrecio.setText(String.valueOf(vista.tblServicios.getValueAt(fila, 2)));
+             }
+        }
     }
 
     @Override

@@ -27,11 +27,11 @@ public class Servicios extends javax.swing.JFrame {
         tblServicios = new javax.swing.JTable();
         btnLimpiar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
-        lblCosto = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         txtServicio = new javax.swing.JTextField();
-        txtCosto = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         lblServicio = new javax.swing.JLabel();
@@ -57,8 +57,8 @@ public class Servicios extends javax.swing.JFrame {
         btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnRegresar.setText("Regresar");
 
-        lblCosto.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblCosto.setText("Costo:");
+        lblPrecio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblPrecio.setText("Precio:");
 
         btnEliminar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -73,10 +73,10 @@ public class Servicios extends javax.swing.JFrame {
 
         txtServicio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
-        txtCosto.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        txtCosto.addActionListener(new java.awt.event.ActionListener() {
+        txtPrecio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCostoActionPerformed(evt);
+                txtPrecioActionPerformed(evt);
             }
         });
 
@@ -112,12 +112,12 @@ public class Servicios extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblCosto)
+                                        .addComponent(lblPrecio)
                                         .addComponent(lblServicio)
                                         .addComponent(lblIdServicio))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtCosto)
+                                        .addComponent(txtPrecio)
                                         .addComponent(txtServicio)
                                         .addComponent(txtIdServicio)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -147,8 +147,8 @@ public class Servicios extends javax.swing.JFrame {
                     .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblCosto)
-                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblPrecio)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnLimpiar)
@@ -167,9 +167,9 @@ public class Servicios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void txtCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoActionPerformed
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCostoActionPerformed
+    }//GEN-LAST:event_txtPrecioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,13 +213,13 @@ public class Servicios extends javax.swing.JFrame {
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnRegresar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCosto;
     private javax.swing.JLabel lblIdServicio;
+    private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblServicio;
     private javax.swing.JLabel lblTitulo;
     public javax.swing.JTable tblServicios;
-    public javax.swing.JTextField txtCosto;
     public javax.swing.JTextField txtIdServicio;
+    public javax.swing.JTextField txtPrecio;
     public javax.swing.JTextField txtServicio;
     // End of variables declaration//GEN-END:variables
 }
