@@ -34,6 +34,44 @@ public class MDL_Servicios {
         }
     }
     
+    public boolean actualizar(String nombre, float precio, int id) {
+        try {
+            conn = getConnection();
+            String query = "UPDATE servicios SET servicio='"+nombre+"', precio="+precio+" WHERE idServicio = "+id+"";
+            stmt = conn.prepareStatement(query);
+            //rs = stmt.executeQuery();
+            int result = stmt.executeUpdate(query);
+                        
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            conn = null;
+            return false;
+        }
+    }
+    
+    public boolean borrar(int id) {
+        try {
+            conn = getConnection();
+            String query = "UPDATE servicios SET estatus=0 WHERE idServicio = "+id+"";
+            stmt = conn.prepareStatement(query);
+            //rs = stmt.executeQuery();
+            int result = stmt.executeUpdate(query);
+                        
+            Conexion.close(rs);
+            Conexion.close(stmt);
+            Conexion.close(conn);
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            conn = null;
+            return false;
+        }
+    }
+    
     public DefaultTableModel consultar() {
         try {
             conn = getConnection();
