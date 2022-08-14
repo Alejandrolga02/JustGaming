@@ -7,8 +7,11 @@ package Modelo;
 
 import static Modelo.Conexion.getConnection;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 
 public class MDL_Clientes {
     //Atributos de la clase
@@ -35,8 +38,51 @@ public class MDL_Clientes {
         
     }
     
+    //Método para mostrar la tabla clientes
+    public DefaultTableModel clientesConsultar(){
+        try{
+            //Abrir la conexion
+            conn = getConnection();
+            //Preparando la instruccion
+            String sql = "SELECT * FROM cliente WHERE cliente.estatus = 1;";
+            //Ejecucución de la sentencia
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            //Pasar los datos obtenidos a una tabla
+            DefaultTableModel dtm = new DefaultTableModel();
+            ResultSetMetaData rsMD = rs.getMetaData();
+            
+            int columnas = rsMD.getColumnCount(); //Nos da el numero de columnas
+            //Ciclo para obtener las columnas
+            for(int i = 1; i <= columnas; i++){
+                dtm.addColumn(rsMD.getColumnLabel(i)); //Obtener los titulos de las columnas
+            }
+            
+            // Ciclo para las filas
+            while(rs.next()){
+                Object[] fila = new Object[columnas];
+                for(int i = 1; i < columnas; i++){
+                    fila[i] = rs.getObject(i+1);
+                }
+                dtm.addRow(fila);
+            }
+            return dtm;
+        }catch(SQLException ex){
+            return null;
+        }
+    }
+    
+    
     //Método para Eliminar a un cliente
-    public boolean clinteEliminar(){
+    public boolean clinteEliminar(int id){
+        try{
+            //Abrir la conexión
+            conn = getConnection();
+            //Preparando la instrucción
+            String sql = "UPDATE ON";
+        }catch(SQLException ex){
+            
+        }
         return false;
     }
 }
