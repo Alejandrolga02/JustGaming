@@ -62,11 +62,6 @@ public class Servicios extends javax.swing.JFrame {
 
         btnEliminar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
 
         btnActualizar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -74,11 +69,6 @@ public class Servicios extends javax.swing.JFrame {
         txtServicio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         txtPrecio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecioActionPerformed(evt);
-            }
-        });
 
         lblTitulo.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         lblTitulo.setText("Servicios");
@@ -162,14 +152,6 @@ public class Servicios extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioActionPerformed
 
     /**
      * @param args the command line arguments

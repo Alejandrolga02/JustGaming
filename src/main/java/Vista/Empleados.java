@@ -41,6 +41,8 @@ public class Empleados extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
         lblIdEmpleado = new javax.swing.JLabel();
         txtIdEmpleado = new javax.swing.JTextField();
+        txtNombre1 = new javax.swing.JTextField();
+        lblNombre1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
@@ -105,6 +107,11 @@ public class Empleados extends javax.swing.JFrame {
         txtIdEmpleado.setEditable(false);
         txtIdEmpleado.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
+        txtNombre1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        lblNombre1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblNombre1.setText("Apellido:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,7 +132,8 @@ public class Empleados extends javax.swing.JFrame {
                                         .addComponent(lblTelefono)
                                         .addComponent(lblNombre)
                                         .addComponent(lblDomicilio)
-                                        .addComponent(lblFechaDeNacimiento))
+                                        .addComponent(lblFechaDeNacimiento)
+                                        .addComponent(lblNombre1))
                                     .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtTelefono)
@@ -145,7 +153,8 @@ public class Empleados extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(lblIdEmpleado)
                                             .addGap(18, 18, 18)
-                                            .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(0, 0, Short.MAX_VALUE))))
                         .addGap(18, 18, 18))))
         );
@@ -164,6 +173,10 @@ public class Empleados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombre1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblTelefono)
@@ -240,6 +253,7 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JLabel lblFechaDeNacimiento;
     private javax.swing.JLabel lblIdEmpleado;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTitulo;
     public javax.swing.JTable tblEmpleados;
@@ -247,6 +261,7 @@ public class Empleados extends javax.swing.JFrame {
     public javax.swing.JTextField txtFechaDeNacimiento;
     public javax.swing.JTextField txtIdEmpleado;
     public javax.swing.JTextField txtNombre;
+    public javax.swing.JTextField txtNombre1;
     public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
