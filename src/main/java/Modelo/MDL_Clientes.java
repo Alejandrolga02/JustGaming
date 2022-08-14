@@ -79,10 +79,35 @@ public class MDL_Clientes {
             //Abrir la conexión
             conn = getConnection();
             //Preparando la instrucción
-            String sql = "UPDATE ON"
+            String sql = "UPDATE cliente SET cliente.estatus = 0 WHERE cliente.idCliente = " + id + ";";
+            //Ejecución de la sentencia
+            Statement stm = conn.createStatement();
+            int register = stm.executeUpdate(sql);
+            //Cierre de la conexión
+            Conexion.close(conn);
+            return true;
         }catch(SQLException ex){
-            
+            return false;
         }
-        return false;
+        
+    }
+    
+    //Método para actualizar datos
+    public boolean clienteActualizar (int idCliente, String nombreCompleto, String telefono, String correoElectronico, String domicilio){
+        try{
+            //Abrir la conexion
+            conn = getConnection();
+            //Preparando la instruccion
+            String sql = "UPDATE cliente SET nombreCompleto = '" + nombreCompleto + "', telefono = '" + telefono + "', correoElectronico = '" + 
+                    correoElectronico + "', domicilio = '" + domicilio + "' WHERE idCliente = " + idCliente + ";";
+            //Ejecucución de la sentencia
+            Statement stm = conn.createStatement();
+            int registro = stm.executeUpdate(sql); //Los Update regresan valores enteros
+            //Cierre de la conexión
+            Conexion.close(conn);
+            return true;
+        }catch(SQLException ex){
+            return false;
+        }
     }
 }
