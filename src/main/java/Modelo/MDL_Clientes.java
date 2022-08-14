@@ -74,7 +74,7 @@ public class MDL_Clientes {
     
     
     //Método para Eliminar a un cliente
-    public boolean clinteEliminar(int id){
+    public boolean clienteEliminar(int id){
         try{
             //Abrir la conexión
             conn = getConnection();
