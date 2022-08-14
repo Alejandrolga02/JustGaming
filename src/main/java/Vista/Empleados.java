@@ -41,8 +41,10 @@ public class Empleados extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
         lblIdEmpleado = new javax.swing.JLabel();
         txtIdEmpleado = new javax.swing.JTextField();
-        txtNombre1 = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
         lblNombre1 = new javax.swing.JLabel();
+        lblidRol = new javax.swing.JLabel();
+        txtidRol = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
@@ -102,10 +104,15 @@ public class Empleados extends javax.swing.JFrame {
         txtIdEmpleado.setEditable(false);
         txtIdEmpleado.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
-        txtNombre1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtApellido.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         lblNombre1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblNombre1.setText("Apellido:");
+
+        lblidRol.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblidRol.setText("Id Rol:");
+
+        txtidRol.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,10 +126,33 @@ public class Empleados extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(56, 56, 56)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblIdEmpleado)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(0, 0, Short.MAX_VALUE))
                                 .addGroup(layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnIngresar)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnEliminar)
+                                            .addGap(10, 10, 10)
+                                            .addComponent(btnActualizar)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnLimpiar))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(72, 72, 72)
+                                            .addComponent(lblidRol))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(lblTelefono)
                                         .addComponent(lblNombre)
@@ -134,23 +164,8 @@ public class Empleados extends javax.swing.JFrame {
                                         .addComponent(txtTelefono)
                                         .addComponent(txtNombre)
                                         .addComponent(txtFechaDeNacimiento)
-                                        .addComponent(txtDomicilio)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(btnIngresar)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(btnEliminar)
-                                            .addGap(10, 10, 10)
-                                            .addComponent(btnActualizar)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btnLimpiar))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblIdEmpleado)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addComponent(txtDomicilio)
+                                        .addComponent(txtidRol)))))
                         .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
@@ -170,7 +185,7 @@ public class Empleados extends javax.swing.JFrame {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNombre1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -184,6 +199,10 @@ public class Empleados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblFechaDeNacimiento)
                     .addComponent(txtFechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblidRol)
+                    .addComponent(txtidRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnLimpiar)
@@ -192,7 +211,7 @@ public class Empleados extends javax.swing.JFrame {
                     .addComponent(btnActualizar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -247,12 +266,14 @@ public class Empleados extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblidRol;
     public javax.swing.JTable tblEmpleados;
+    public javax.swing.JTextField txtApellido;
     public javax.swing.JTextField txtDomicilio;
     public javax.swing.JTextField txtFechaDeNacimiento;
     public javax.swing.JTextField txtIdEmpleado;
     public javax.swing.JTextField txtNombre;
-    public javax.swing.JTextField txtNombre1;
     public javax.swing.JTextField txtTelefono;
+    public javax.swing.JTextField txtidRol;
     // End of variables declaration//GEN-END:variables
 }
