@@ -83,11 +83,6 @@ public class DetallesVentas extends javax.swing.JFrame {
         lblEmpleado.setText("Empleado:");
 
         txtEmpleado.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        txtEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmpleadoActionPerformed(evt);
-            }
-        });
 
         lblCliente.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblCliente.setText("Cliente:");
@@ -181,10 +176,6 @@ public class DetallesVentas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmpleadoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -222,7 +213,7 @@ public class DetallesVentas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnMostrar;
-    private javax.swing.JButton btnRegresar;
+    public javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
@@ -233,7 +224,7 @@ public class DetallesVentas extends javax.swing.JFrame {
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIdVenta;
     private javax.swing.JLabel lblTotal;
-    private javax.swing.JTable tblDetallesVenta;
+    public javax.swing.JTable tblDetallesVenta;
     public javax.swing.JTextField txtCliente;
     public javax.swing.JTextField txtEmpleado;
     public javax.swing.JTextField txtFecha;
