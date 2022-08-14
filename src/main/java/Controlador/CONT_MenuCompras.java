@@ -47,10 +47,10 @@ public class CONT_MenuCompras implements ActionListener, MouseListener {
             Ncontrolador.iniciarVista();*/
             vista.dispose();        
         } else if (vista.btnProveedores == evento.getSource()) {
-            /*Vista.Proveedores Nvista = new Vista.Proveedores();
+            Vista.Proveedores Nvista = new Vista.Proveedores();
             Modelo.MDL_Proveedores Nmodelo = new Modelo.MDL_Proveedores();
             Controlador.CONT_Proveedores Ncontrolador = new CONT_Proveedores(Nmodelo, Nvista);
-            Ncontrolador.iniciarVista();*/
+            Ncontrolador.iniciarVista();
             vista.dispose();            
         }else if (vista.btnRegresar == evento.getSource()) {
             Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
