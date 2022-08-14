@@ -54,7 +54,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnIngresar == evento.getSource()){
-            if((vista.txtNombre.getText().isBlank()) && (vista.txtDomicilio.getText().isBlank()) && (vista.txtCorreo.getText().isBlank()) && (vista.txtTelefono.getText().isBlank())){
+            if(vista.txtNombre.getText().equals("") || vista.txtDomicilio.getText().equals("") || vista.txtCorreo.getText().equals("") || vista.txtTelefono.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
             }else if(modelo.clientesInsertar(vista.txtNombre.getText(), vista.txtTelefono.getText(), 
                     vista.txtCorreo.getText(), vista.txtDomicilio.getText())){
@@ -65,8 +65,8 @@ public class CONT_Clientes implements ActionListener, MouseListener{
                 JOptionPane.showMessageDialog(null, "No se pudo insertar");
             }
         }else if(vista.btnActualizar == evento.getSource()){
-            if((vista.txtNombre.getText().isEmpty()) && (vista.txtDomicilio.getText().isEmpty()) && (vista.txtCorreo.getText().isEmpty()) && 
-                    (vista.txtTelefono.getText().isEmpty())){
+            if((vista.txtNombre.getText().equals("")) || (vista.txtDomicilio.getText().equals("")) || (vista.txtCorreo.getText().equals("")) || 
+                    (vista.txtTelefono.getText().equals(""))){
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
             }else if(modelo.clienteActualizar(Integer.parseInt(vista.txtIdCliente.getText()),vista.txtNombre.getText(), vista.txtTelefono.getText(), 
                     vista.txtCorreo.getText(), vista.txtDomicilio.getText())){
@@ -77,7 +77,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
                 JOptionPane.showMessageDialog(null, "No se pudo actualizar");
             }
         }else if(vista.btnEliminar == evento.getSource()){
-            if(vista.txtIdCliente.getText().isEmpty()){
+            if(vista.txtIdCliente.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Campo IdCliente esta vacio");
             }else if(modelo.clienteEliminar(Integer.parseInt(vista.txtIdCliente.getText()))){
                 JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
