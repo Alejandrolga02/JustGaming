@@ -23,56 +23,29 @@ public class Empleados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblNombre = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEmpleados = new javax.swing.JTable();
+        btnLimpiar = new javax.swing.JButton();
+        txtFechaDeNacimiento = new javax.swing.JTextField();
+        btnRegresar = new javax.swing.JButton();
         lblTelefono = new javax.swing.JLabel();
-        lblDomicilio = new javax.swing.JLabel();
-        lblFechaNac = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        txtDomicilio = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
-        txtDomicilio = new javax.swing.JTextField();
-        txtFechaNac = new javax.swing.JTextField();
-        btnLimpiar = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
+        lblFechaDeNacimiento = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblEmpleado1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        btnEliminar = new javax.swing.JButton();
+        lblDomicilio = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblIdEmpleado = new javax.swing.JLabel();
+        txtIdEmpleado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
 
-        lblNombre.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblNombre.setText("Nombre:");
-
-        lblTelefono.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblTelefono.setText("Teléfono:");
-
-        lblDomicilio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblDomicilio.setText("Domicilio:");
-
-        lblFechaNac.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblFechaNac.setText("Fecha de Nacimiento:");
-
-        txtNombre.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-
-        txtTelefono.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-
-        txtDomicilio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-
-        txtFechaNac.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-
-        btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnLimpiar.setText("Limpiar");
-
-        btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnIngresar.setText("Ingresar");
-
-        btnActualizar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnActualizar.setText("Actualizar");
-
-        tblEmpleado1.setModel(new javax.swing.table.DefaultTableModel(
+        tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -80,97 +53,146 @@ public class Empleados extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(tblEmpleado1);
+        jScrollPane1.setViewportView(tblEmpleados);
 
-        jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
-        jLabel1.setText("Empleados");
+        btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+
+        txtFechaDeNacimiento.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnRegresar.setText("Regresar");
+
+        lblTelefono.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblTelefono.setText("Teléfono:");
 
         btnEliminar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnActualizar.setText("Actualizar");
+
+        txtDomicilio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        txtNombre.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        txtTelefono.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        lblTitulo.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        lblTitulo.setText("Empleados");
+
+        lblFechaDeNacimiento.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblFechaDeNacimiento.setText("Fecha de Nacimiento");
+        lblFechaDeNacimiento.setToolTipText("");
+
+        btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnIngresar.setText("Ingresar");
+
+        lblDomicilio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblDomicilio.setText("Domicilio:");
+
+        lblNombre.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblNombre.setText("Nombre:");
+
+        lblIdEmpleado.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblIdEmpleado.setText("Id Empleado:");
+
+        txtIdEmpleado.setEditable(false);
+        txtIdEmpleado.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111)
-                        .addComponent(jLabel1)
+                        .addComponent(btnRegresar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtNombre))
-                                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(lblTelefono)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtTelefono))
-                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblNombre)
                                         .addComponent(lblDomicilio)
-                                        .addGap(2, 2, 2)
-                                        .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnLimpiar)
-                                    .addComponent(btnEliminar)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblFechaNac)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnIngresar)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnActualizar)))))
+                                        .addComponent(lblFechaDeNacimiento))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtTelefono)
+                                        .addComponent(txtNombre)
+                                        .addComponent(txtFechaDeNacimiento)
+                                        .addComponent(txtDomicilio)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnIngresar)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnEliminar)
+                                            .addGap(10, 10, 10)
+                                            .addComponent(btnActualizar)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnLimpiar))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblIdEmpleado)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(0, 0, Short.MAX_VALUE))))
                         .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
+                .addComponent(btnRegresar)
+                .addGap(18, 18, 18)
+                .addComponent(lblTitulo)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIdEmpleado))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblNombre)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpiar))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTelefono)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(btnEliminar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblTelefono)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblDomicilio)
                     .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFechaNac)
-                    .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblFechaDeNacimiento)
+                    .addComponent(txtFechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnIngresar)
+                    .addComponent(btnEliminar)
                     .addComponent(btnActualizar))
                 .addGap(18, 18, 18)
-                .addComponent(btnIngresar)
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,21 +230,23 @@ public class Empleados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnIngresar;
+    public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnRegresar;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDomicilio;
-    private javax.swing.JLabel lblFechaNac;
+    private javax.swing.JLabel lblFechaDeNacimiento;
+    private javax.swing.JLabel lblIdEmpleado;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
-    private javax.swing.JTable tblEmpleado1;
-    private javax.swing.JTextField txtDomicilio;
-    private javax.swing.JTextField txtFechaNac;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JLabel lblTitulo;
+    public javax.swing.JTable tblEmpleados;
+    public javax.swing.JTextField txtDomicilio;
+    public javax.swing.JTextField txtFechaDeNacimiento;
+    public javax.swing.JTextField txtIdEmpleado;
+    public javax.swing.JTextField txtNombre;
+    public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

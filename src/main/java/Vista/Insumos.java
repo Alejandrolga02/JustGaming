@@ -24,18 +24,20 @@ public class Insumos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblNombre = new javax.swing.JLabel();
-        lblCantidad = new javax.swing.JLabel();
+        btnIngresar = new javax.swing.JButton();
         lblCosto = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblInsumos = new javax.swing.JTable();
+        btnLimpiar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        lblCantidad = new javax.swing.JLabel();
+        txtCosto = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
-        txtCosto = new javax.swing.JTextField();
-        btnLimpiar = new javax.swing.JButton();
-        btnIngresar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblProveedores = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        lblIdInsumo = new javax.swing.JLabel();
+        txtIdInsumo = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -51,28 +53,21 @@ public class Insumos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Insumos");
 
-        lblNombre.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblNombre.setText("Nombre:");
-
-        lblCantidad.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblCantidad.setText("Cantidad:");
+        btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         lblCosto.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblCosto.setText("Costo:");
 
-        txtNombre.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblNombre.setText("Nombre:");
 
-        txtCantidad.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-
-        txtCosto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnLimpiar.setText("Limpiar");
-
-        btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnIngresar.setText("Ingresar");
-
-        tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
+        tblInsumos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -80,10 +75,31 @@ public class Insumos extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tblProveedores);
+        jScrollPane1.setViewportView(tblInsumos);
 
-        jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
-        jLabel1.setText("Insumos");
+        btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+
+        btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnRegresar.setText("Regresar");
+
+        lblCantidad.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblCantidad.setText("Cantidad:");
+
+        txtCosto.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        txtNombre.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        txtCantidad.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        lblTitulo.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        lblTitulo.setText("Insumos");
+
+        lblIdInsumo.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblIdInsumo.setText("Id Insumo:");
+
+        txtIdInsumo.setEditable(false);
+        txtIdInsumo.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,60 +108,75 @@ public class Insumos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCantidad, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCosto)
-                    .addComponent(lblNombre))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCantidad)
-                    .addComponent(txtNombre)
-                    .addComponent(txtCosto)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnIngresar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLimpiar)
-                .addGap(42, 42, 42))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(175, 175, 175)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnRegresar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(64, 64, 64)
+                                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblCantidad)
+                                    .addComponent(lblNombre)
+                                    .addComponent(lblCosto))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNombre)
+                                    .addComponent(txtCosto)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblIdInsumo)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtIdInsumo)))
+                        .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
+                .addComponent(btnRegresar)
+                .addGap(18, 18, 18)
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
+                    .addComponent(txtIdInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIdInsumo))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpiar))
-                .addGap(19, 19, 19)
+                    .addComponent(lblNombre))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCantidad)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCantidad))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCosto)
-                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnIngresar)
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCosto))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnIngresar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,18 +215,20 @@ public class Insumos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JButton btnIngresar;
+    public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblCosto;
+    private javax.swing.JLabel lblIdInsumo;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JTable tblProveedores;
-    private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtCosto;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JLabel lblTitulo;
+    public javax.swing.JTable tblInsumos;
+    public javax.swing.JTextField txtCantidad;
+    public javax.swing.JTextField txtCosto;
+    public javax.swing.JTextField txtIdInsumo;
+    public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

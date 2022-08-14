@@ -23,36 +23,23 @@ public class Servicios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblServicios = new javax.swing.JLabel();
-        lblPrecio = new javax.swing.JLabel();
-        txtServicios = new javax.swing.JTextField();
-        txtPrecio = new javax.swing.JTextField();
-        btnLimpiar = new javax.swing.JButton();
-        btnIngresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblServicios = new javax.swing.JTable();
-        btnActualizar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        lblCosto = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        txtServicio = new javax.swing.JTextField();
+        txtCosto = new javax.swing.JTextField();
+        lblTitulo = new javax.swing.JLabel();
+        btnIngresar = new javax.swing.JButton();
+        lblServicio = new javax.swing.JLabel();
+        lblIdServicio = new javax.swing.JLabel();
+        txtIdServicio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Servicios");
-
-        lblServicios.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblServicios.setText("Servicios:");
-
-        lblPrecio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblPrecio.setText("Precio:");
-
-        txtServicios.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-
-        txtPrecio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-
-        btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnLimpiar.setText("Limpiar");
-
-        btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnIngresar.setText("Ingresar");
 
         tblServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,14 +51,49 @@ public class Servicios extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblServicios);
 
-        btnActualizar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnActualizar.setText("Actualizar");
-
-        btnEliminar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
+        btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
 
         btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnRegresar.setText("Regresar");
+
+        lblCosto.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblCosto.setText("Costo:");
+
+        btnEliminar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnActualizar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnActualizar.setText("Actualizar");
+
+        txtServicio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        txtCosto.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtCosto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCostoActionPerformed(evt);
+            }
+        });
+
+        lblTitulo.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        lblTitulo.setText("Servicios");
+
+        btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnIngresar.setText("Ingresar");
+
+        lblServicio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblServicio.setText("Servicio:");
+
+        lblIdServicio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblIdServicio.setText("Id Servicio:");
+
+        txtIdServicio.setEditable(false);
+        txtIdServicio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,60 +102,74 @@ public class Servicios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnEliminar)
-                            .addGap(34, 34, 34)
-                            .addComponent(btnActualizar))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegresar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblCosto)
+                                        .addComponent(lblServicio)
+                                        .addComponent(lblIdServicio))
+                                    .addGap(18, 18, 18)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblServicios)
-                                        .addComponent(lblPrecio))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtServicios)
-                                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(btnRegresar))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                .addGap(18, 18, 18))
+                                        .addComponent(txtCosto)
+                                        .addComponent(txtServicio)
+                                        .addComponent(txtIdServicio)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(btnIngresar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnEliminar)
+                                    .addGap(10, 10, 10)
+                                    .addComponent(btnActualizar)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnLimpiar))))
+                        .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLimpiar)
-                        .addGap(29, 29, 29)
-                        .addComponent(btnIngresar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRegresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblServicios)
-                            .addComponent(txtServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPrecio)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnActualizar)
-                    .addComponent(btnEliminar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegresar)
+                .addGap(18, 18, 18)
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblIdServicio))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblServicio)
+                    .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblCosto)
+                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnIngresar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnActualizar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCostoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,10 +213,13 @@ public class Servicios extends javax.swing.JFrame {
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnRegresar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblPrecio;
-    private javax.swing.JLabel lblServicios;
+    private javax.swing.JLabel lblCosto;
+    private javax.swing.JLabel lblIdServicio;
+    private javax.swing.JLabel lblServicio;
+    private javax.swing.JLabel lblTitulo;
     public javax.swing.JTable tblServicios;
-    public javax.swing.JTextField txtPrecio;
-    public javax.swing.JTextField txtServicios;
+    public javax.swing.JTextField txtCosto;
+    public javax.swing.JTextField txtIdServicio;
+    public javax.swing.JTextField txtServicio;
     // End of variables declaration//GEN-END:variables
 }
