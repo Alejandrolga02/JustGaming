@@ -79,7 +79,7 @@ public class MDL_Clientes {
             //Abrir la conexión
             conn = getConnection();
             //Preparando la instrucción
-            String sql = "UPDATE ON";
+            String sql = "UPDATE ON"
         }catch(SQLException ex){
             
         }
