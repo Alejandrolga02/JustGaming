@@ -44,33 +44,64 @@ public class CONT_Servicios implements ActionListener, MouseListener {
         vista.txtPrecio.setText("");
         vista.txtIdServicio.setText("");
     }
+    
+    public boolean precioValido(String precio) {
+        try {
+            float npre = Float.parseFloat(precio);
+            
+            return npre >= 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(vista.btnIngresar == evento.getSource()) {
-            if(modelo.ingresar(vista.txtServicio.getText(), Float.parseFloat(vista.txtPrecio.getText()))){
-                JOptionPane.showMessageDialog(null, "Registro insertado exitosamente");
-                this.vista.tblServicios.setModel(modelo.consultar());
-                limpiarCajasTexto();
-            }else{
-                JOptionPane.showMessageDialog(null, "No se pudo insertar");
+        if(vista.btnIngresar == evento.getSource()) { // Boton Ingresar presionado
+            boolean isValid = precioValido(vista.txtPrecio.getText());
+            
+            if(!vista.txtServicio.getText().isEmpty() && isValid){
+                if(modelo.ingresar(vista.txtServicio.getText(), Float.parseFloat(vista.txtPrecio.getText()))){
+                    JOptionPane.showMessageDialog(null, "Registro insertado exitosamente");
+                    this.vista.tblServicios.setModel(modelo.consultar());
+                    limpiarCajasTexto();
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se pudo insertar");
+                }                
+            } else if (isValid) {
+                JOptionPane.showMessageDialog(null, "Faltan insertar datos");
+            } else {
+                vista.txtPrecio.setText("");
+                JOptionPane.showMessageDialog(null, "Precio invalido");
             }
         }else if(vista.btnEliminar == evento.getSource()){
-            if(modelo.borrar(Integer.parseInt(vista.txtIdServicio.getText()))){
-                JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
-                this.vista.tblServicios.setModel(modelo.consultar());
-                limpiarCajasTexto();
-            }else{
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+            if (!vista.txtIdServicio.getText().isEmpty()) { // Validacion de campo
+                if(modelo.borrar(Integer.parseInt(vista.txtIdServicio.getText()))){
+                    JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
+                    this.vista.tblServicios.setModel(modelo.consultar());
+                    limpiarCajasTexto();
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+                }                
+            } else {
+                JOptionPane.showMessageDialog(null, "Se necesita el Id para eliminar");                
             }
         }else if(vista.btnActualizar == evento.getSource()){
-            if(modelo.actualizar(vista.txtServicio.getText(), 
-        Float.parseFloat(vista.txtPrecio.getText()), Integer.parseInt(vista.txtIdServicio.getText()))) {
-                JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
-                this.vista.tblServicios.setModel(modelo.consultar());                
-                limpiarCajasTexto();
-            }else{
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar");
+            boolean isValid = precioValido(vista.txtPrecio.getText());
+            
+            if(!vista.txtServicio.getText().isEmpty() && isValid && !vista.txtIdServicio.getText().isEmpty()){
+                if(modelo.actualizar(vista.txtServicio.getText(), Float.parseFloat(vista.txtPrecio.getText()), Integer.parseInt(vista.txtIdServicio.getText()))) {
+                    JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
+                    this.vista.tblServicios.setModel(modelo.consultar());                
+                    limpiarCajasTexto();
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se pudo actualizar");
+                }                
+            } else if (isValid) {
+                JOptionPane.showMessageDialog(null, "Faltan insertar datos");
+            } else {
+                vista.txtPrecio.setText("");
+                JOptionPane.showMessageDialog(null, "Precio invalido");
             }
         } else if (vista.btnLimpiar == evento.getSource()) {
             limpiarCajasTexto();
