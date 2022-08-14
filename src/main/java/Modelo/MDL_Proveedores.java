@@ -72,7 +72,7 @@ public class MDL_Proveedores {
     public DefaultTableModel consultar() {
         try {
             conn = getConnection();
-            String query = "SELECT idServicio, servicio, precio FROM servicios WHERE estatus = 1;";
+            String query = "SELECT idProveedores, nombre, telefono, direccion FROM proveedores WHERE estatus = 1;";
             stmt = conn.prepareStatement(query);
             
             rs = stmt.executeQuery();

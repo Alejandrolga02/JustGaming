@@ -31,7 +31,7 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
     }
     
     public void iniciarVista() {
-        vista.setTitle("Servicios");
+        vista.setTitle("Proveedores");
         vista.pack();
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
