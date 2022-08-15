@@ -72,44 +72,75 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         return fechaBuena;
     }
     
+    //Método para validar el telefono
+     public boolean telefonoValido(String telefono) { // Validacion de telefono
+        try {
+            if (telefono.length() == 7 || telefono.length() == 10 || telefono.length() == 12) {
+                Double ntel = Double.parseDouble(telefono);
+
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
     //Método para el uso de los botones
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(vista.btnIngresar == evento.getSource()){
+        boolean isValid = telefonoValido(vista.txtTelefono.getText());
+        if(vista.btnIngresar == evento.getSource()){ //Boton de para ingresar datos
             if(vista.txtApellido.getText().equals("") || vista.txtDomicilio.getText().equals("") || vista.txtFechaDeNacimiento.getText().equals("")
-                    || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.txtidRol.getText().equals("")){
+                    || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.txtidRol.getText().equals("")){ //Validación de camos vacios
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
-            }else if(modelo.empleadoInsertar(vista.txtNombre.getText(), vista.txtApellido.getText(), 
+            }else if(isValid){  //Validación del campo telefono
+                if(modelo.empleadoInsertar(vista.txtNombre.getText(), vista.txtApellido.getText(), 
                     vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date)conseguirFecha(vista.txtFechaDeNacimiento.getText()), 
-                    conseguirUsuario(vista.txtNombre.getText(),vista.txtApellido.getText()), Integer.parseInt(vista.txtidRol.getText()))){
-                JOptionPane.showMessageDialog(null, "Registro insertado exitoso");
+                    conseguirUsuario(vista.txtNombre.getText(),vista.txtApellido.getText()), Integer.parseInt(vista.txtidRol.getText()))){ //Ejecución de la consulta
+                    JOptionPane.showMessageDialog(null, "Registro insertado exitoso");
+                    this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
+                    limpiarCajastexto();
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se logro insertar");
+                }
             }else{
-                JOptionPane.showMessageDialog(null, "No se pudo insertar");
+                JOptionPane.showMessageDialog(null, "El formato del numero de telefono no es valido");
             }
-        }else if(vista.btnActualizar == evento.getSource()){
+        }else if(vista.btnActualizar == evento.getSource()){ //Boton de actualizar
             if(vista.txtApellido.getText().equals("") || vista.txtDomicilio.getText().equals("") || vista.txtFechaDeNacimiento.getText().equals("")
                     || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.txtidRol.getText().equals("") 
-                    || vista.txtIdEmpleado.getText().equals("")){
+                    || vista.txtIdEmpleado.getText().equals("")){ //Validación de los campos vacios
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
-            }else if(modelo.empleadoActualizar(Integer.parseInt(vista.txtIdEmpleado.getText()), vista.txtNombre.getText(), vista.txtApellido.getText()
+            }else if(isValid){ //Validación del telefono
+                if(modelo.empleadoActualizar(Integer.parseInt(vista.txtIdEmpleado.getText()), vista.txtNombre.getText(), vista.txtApellido.getText()
                     , vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date)conseguirFecha(vista.txtFechaDeNacimiento.getText())
-                    , Integer.parseInt(vista.txtidRol.getText()))){
-                JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
+                    , Integer.parseInt(vista.txtidRol.getText()))){ //Ejecución de la consulta
+                    JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
+                    this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se pudo actualizar");
+                }
             }else{
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar");
+                JOptionPane.showMessageDialog(null, "El formato del numero de telefono no es valido");
             }
-        }else if(vista.btnEliminar == evento.getSource()){
-            if(vista.txtIdEmpleado.getText().equals("")){
+        }else if(vista.btnEliminar == evento.getSource()){ //Boton de eliminar
+            if(vista.txtIdEmpleado.getText().equals("")){ //Validación de campo vacio
                 JOptionPane.showMessageDialog(null, "Campo IdEmpleado esta vacio");
-            }else if(modelo.empleadoEliminar(Integer.parseInt(vista.txtIdEmpleado.getText()))){
+            }else if(modelo.empleadoEliminar(Integer.parseInt(vista.txtIdEmpleado.getText()))){ //Ejecución de la consulta
                 JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
+                this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
             }else{
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar");
             }
         }else if(vista.btnLimpiar == evento.getSource()){
             limpiarCajastexto();
-        }else if(vista.btnRegresar == evento.getSource()){
-            
+        }else if(vista.btnRegresar == evento.getSource()){ //Boton para regrresar a la vista anterior
+            Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
+            Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
+            Ncontrolador.iniciarVista();
+            vista.dispose();
         }
     }
 
@@ -122,8 +153,19 @@ public class CONT_Empleados implements ActionListener, MouseListener{
     
     
     @Override
-    public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void mouseClicked(MouseEvent evento) {
+        if(vista.tblEmpleados == evento.getSource()){ //Evento para seleccionar un campo de la tabla
+            int fila = vista.tblEmpleados.rowAtPoint(evento.getPoint());
+            if(fila > -1){
+                vista.txtIdEmpleado.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 0)));
+                vista.txtNombre.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 1)));
+                vista.txtApellido.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 2)));
+                vista.txtTelefono.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 3)));
+                vista.txtDomicilio.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 4)));
+                vista.txtFechaDeNacimiento.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 5)));
+                vista.txtidRol.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 6)));
+            }
+        }
     }
 
     @Override

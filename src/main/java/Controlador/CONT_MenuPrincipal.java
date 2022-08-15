@@ -60,10 +60,10 @@ public class CONT_MenuPrincipal implements ActionListener, MouseListener{
             Ncontrolador.iniciarVista();
             vista.dispose();
         } else if (vista.btnEmpleados == evento.getSource()) {
-            /*Vista.Empleados Nvista = new Vista.Empleados();
+            Vista.Empleados Nvista = new Vista.Empleados();
             Modelo.MDL_Empleados Nmodelo = new Modelo.MDL_Empleados();
-            Controlador.CONT_Empleados Ncontrolador = new Controlador.CONT_MenuVentas(Nmodelo, Nvista);
-            Ncontrolador.iniciarVista();*/
+            Controlador.CONT_Empleados Ncontrolador = new Controlador.CONT_Empleados(Nmodelo, Nvista);
+            Ncontrolador.iniciarVista();
             vista.dispose();
         } else if (vista.btnServicios == evento.getSource()) {
             Vista.Servicios Nvista = new Vista.Servicios();
