@@ -40,11 +40,13 @@ public class DetallesVentas extends javax.swing.JFrame {
         lblCliente = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tblDetallesVenta = new javax.swing.JTable();
+        tblVentas = new javax.swing.JTable();
         txtTotal = new javax.swing.JTextField();
         lblTotal = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDetallesVentas = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,6 +80,7 @@ public class DetallesVentas extends javax.swing.JFrame {
         lblIdVenta.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblIdVenta.setText("Id Venta:");
 
+        txtIdVenta.setEditable(false);
         txtIdVenta.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         lblEmpleado.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
@@ -91,7 +94,7 @@ public class DetallesVentas extends javax.swing.JFrame {
         btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnRegresar.setText("Regresar");
 
-        tblDetallesVenta.setModel(new javax.swing.table.DefaultTableModel(
+        tblVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -99,14 +102,15 @@ public class DetallesVentas extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane4.setViewportView(tblDetallesVenta);
+        jScrollPane4.setViewportView(tblVentas);
 
+        txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
         lblTotal.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblTotal.setText("Total:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDetallesVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -117,7 +121,13 @@ public class DetallesVentas extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblDetallesVentas);
+
+        jButton1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        jButton1.setText("Consultar");
+
+        jButton2.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        jButton2.setText("Limpiar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,7 +138,7 @@ public class DetallesVentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnRegresar)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCliente, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -143,7 +153,11 @@ public class DetallesVentas extends javax.swing.JFrame {
                                     .addComponent(txtEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtIdVenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lblDetallesVenta))
+                            .addComponent(lblDetallesVenta)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
@@ -179,6 +193,10 @@ public class DetallesVentas extends javax.swing.JFrame {
                             .addComponent(lblTotal)
                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -224,11 +242,12 @@ public class DetallesVentas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnRegresar;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblDetallesVenta;
@@ -236,7 +255,8 @@ public class DetallesVentas extends javax.swing.JFrame {
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIdVenta;
     private javax.swing.JLabel lblTotal;
-    public javax.swing.JTable tblDetallesVenta;
+    public javax.swing.JTable tblDetallesVentas;
+    public javax.swing.JTable tblVentas;
     public javax.swing.JTextField txtCliente;
     public javax.swing.JTextField txtEmpleado;
     public javax.swing.JTextField txtFecha;
