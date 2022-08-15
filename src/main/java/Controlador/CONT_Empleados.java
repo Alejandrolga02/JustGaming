@@ -11,7 +11,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Date;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+//import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -64,12 +69,17 @@ public class CONT_Empleados implements ActionListener, MouseListener{
     }
     
     //Método para cambiar la fecha de String a Date
-    public Date conseguirFecha(String fecha){
-        Date date = new Date(fecha);
+    public java.sql.Date conseguirFecha(String fecha){
+        java.sql.Date a = null;
+        try{
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+            java.util.Date parsed = format.parse(fecha);
+            java.sql.Date fechaSQL = new java.sql.Date(parsed.getTime());
+            return fechaSQL;
+        }catch(ParseException e){
+            return a;
+        }
         
-        long time = date.getTime();
-        java.sql.Date fechaBuena = new java.sql.Date(time);
-        return fechaBuena;
     }
     
     //Método para validar el telefono
@@ -86,18 +96,31 @@ public class CONT_Empleados implements ActionListener, MouseListener{
             return false;
         }
     }
+     
+    //Validación de que el numero no contenga caracteres
+    public boolean validarTelefono(String numero){
+        Pattern patron = Pattern.compile("[0-9]");
+        Matcher matcher = patron.matcher(numero);
+        boolean resultado = matcher.matches();
+        if(resultado){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     //Método para el uso de los botones
     @Override
     public void actionPerformed(ActionEvent evento) {
         boolean isValid = telefonoValido(vista.txtTelefono.getText());
+        boolean valido = validarTelefono(vista.txtTelefono.getText());
         if(vista.btnIngresar == evento.getSource()){ //Boton de para ingresar datos
             if(vista.txtApellido.getText().equals("") || vista.txtDomicilio.getText().equals("") || vista.txtFechaDeNacimiento.getText().equals("")
                     || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.txtidRol.getText().equals("")){ //Validación de camos vacios
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
             }else if(isValid){  //Validación del campo telefono
                 if(modelo.empleadoInsertar(vista.txtNombre.getText(), vista.txtApellido.getText(), 
-                    vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date)conseguirFecha(vista.txtFechaDeNacimiento.getText()), 
+                    vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date) conseguirFecha(vista.txtFechaDeNacimiento.getText()), 
                     conseguirUsuario(vista.txtNombre.getText(),vista.txtApellido.getText()), Integer.parseInt(vista.txtidRol.getText()))){ //Ejecución de la consulta
                     JOptionPane.showMessageDialog(null, "Registro insertado exitoso");
                     this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
@@ -113,7 +136,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
                     || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.txtidRol.getText().equals("") 
                     || vista.txtIdEmpleado.getText().equals("")){ //Validación de los campos vacios
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
-            }else if(isValid){ //Validación del telefono
+            }else if(isValid && valido){ //Validación del telefono
                 if(modelo.empleadoActualizar(Integer.parseInt(vista.txtIdEmpleado.getText()), vista.txtNombre.getText(), vista.txtApellido.getText()
                     , vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date)conseguirFecha(vista.txtFechaDeNacimiento.getText())
                     , Integer.parseInt(vista.txtidRol.getText()))){ //Ejecución de la consulta

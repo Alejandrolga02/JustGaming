@@ -22,7 +22,7 @@ public class MDL_Empleados {
     ResultSet rs = null;
     
     //Método para insertar en la tabla de empleados
-    public boolean empleadoInsertar(String nombre, String apellido, String telefono, String domicilio, Date fechaNacimiento, String usuario,
+    public boolean empleadoInsertar(String nombre, String apellido, String telefono, String domicilio, java.sql.Date fechaNacimiento, String usuario,
             int idRol){
         try{
             //Abrit la conexión

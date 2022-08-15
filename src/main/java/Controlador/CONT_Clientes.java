@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -50,6 +52,18 @@ public class CONT_Clientes implements ActionListener, MouseListener{
         vista.txtTelefono.setText("");
     }
     
+    //Validación de que el numero no contenga caracteres
+    public boolean validarTelefono(String numero){
+        Pattern patron = Pattern.compile("[0-9]");
+        Matcher matcher = patron.matcher(numero);
+        boolean resultado = matcher.matches();
+        if(resultado){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     public boolean telefonoValido(String telefono) { // Validacion de telefono
         try {
             if (telefono.length() == 7 || telefono.length() == 10 || telefono.length() == 12) {
@@ -68,6 +82,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         boolean isValid = telefonoValido(vista.txtTelefono.getText());
+        boolean valido = validarTelefono(vista.txtTelefono.getText());
         if(vista.btnIngresar == evento.getSource()){  //Boton de ingresar
             if(vista.txtNombre.getText().equals("") || vista.txtDomicilio.getText().equals("") || vista.txtCorreo.getText().equals("") || 
                     vista.txtTelefono.getText().equals("")){   //Verificación de que los campos no esten vacios
@@ -88,7 +103,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
             if((vista.txtNombre.getText().equals("")) || (vista.txtDomicilio.getText().equals("")) || (vista.txtCorreo.getText().equals("")) || 
                     (vista.txtTelefono.getText().equals(""))){  //Verificación de que los campos no esten vacios
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
-            }else if(isValid){
+            }else if(isValid && valido){
                 
                 if(modelo.clienteActualizar(Integer.parseInt(vista.txtIdCliente.getText()),vista.txtNombre.getText(), vista.txtTelefono.getText(), 
                     vista.txtCorreo.getText(), vista.txtDomicilio.getText())){ //Se ejecuta la sentencia 
