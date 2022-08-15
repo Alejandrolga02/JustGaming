@@ -8,6 +8,7 @@ package Modelo;
 import static Modelo.Conexion.getConnection;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -17,6 +18,8 @@ import javax.swing.table.DefaultTableModel;
 public class MDL_Empleados {
     //Atributos necesarios
     Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
     
     //Método para insertar en la tabla de empleados
     public boolean empleadoInsertar(String nombre, String apellido, String telefono, String domicilio, Date fechaNacimiento, String usuario,
@@ -45,29 +48,30 @@ public class MDL_Empleados {
             //Abrir la conexión
             conn = getConnection();
             //Preparando la consulta
-            String sql = "SELECT empleado.idEmpleado,empleado.nombre,empleado.apellido,empleado.telefono,empleado.domicilio,empleado.fechaNacimiento,"
-                    + "empelado.usuario,roles.rol,empleado.idRol FROM empleado INNER JOIN roles ON empleado.idRol = roles.idRol WHERE empleado.estatus = 1;";
-            //Ejecución de la sentencia
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery(sql);
-            //Pasar los datos obtenidos a la tabla
-            DefaultTableModel dtm = new DefaultTableModel();
-            ResultSetMetaData rsMd = rs.getMetaData();
-            int columnas = rsMd.getColumnCount(); //Nos da el numeor de columnas
-            //Ciclo plara obtener las columnas
-            for(int i = 1; i <= columnas; i++){
-                dtm.addColumn(rsMd.getColumnLabel(i)); //Obtener los nombres de las columnas
+            String query = "SELECT empleado.idEmpleado,empleado.nombre,empleado.apellido,empleado.telefono,empleado.domicilio,empleado.fechaNacimiento,"
+                    + "empleado.usuario,roles.rol,empleado.idRol FROM empleado INNER JOIN roles ON empleado.idRol = roles.idRol WHERE empleado.estatus = 1;";
+            stmt = conn.prepareStatement(query);
+
+            rs = stmt.executeQuery();
+            ResultSetMetaData rsMd =  rs.getMetaData();
+            DefaultTableModel dtm = new DefaultTableModel();   
+            
+            int columnas = rsMd.getColumnCount();
+            for(int i=1; i <= columnas; i++){  // sirve para obtener los nombres de cada columna (encabezado)
+                dtm.addColumn(rsMd.getColumnLabel(i));
             }
-            //Ciclo para las filas
+            
             while(rs.next()){
                 Object[] fila = new Object[columnas];
-                for(int i = 0; i < columnas; i++){
+                for(int i=0; i< columnas; i++){
                     fila[i] = rs.getObject(i+1);
                 }
                 dtm.addRow(fila);
             }
+            
             return dtm;
         }catch(SQLException ex){
+            ex.printStackTrace(System.out);
             return null;
         }
     }
