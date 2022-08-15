@@ -21,8 +21,6 @@ public class MDL_InicioSesion {
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
             while(rs.next()) {
-                System.out.println("Usuario: " + rs.getString("usuario"));
-                System.out.println("ID: " + rs.getInt("idEmpleado"));
                 Conexion.setUSER_ID(rs.getInt("idEmpleado"));
             }
             Conexion.close(rs);

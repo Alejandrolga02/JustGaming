@@ -46,20 +46,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
 
+        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ventas.png"))); // NOI18N
+
         lblVentas.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblVentas.setLabelFor(btnVentas);
         lblVentas.setText("Ventas");
         lblVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        btnInsumos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/insumos.png"))); // NOI18N
 
         lblInsumos.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblInsumos.setLabelFor(btnVentas);
         lblInsumos.setText("Insumos");
         lblInsumos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clientes.png"))); // NOI18N
+
         lblClientes.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblClientes.setLabelFor(btnVentas);
         lblClientes.setText("Clientes");
         lblClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/compras.png"))); // NOI18N
+
+        btnEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/empleados.png"))); // NOI18N
+
+        btnServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/servicios.png"))); // NOI18N
 
         lblServicios.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblServicios.setLabelFor(btnVentas);

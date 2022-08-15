@@ -38,6 +38,8 @@ public class MenuVentas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Ventas");
 
+        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/addV.png"))); // NOI18N
+
         lblVentas.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblVentas.setLabelFor(btnVentas);
         lblVentas.setText("Ventas");
@@ -45,6 +47,8 @@ public class MenuVentas extends javax.swing.JFrame {
         lblDetalles.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblDetalles.setLabelFor(btnDetalles);
         lblDetalles.setText("Detalles");
+
+        btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/detV.png"))); // NOI18N
 
         btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnRegresar.setText("Regresar");

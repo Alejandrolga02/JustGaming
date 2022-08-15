@@ -35,11 +35,17 @@ public class MenuCompras extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú de Compras");
 
+        btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/addC.png"))); // NOI18N
+
         lblCompras.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         lblCompras.setText("Compras");
 
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/proveedores.png"))); // NOI18N
+
         lblDetalles.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         lblDetalles.setText("Detalles");
+
+        btnDetalles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/detC.png"))); // NOI18N
 
         lblProveedores.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         lblProveedores.setLabelFor(btnProveedores);

@@ -50,23 +50,4 @@ public class Conexion {
     public static void setUSER_ID(int USER_ID) {
         Conexion.USER_ID = USER_ID;
     }
-    
-    /*public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/justgaming?useSSL=false&useTimezone=true&serverTimezone=GMT-6&allowPublicKeyRetrieval=true";
-        try {
-            Connection conexion = DriverManager.getConnection(url,"root","");
-            Statement instruccion = conexion.createStatement();
-            String query = "SELECT * FROM roles";
-            ResultSet resultado = instruccion.executeQuery(query);
-            while(resultado.next()) {
-                System.out.println("Id Rol: " + resultado.getInt("idRol"));
-                System.out.println("Rol: " + resultado.getString("nombre"));
-            }
-            resultado.close();
-            instruccion.close();
-            conexion.close();
-        } catch(SQLException ex) {
-            ex.printStackTrace(System.out);
-        }        
-    }*/
 }
