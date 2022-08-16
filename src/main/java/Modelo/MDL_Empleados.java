@@ -49,7 +49,7 @@ public class MDL_Empleados {
             conn = getConnection();
             //Preparando la consulta
             String query = "SELECT empleado.idEmpleado,empleado.nombre,empleado.apellido,empleado.telefono,empleado.domicilio,empleado.fechaNacimiento,"
-                    + "empleado.usuario,roles.rol,empleado.idRol FROM empleado INNER JOIN roles ON empleado.idRol = roles.idRol WHERE empleado.estatus = 1;";
+                    + "empleado.usuario,empleado.idRol FROM empleado INNER JOIN roles ON empleado.idRol = roles.idRol WHERE empleado.estatus = 1;";
             stmt = conn.prepareStatement(query);
 
             rs = stmt.executeQuery();
@@ -82,7 +82,7 @@ public class MDL_Empleados {
             //Abrir la conexión
             conn = getConnection();
             //Preparando la instrucción
-            String sql = "UPDATE empleado SET empelado.estatus = 0 WHERE cliente.idCliente = " + id + ";";
+            String sql = "UPDATE empleado SET empleado.estatus = 0 WHERE empleado.idEmpleado = " + id + ";";
             //Ejecución de la sentencia
             Statement stm = conn.createStatement();
             int registro = stm.executeUpdate(sql);
@@ -95,17 +95,17 @@ public class MDL_Empleados {
     }
     
     //Método para actualizar
-    public boolean empleadoActualizar(int Idempleado,String nombre, String apellido, String telefono, String domicilio, Date fechaNacimiento, int idrol){
+    public boolean empleadoActualizar(int Idempleado,String nombre, String apellido, String telefono, String domicilio, java.sql.Date fechaNacimiento, int idrol){
         try{
             //Abrir conexión
             conn = getConnection();
             //Preparando la instrucción
-            String sql = "UPDATE empleado SET idEmpleado = '" + Idempleado + "',nombre = '" + nombre + "',apellido = '" + apellido + "',telefono = '"
-                    + telefono + "',domicilio = '" + domicilio + "','fechaNacimiento = '" + fechaNacimiento + "',idRol= '" + idrol + "' "
-                    + "WHERE idEmpleado = " + Idempleado + ";";
+            String insertar = "UPDATE empleado SET empleado.idEmpleado = '" + Idempleado + "',empleado.nombre = '" + nombre + "',empleado.apellido = '" + apellido + "',"
+                    + "empleado.telefono = '" + telefono + "',empleado.domicilio = '" + domicilio + "','empleado.fechaNacimiento = '" + fechaNacimiento + "',empleado.idRol= '" + idrol + "' " + 
+                    "WHERE empleado.idEmpleado = '" + Idempleado + "';";
             //Ejecución de la sentencia
             Statement stm = conn.createStatement();
-            int registro = stm.executeUpdate(sql);
+            int registro = stm.executeUpdate(insertar);
             //Cierre de la conexión
             Conexion.close(conn);
             return true;

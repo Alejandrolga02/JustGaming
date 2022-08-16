@@ -99,7 +99,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
      
     //Validación de que el numero no contenga caracteres
     public boolean validarTelefono(String numero){
-        Pattern patron = Pattern.compile("[0-9]");
+        Pattern patron = Pattern.compile("[0-9]+");
         Matcher matcher = patron.matcher(numero);
         boolean resultado = matcher.matches();
         if(resultado){
@@ -118,7 +118,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
             if(vista.txtApellido.getText().equals("") || vista.txtDomicilio.getText().equals("") || vista.txtFechaDeNacimiento.getText().equals("")
                     || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.txtidRol.getText().equals("")){ //Validación de camos vacios
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
-            }else if(isValid){  //Validación del campo telefono
+            }else if(isValid && valido){  //Validación del campo telefono
                 if(modelo.empleadoInsertar(vista.txtNombre.getText(), vista.txtApellido.getText(), 
                     vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date) conseguirFecha(vista.txtFechaDeNacimiento.getText()), 
                     conseguirUsuario(vista.txtNombre.getText(),vista.txtApellido.getText()), Integer.parseInt(vista.txtidRol.getText()))){ //Ejecución de la consulta
@@ -141,6 +141,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
                     , vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date)conseguirFecha(vista.txtFechaDeNacimiento.getText())
                     , Integer.parseInt(vista.txtidRol.getText()))){ //Ejecución de la consulta
                     JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
+                    limpiarCajastexto();
                     this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo actualizar");
@@ -153,6 +154,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
                 JOptionPane.showMessageDialog(null, "Campo IdEmpleado esta vacio");
             }else if(modelo.empleadoEliminar(Integer.parseInt(vista.txtIdEmpleado.getText()))){ //Ejecución de la consulta
                 JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
+                limpiarCajastexto();
                 this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
             }else{
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar");
@@ -186,7 +188,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
                 vista.txtTelefono.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 3)));
                 vista.txtDomicilio.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 4)));
                 vista.txtFechaDeNacimiento.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 5)));
-                vista.txtidRol.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 6)));
+                vista.txtidRol.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 7)));
             }
         }
     }

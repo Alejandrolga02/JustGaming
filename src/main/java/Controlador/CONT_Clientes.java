@@ -54,7 +54,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
     
     //Validación de que el numero no contenga caracteres
     public boolean validarTelefono(String numero){
-        Pattern patron = Pattern.compile("[0-9]");
+        Pattern patron = Pattern.compile("[0-9]+");
         Matcher matcher = patron.matcher(numero);
         boolean resultado = matcher.matches();
         if(resultado){
@@ -87,7 +87,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
             if(vista.txtNombre.getText().equals("") || vista.txtDomicilio.getText().equals("") || vista.txtCorreo.getText().equals("") || 
                     vista.txtTelefono.getText().equals("")){   //Verificación de que los campos no esten vacios
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
-            }else if(isValid){ //Verificación del telefono
+            }else if(isValid && valido){ //Verificación del telefono
                 if(modelo.clientesInsertar(vista.txtNombre.getText(), vista.txtTelefono.getText(),  //Se eejecuta la consulta
                     vista.txtCorreo.getText(), vista.txtDomicilio.getText())){
                     JOptionPane.showMessageDialog(null, "Registro insertado exitoso");
