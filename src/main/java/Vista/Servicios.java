@@ -114,9 +114,9 @@ public class Servicios extends javax.swing.JFrame {
                                     .addComponent(btnIngresar)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(btnEliminar)
-                                    .addGap(10, 10, 10)
-                                    .addComponent(btnActualizar)
-                                    .addGap(18, 18, 18)
+                                    .addGap(16, 16, 16)
+                                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(btnLimpiar))))
                         .addGap(18, 18, 18))))
         );
