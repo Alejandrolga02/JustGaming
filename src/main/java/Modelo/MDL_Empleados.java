@@ -101,7 +101,7 @@ public class MDL_Empleados {
             conn = getConnection();
             //Preparando la instrucción
             String sql = "UPDATE empleado SET nombre= '" + nombre + "',apellido= '" + apellido 
-                    + "',telefono= '" + telefono + "',domicilio= '" + domicilio + "','fechaNacimiento= '" + fechaNacimiento + 
+                    + "',telefono= '" + telefono + "',domicilio= '" + domicilio + "',fechaNacimiento= '" + fechaNacimiento + 
                     "', idRol= " + idrol + " WHERE idEmpleado = '" + Idempleado + "';";
             //Ejecución de la sentencia
             stmt = conn.prepareStatement(sql);

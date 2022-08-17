@@ -43,6 +43,7 @@ public class CONT_Servicios implements ActionListener, MouseListener {
         vista.txtServicio.setText("");
         vista.txtPrecio.setText("");
         vista.txtIdServicio.setText("");
+        this.vista.tblServicios.setModel(modelo.consultar());                
     }
     
     public boolean precioValido(String precio) {

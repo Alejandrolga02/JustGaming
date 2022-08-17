@@ -19,12 +19,55 @@ public class MDL_DetallesVentas {
     PreparedStatement stmt = null;
     ResultSet rs = null;
     
-    public DefaultTableModel consultar() {
+    public DefaultTableModel consultar(int id, String empleado, String cliente, String fecha) {
         try {
             conn = getConnection();
-            String query = "SELECT `ventas`.`idVenta`, `empleado`.`usuario`, `cliente`.`nombreCompleto`, `ventas`.`fecha`, `ventas`.`total`" +
-                           "FROM `ventas` LEFT JOIN `empleado` ON `ventas`.`idEmpleado` = `empleado`.`idEmpleado`" +
-                           "LEFT JOIN `cliente` ON `ventas`.`idCliente` = `cliente`.`idCliente`;";
+            String query = null;
+            
+            switch (id) {
+                case 0:
+                    // TODO VACIO
+                    query = "SELECT ventas.idVenta as ID, empleado.usuario as EMPLEADO, cliente.nombreCompleto as CLIENTE, ventas.fecha as FECHA, ventas.hora as HORA, ventas.total as TOTAL FROM ventas LEFT JOIN empleado ON ventas.idEmpleado = empleado.idEmpleado LEFT JOIN cliente ON ventas.idCliente = cliente.idCliente;";
+                    break;
+
+                case 1:
+                    // FECHA
+                    query = "SELECT ventas.idVenta as ID, empleado.usuario as EMPLEADO, cliente.nombreCompleto as CLIENTE, ventas.fecha as FECHA, ventas.hora as HORA, ventas.total as TOTAL FROM ventas LEFT JOIN empleado ON ventas.idEmpleado = empleado.idEmpleado LEFT JOIN cliente ON ventas.idCliente = cliente.idCliente WHERE ventas.fecha LIKE '%"+fecha+"%';";
+                    break;
+
+                case 2:
+                    // CLIENTE
+                    query = "SELECT ventas.idVenta as ID, empleado.usuario as EMPLEADO, cliente.nombreCompleto as CLIENTE, ventas.fecha as FECHA, ventas.hora as HORA, ventas.total as TOTAL FROM ventas LEFT JOIN empleado ON ventas.idEmpleado = empleado.idEmpleado LEFT JOIN cliente ON ventas.idCliente = cliente.idCliente WHERE LOWER(cliente.nombreCompleto) LIKE LOWER('%"+cliente+"%');";
+                    break;
+            
+                case 3:
+                    // FECHA CLIENTE
+                    query = "SELECT ventas.idVenta as ID, empleado.usuario as EMPLEADO, cliente.nombreCompleto as CLIENTE, ventas.fecha as FECHA, ventas.hora as HORA, ventas.total as TOTAL FROM ventas LEFT JOIN empleado ON ventas.idEmpleado = empleado.idEmpleado LEFT JOIN cliente ON ventas.idCliente = cliente.idCliente WHERE LOWER(cliente.nombreCompleto) LIKE LOWER('%"+cliente+"%') AND ventas.fecha LIKE '%"+fecha+"%';";                    
+                    break;
+            
+                case 4:
+                    // EMPLEADO
+                    query = "SELECT ventas.idVenta as ID, empleado.usuario as EMPLEADO, cliente.nombreCompleto as CLIENTE, ventas.fecha as FECHA, ventas.hora as HORA, ventas.total as TOTAL FROM ventas LEFT JOIN empleado ON ventas.idEmpleado = empleado.idEmpleado LEFT JOIN cliente ON ventas.idCliente = cliente.idCliente WHERE LOWER(empleado.usuario) LIKE LOWER('%"+empleado+"%');";
+                    break; 
+            
+                case 5:
+                    // EMPLEADO FECHA
+                    query = "SELECT ventas.idVenta as ID, empleado.usuario as EMPLEADO, cliente.nombreCompleto as CLIENTE, ventas.fecha as FECHA, ventas.hora as HORA, ventas.total as TOTAL FROM ventas LEFT JOIN empleado ON ventas.idEmpleado = empleado.idEmpleado LEFT JOIN cliente ON ventas.idCliente = cliente.idCliente WHERE LOWER(empleado.usuario) LIKE LOWER('%"+empleado+"%') AND ventas.fecha LIKE '%"+fecha+"%';";
+                    break;
+            
+                case 6:
+                    // EMPLEADO CLIENTE
+                    query = "SELECT ventas.idVenta as ID, empleado.usuario as EMPLEADO, cliente.nombreCompleto as CLIENTE, ventas.fecha as FECHA, ventas.hora as HORA, ventas.total as TOTAL FROM ventas LEFT JOIN empleado ON ventas.idEmpleado = empleado.idEmpleado LEFT JOIN cliente ON ventas.idCliente = cliente.idCliente WHERE LOWER(cliente.nombreCompleto) LIKE LOWER('%"+cliente+"%') AND LOWER(empleado.usuario) LIKE LOWER('%"+empleado+"%');";
+                    break;
+            
+                case 7:
+                    // EMPLEADO CLIENTE FECHA
+                    query = "SELECT ventas.idVenta as ID, empleado.usuario as EMPLEADO, cliente.nombreCompleto as CLIENTE, ventas.fecha as FECHA, ventas.hora as HORA, ventas.total as TOTAL FROM ventas LEFT JOIN empleado ON ventas.idEmpleado = empleado.idEmpleado LEFT JOIN cliente ON ventas.idCliente = cliente.idCliente WHERE LOWER(cliente.nombreCompleto) LIKE LOWER('%"+cliente+"%') AND ventas.fecha LIKE '%"+fecha+"%' AND LOWER(empleado.usuario) LIKE LOWER('%"+empleado+"%');";                    
+                    break;
+                default:
+                    break;
+            }
+
             stmt = conn.prepareStatement(query);
             
             rs = stmt.executeQuery();
@@ -46,6 +89,7 @@ public class MDL_DetallesVentas {
             
             return dtm;
         } catch (SQLException e) {
+            e.printStackTrace(System.out);
             return null;
         }
     }
@@ -54,7 +98,7 @@ public class MDL_DetallesVentas {
         try {
             conn = getConnection();
             
-            String query = "SELECT `ventas_detalle`.`idServicio`, `servicios`.`servicio` FROM `ventas_detalle` LEFT JOIN `servicios` ON `ventas_detalle`.`idServicio` = `servicios`.`idServicio` WHERE ventas_detalle.idVentas = "+id+";";
+            String query = "SELECT ventas_detalle.idServicio AS ID, servicios.servicio AS NOMBRE, ventas_detalle.cantidad AS CANTIDAD FROM ventas_detalle LEFT JOIN servicios ON ventas_detalle.idServicio = servicios.idServicio WHERE ventas_detalle.idVentas = "+id+";";
             stmt = conn.prepareStatement(query);
             
             rs = stmt.executeQuery();

@@ -71,15 +71,14 @@ public class CONT_Empleados implements ActionListener, MouseListener{
     //Método para cambiar la fecha de String a Date
     public java.sql.Date conseguirFecha(String fecha){
         java.sql.Date a = null;
-        try{
+        try {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
             java.util.Date parsed = format.parse(fecha);
             java.sql.Date fechaSQL = new java.sql.Date(parsed.getTime());
             return fechaSQL;
-        }catch(ParseException e){
+        } catch(ParseException e) {
             return a;
         }
-        
     }
     
     //Método para validar el telefono

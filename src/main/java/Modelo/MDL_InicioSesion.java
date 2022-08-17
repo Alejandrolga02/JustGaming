@@ -32,6 +32,6 @@ public class MDL_InicioSesion {
             ex.printStackTrace(System.out);
             conn = null;
             return false;
-        }      
+        }
     }
 }

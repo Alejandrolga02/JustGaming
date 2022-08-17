@@ -6,6 +6,7 @@
 
 package Controlador;
 
+import Modelo.Conexion;
 import Modelo.MDL_DetallesVentas;
 import Vista.DetallesVentas;
 
@@ -28,6 +29,8 @@ public class CONT_DetallesVentas implements ActionListener, MouseListener {
         this.vista.txtFecha.addActionListener(this);
         this.vista.txtTotal.addActionListener(this);
         this.vista.btnRegresar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnConsultar.addActionListener(this);
         this.vista.tblVentas.addMouseListener(this);
         this.vista.tblDetallesVentas.addMouseListener(this);
     }
@@ -37,7 +40,7 @@ public class CONT_DetallesVentas implements ActionListener, MouseListener {
         vista.pack();
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
-        vista.tblVentas.setModel(modelo.consultar());
+        vista.tblVentas.setModel(modelo.consultar(0,"","",""));
         vista.setVisible(true);
     }
     
@@ -47,16 +50,57 @@ public class CONT_DetallesVentas implements ActionListener, MouseListener {
         vista.txtCliente.setText("");
         vista.txtFecha.setText("");
         vista.txtTotal.setText("");
-        vista.tblVentas.setModel(modelo.consultar());
+        this.vista.tblVentas.setModel(modelo.consultar(0, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText()));
+        this.vista.tblDetallesVentas.setModel(modelo.consultarDetalles(0));
     }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if (vista.btnRegresar == evento.getSource()) { // Boton Regresar Presionado
-            Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
-            Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
+        if (vista.btnConsultar == evento.getSource()) {
+            if (vista.txtCliente.getText().isEmpty() && vista.txtEmpleado.getText().isEmpty() && vista.txtFecha.getText().isEmpty()) { // TODO VACIO
+                this.vista.tblVentas.setModel(modelo.consultar(0, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText()));
+                this.vista.tblDetallesVentas.setModel(modelo.consultarDetalles(0));
+            } else {
+                if (vista.txtEmpleado.getText().isEmpty()) { // NO EMPLEADO
+                    if (vista.txtCliente.getText().isEmpty()) { // BUSQUEDA FECHA
+                        this.vista.tblVentas.setModel(modelo.consultar(1, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText()));
+                        this.vista.tblDetallesVentas.setModel(modelo.consultarDetalles(0));
+                    } else {
+                        if (vista.txtFecha.getText().isEmpty()) { // BUSQUEDA CLIENTE
+                            this.vista.tblVentas.setModel(modelo.consultar(2, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText()));
+                            this.vista.tblDetallesVentas.setModel(modelo.consultarDetalles(0));
+                        } else { // BUSQUEDA CLIENTE Y FECHA
+                            this.vista.tblVentas.setModel(modelo.consultar(3, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText()));
+                            this.vista.tblDetallesVentas.setModel(modelo.consultarDetalles(0));                            
+                        }
+                    }
+                } else { // SI EMPLEADO
+                    if (vista.txtCliente.getText().isEmpty()) { 
+                        if (vista.txtFecha.getText().isEmpty()) { // BUSQUEDA EMPLEADO
+                            this.vista.tblVentas.setModel(modelo.consultar(4, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText()));
+                            this.vista.tblDetallesVentas.setModel(modelo.consultarDetalles(0));                               
+                        } else { // BUSQUEDA FECHA Y EMPLEADO
+                            this.vista.tblVentas.setModel(modelo.consultar(5, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText()));
+                            this.vista.tblDetallesVentas.setModel(modelo.consultarDetalles(0));                            
+                        }
+                    } else {
+                        if (vista.txtFecha.getText().isEmpty()) { // BUSQUEDA CLIENTE Y EMPLEADO
+                            this.vista.tblVentas.setModel(modelo.consultar(6, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText()));
+                            this.vista.tblDetallesVentas.setModel(modelo.consultarDetalles(0));
+                        } else {
+                            this.vista.tblVentas.setModel(modelo.consultar(7, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText())); // BUSQUEDA CLIENTE, FECHA Y EMPLEADO
+                            this.vista.tblDetallesVentas.setModel(modelo.consultarDetalles(0));                            
+                        }
+                    }                    
+                }
+            }
+        } else if (vista.btnRegresar == evento.getSource()) { // Boton Regresar Presionado
+            Vista.MenuVentas Nvista = new Vista.MenuVentas();
+            Controlador.CONT_MenuVentas Ncontrolador = new Controlador.CONT_MenuVentas(Nvista);
             Ncontrolador.iniciarVista();
             vista.dispose();
+        } else if (vista.btnLimpiar == evento.getSource()) {
+            this.limpiarCajasTexto();
         }
     }
 
