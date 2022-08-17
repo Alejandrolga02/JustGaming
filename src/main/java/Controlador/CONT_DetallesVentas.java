@@ -113,7 +113,7 @@ public class CONT_DetallesVentas implements ActionListener, MouseListener {
                 vista.txtEmpleado.setText(String.valueOf(vista.tblVentas.getValueAt(fila, 1)));
                 vista.txtCliente.setText(String.valueOf(vista.tblVentas.getValueAt(fila, 2)));
                 vista.txtFecha.setText(String.valueOf(vista.tblVentas.getValueAt(fila, 3)));
-                vista.txtTotal.setText(String.valueOf(vista.tblVentas.getValueAt(fila, 4)));
+                vista.txtTotal.setText(String.valueOf(vista.tblVentas.getValueAt(fila, 5)));
              }
             
             vista.tblDetallesVentas.setModel(modelo.consultarDetalles(Integer.parseInt(vista.txtIdVenta.getText())));
