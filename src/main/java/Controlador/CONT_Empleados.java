@@ -5,12 +5,17 @@ Fecha: 13-agosto-2022
 */
 package Controlador;
 
+import static Modelo.Conexion.getConnection;
 import Modelo.MDL_Empleados;
 import Vista.Empleados;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 //import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +30,10 @@ import javax.swing.JOptionPane;
  * @author laptop
  */
 public class CONT_Empleados implements ActionListener, MouseListener{
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    
     //Atributos necedsarios
     MDL_Empleados modelo;
     Empleados vista;
@@ -39,6 +48,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnRegresar.addActionListener(this);
         this.vista.tblEmpleados.addMouseListener(this);
+        this.vista.comboxRol.addMouseListener(this);
     }
     
     //Método para iniciar la vista
@@ -59,7 +69,6 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         vista.txtNombre.setText("");
         vista.txtApellido.setText("");
         vista.txtTelefono.setText("");
-        vista.txtidRol.setText("");
     }
     
     //Método para obtener el usuario
@@ -108,6 +117,26 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         }
     }
     
+    public void fillCombox() {
+        try {
+            conn = getConnection();
+
+            String query = null;
+
+            query = "SELECT idServicio, servicio FROM servicios;";
+
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                vista.comboxRol.addItem(rs.getString("nombreCompleto"));
+            }
+        
+        } catch (SQLException ex) {
+            
+        }
+    }
+    
     //Método para el uso de los botones
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -115,12 +144,12 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         boolean valido = validarTelefono(vista.txtTelefono.getText());
         if(vista.btnIngresar == evento.getSource()){ //Boton de para ingresar datos
             if(vista.txtApellido.getText().equals("") || vista.txtDomicilio.getText().equals("") || vista.txtFechaDeNacimiento.getText().equals("")
-                    || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.txtidRol.getText().equals("")){ //Validación de camos vacios
+                    || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.comboxRol.getSelectedIndex() == 0){ //Validación de camos vacios
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
             }else if(isValid && valido){  //Validación del campo telefono
                 if(modelo.empleadoInsertar(vista.txtNombre.getText(), vista.txtApellido.getText(), 
                     vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date) conseguirFecha(vista.txtFechaDeNacimiento.getText()), 
-                    conseguirUsuario(vista.txtNombre.getText(),vista.txtApellido.getText()), Integer.parseInt(vista.txtidRol.getText()))){ //Ejecución de la consulta
+                    conseguirUsuario(vista.txtNombre.getText(),vista.txtApellido.getText()), vista.comboxRol.getSelectedIndex()+1)){ //Ejecución de la consulta
                     JOptionPane.showMessageDialog(null, "Registro insertado exitoso");
                     this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
                     limpiarCajastexto();
@@ -132,13 +161,13 @@ public class CONT_Empleados implements ActionListener, MouseListener{
             }
         }else if(vista.btnActualizar == evento.getSource()){ //Boton de actualizar
             if(vista.txtApellido.getText().equals("") || vista.txtDomicilio.getText().equals("") || vista.txtFechaDeNacimiento.getText().equals("")
-                    || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.txtidRol.getText().equals("") 
+                    || vista.txtNombre.getText().equals("") || vista.txtTelefono.getText().equals("") || vista.comboxRol.getSelectedIndex() == 0 
                     || vista.txtIdEmpleado.getText().equals("")){ //Validación de los campos vacios
                 JOptionPane.showMessageDialog(null, "Existencia de campos sin llenar");
             }else if(isValid && valido){ //Validación del telefono
                 if(modelo.empleadoActualizar(Integer.parseInt(vista.txtIdEmpleado.getText()), vista.txtNombre.getText(), vista.txtApellido.getText()
                     , vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date)conseguirFecha(vista.txtFechaDeNacimiento.getText())
-                    , Integer.parseInt(vista.txtidRol.getText()))){ //Ejecución de la consulta
+                    , vista.comboxRol.getSelectedIndex()+1)){ //Ejecución de la consulta
                     JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
                     limpiarCajastexto();
                     this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
@@ -187,7 +216,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
                 vista.txtTelefono.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 3)));
                 vista.txtDomicilio.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 4)));
                 vista.txtFechaDeNacimiento.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 5)));
-                vista.txtidRol.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 7)));
+                //vista.comboxRol.setSelectedIndex(Integer.valueOf(vista.tblEmpleados.getValueAt(fila, 7)+1));
             }
         }
     }

@@ -44,7 +44,7 @@ public class Empleados extends javax.swing.JFrame {
         txtApellido = new javax.swing.JTextField();
         lblNombre1 = new javax.swing.JLabel();
         lblidRol = new javax.swing.JLabel();
-        txtidRol = new javax.swing.JTextField();
+        comboxRol = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
@@ -110,9 +110,10 @@ public class Empleados extends javax.swing.JFrame {
         lblNombre1.setText("Apellido:");
 
         lblidRol.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblidRol.setText("Id Rol:");
+        lblidRol.setText("Rol:");
 
-        txtidRol.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        comboxRol.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        comboxRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un rol" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,11 +146,11 @@ public class Empleados extends javax.swing.JFrame {
                                     .addComponent(txtNombre)
                                     .addComponent(txtFechaDeNacimiento)
                                     .addComponent(txtDomicilio)
-                                    .addComponent(txtidRol)
+                                    .addComponent(txtIdEmpleado)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(txtIdEmpleado)))
+                                    .addComponent(comboxRol, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnIngresar)
@@ -192,10 +193,10 @@ public class Empleados extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblFechaDeNacimiento)
                     .addComponent(txtFechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtidRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblidRol))
+                    .addComponent(lblidRol)
+                    .addComponent(comboxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnLimpiar)
@@ -251,6 +252,7 @@ public class Empleados extends javax.swing.JFrame {
     public javax.swing.JButton btnIngresar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnRegresar;
+    public javax.swing.JComboBox<String> comboxRol;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDomicilio;
     private javax.swing.JLabel lblFechaDeNacimiento;
@@ -267,6 +269,5 @@ public class Empleados extends javax.swing.JFrame {
     public javax.swing.JTextField txtIdEmpleado;
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtTelefono;
-    public javax.swing.JTextField txtidRol;
     // End of variables declaration//GEN-END:variables
 }
