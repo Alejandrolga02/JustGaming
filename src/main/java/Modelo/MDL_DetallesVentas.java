@@ -73,7 +73,7 @@ public class MDL_DetallesVentas {
             
             rs = stmt.executeQuery();
             ResultSetMetaData rsMd =  rs.getMetaData();
-            DefaultTableModel dtm = new DefaultTableModel();    
+            DefaultTableModel dtm = new DefaultTableModel();
             
             int columnas = rsMd.getColumnCount();
             for(int i=1; i <= columnas; i++){  // sirve para obtener los nombres de cada columna (encabezado)
@@ -86,7 +86,7 @@ public class MDL_DetallesVentas {
                     fila[i] = rs.getObject(i+1);
                 }
                 dtm.addRow(fila);
-            }         
+            }
                         
             if (dtm.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(null, "No hay resultados");

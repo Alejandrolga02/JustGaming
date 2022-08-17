@@ -40,15 +40,17 @@ public class Ventas extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblResultados = new javax.swing.JTable();
+        tblVentas = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
-        comboxCliente = new javax.swing.JComboBox<>();
-        comboxServicio = new javax.swing.JComboBox<>();
         btnTerminar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         btnBorrar = new javax.swing.JButton();
         lblTotal = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
+        lblTotal1 = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JTextField();
+        comboxCliente = new javax.swing.JComboBox<>();
+        comboxServicio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventas");
@@ -65,7 +67,7 @@ public class Ventas extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnIngresar.setText("Ingresar");
 
-        tblResultados.setModel(new javax.swing.table.DefaultTableModel(
+        tblVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -73,7 +75,8 @@ public class Ventas extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tblResultados);
+        tblVentas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblVentas);
 
         btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnRegresar.setText("Regresar");
@@ -82,12 +85,6 @@ public class Ventas extends javax.swing.JFrame {
                 btnRegresarActionPerformed(evt);
             }
         });
-
-        comboxCliente.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        comboxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
-
-        comboxServicio.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        comboxServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
 
         btnTerminar.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         btnTerminar.setText("Terminar venta");
@@ -106,8 +103,19 @@ public class Ventas extends javax.swing.JFrame {
         lblTotal.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblTotal.setText("Total:");
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        txtTotal.setEditable(false);
+        txtTotal.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        lblTotal1.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblTotal1.setText("Cantidad:");
+
+        txtCantidad.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+
+        comboxCliente.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        comboxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un cliente" }));
+
+        comboxServicio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        comboxServicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un servicio" }));
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
@@ -117,34 +125,30 @@ public class Ventas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLayout.createSequentialGroup()
-                        .addComponent(lblTitulo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(bgLayout.createSequentialGroup()
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnRegresar)
+                        .addContainerGap(490, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnTerminar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(bgLayout.createSequentialGroup()
-                                .addComponent(btnRegresar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(btnTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)
-                            .addGroup(bgLayout.createSequentialGroup()
-                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(bgLayout.createSequentialGroup()
-                                        .addComponent(lblCliente)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(comboxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgLayout.createSequentialGroup()
-                                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblServicio)
-                                            .addComponent(lblTotal))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(comboxServicio, 0, 268, Short.MAX_VALUE)
-                                            .addComponent(jTextField1))))
+                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblServicio, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTotal1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTotal, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE))))
+                                    .addComponent(txtTotal)
+                                    .addComponent(comboxCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboxServicio, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtCantidad))
+                                .addGap(18, 18, 18)
+                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18))))
         );
         bgLayout.setVerticalGroup(
@@ -155,21 +159,24 @@ public class Ventas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCliente)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(comboxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCliente)
                     .addComponent(btnLimpiar))
                 .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIngresar)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblServicio)
-                    .addComponent(comboxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngresar))
                 .addGap(18, 18, 18)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBorrar)
-                    .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblTotal)))
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblTotal1)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrar))
+                .addGap(18, 18, 18)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblTotal)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -239,16 +246,18 @@ public class Ventas extends javax.swing.JFrame {
     public javax.swing.JButton btnBorrar;
     public javax.swing.JButton btnIngresar;
     public javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnRegresar;
+    public javax.swing.JButton btnRegresar;
     public javax.swing.JButton btnTerminar;
     public javax.swing.JComboBox<String> comboxCliente;
     public javax.swing.JComboBox<String> comboxServicio;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblServicio;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTotal;
-    public javax.swing.JTable tblResultados;
+    private javax.swing.JLabel lblTotal1;
+    public javax.swing.JTable tblVentas;
+    public javax.swing.JTextField txtCantidad;
+    public javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

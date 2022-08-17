@@ -7,6 +7,7 @@ package Modelo;
 
 import static Modelo.Conexion.getConnection;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -16,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 public class MDL_Insumos {
     //Atributo de la clase
     Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
     
     //Método para insertar en insumos
     public boolean insumosInsertar(String nombre, int cantidad, float costo){
