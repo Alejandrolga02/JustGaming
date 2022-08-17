@@ -115,8 +115,8 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
         } else if (vista.btnLimpiar == evento.getSource()) { // Boton Limpiar Presionado
             limpiarCajasTexto();
         } else if (vista.btnRegresar == evento.getSource()) { // Boton Regresar Presionado
-            Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
-            Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
+            Vista.MenuCompras Nvista = new Vista.MenuCompras();
+            Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuCompras(Nvista);
             Ncontrolador.iniciarVista();
             vista.dispose();
         }

@@ -40,10 +40,12 @@ public class DetallesCompras extends javax.swing.JFrame {
         txtEmpleado = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tblDetallesCompra = new javax.swing.JTable();
+        tblCompras = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblDetallesCompras = new javax.swing.JTable();
+        btnConsultar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,7 +94,7 @@ public class DetallesCompras extends javax.swing.JFrame {
         lblEmpleado.setText("Empleado:");
 
         lblCliente.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
-        lblCliente.setText("Cliente:");
+        lblCliente.setText("Proveedor:");
 
         lblFecha.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblFecha.setText("Fecha:");
@@ -100,10 +102,14 @@ public class DetallesCompras extends javax.swing.JFrame {
         lblTotal.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblTotal.setText("Total:");
 
+        txtIdCompra.setEditable(false);
+
+        txtTotal.setEditable(false);
+
         jLabel6.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jLabel6.setText("Detalles Compras");
 
-        tblDetallesCompra.setModel(new javax.swing.table.DefaultTableModel(
+        tblCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -111,12 +117,12 @@ public class DetallesCompras extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane4.setViewportView(tblDetallesCompra);
+        jScrollPane4.setViewportView(tblCompras);
 
         btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnRegresar.setText("Regresar");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblDetallesCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -127,7 +133,13 @@ public class DetallesCompras extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tblDetallesCompras);
+
+        btnConsultar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnConsultar.setText("Consultar");
+
+        btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,20 +156,27 @@ public class DetallesCompras extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTotal, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblFecha, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblCliente, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblEmpleado, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblIdCompra, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtCliente, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtEmpleado)
-                                    .addComponent(txtTotal)
-                                    .addComponent(txtIdCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(btnConsultar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnLimpiar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblTotal, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblFecha, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblEmpleado, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblIdCompra, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtEmpleado)
+                                            .addComponent(txtTotal)
+                                            .addComponent(txtIdCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18))))
@@ -192,6 +211,10 @@ public class DetallesCompras extends javax.swing.JFrame {
                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTotal)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnConsultar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -236,6 +259,8 @@ public class DetallesCompras extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnConsultar;
+    public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnRegresar;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel6;
@@ -245,13 +270,13 @@ public class DetallesCompras extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblEmpleado;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblIdCompra;
     private javax.swing.JLabel lblTotal;
-    public javax.swing.JTable tblDetallesCompra;
+    public javax.swing.JTable tblCompras;
+    public javax.swing.JTable tblDetallesCompras;
     public javax.swing.JTextField txtCliente;
     public javax.swing.JTextField txtEmpleado;
     public javax.swing.JTextField txtFecha;

@@ -6,7 +6,6 @@
 
 package Controlador;
 
-import Modelo.Conexion;
 import Modelo.MDL_DetallesVentas;
 import Vista.DetallesVentas;
 
@@ -40,7 +39,7 @@ public class CONT_DetallesVentas implements ActionListener, MouseListener {
         vista.pack();
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
-        vista.tblVentas.setModel(modelo.consultar(0,"","",""));
+        this.vista.tblVentas.setModel(modelo.consultar(0, vista.txtEmpleado.getText(), vista.txtCliente.getText(),vista.txtFecha.getText()));
         vista.setVisible(true);
     }
     
@@ -138,5 +137,5 @@ public class CONT_DetallesVentas implements ActionListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }  
+    }
 }
