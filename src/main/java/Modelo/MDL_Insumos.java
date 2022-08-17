@@ -18,7 +18,7 @@ public class MDL_Insumos {
     Connection conn = null;
     
     //Método para insertar en insumos
-    public boolean insumosInsertar(String nombre, int cantidad, float costo, String foto){
+    public boolean insumosInsertar(String nombre, int cantidad, float costo){
         try{
             //Abrir la conexión
             conn = getConnection();
@@ -41,7 +41,7 @@ public class MDL_Insumos {
             //Abrir la conexión
             conn = getConnection();
             //Preparando la sentencia
-            String sql = "SELECT * FROM insumos WHERE insumos.estatus = 1;";
+            String sql = "SELECT idinsumos,nombre,cantidad,costo FROM insumos WHERE insumos.estatus = 1;";
             //Ejecución de la sentencias sql
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(sql);

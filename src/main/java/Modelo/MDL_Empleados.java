@@ -100,12 +100,12 @@ public class MDL_Empleados {
             //Abrir conexión
             conn = getConnection();
             //Preparando la instrucción
-            String insertar = "UPDATE empleado SET idEmpleado = '" + Idempleado + "',nombre = '" + nombre + "',apellido = '" + apellido 
-                    + "',telefono = '" + telefono + "',domicilio = '" + domicilio + "','fechaNacimiento = '" + fechaNacimiento + "',.idRol= '" + idrol  
-                    + "' WHERE empleado.idEmpleado = '" + Idempleado + "';";
+            String sql = "UPDATE empleado SET nombre= '" + nombre + "',apellido= '" + apellido 
+                    + "',telefono= '" + telefono + "',domicilio= '" + domicilio + "','fechaNacimiento= '" + fechaNacimiento + 
+                    "', idRol= " + idrol + " WHERE idEmpleado = '" + Idempleado + "';";
             //Ejecución de la sentencia
-            Statement stm = conn.createStatement();
-            int registro = stm.executeUpdate(insertar);
+            stmt = conn.prepareStatement(sql);
+            int result = stmt.executeUpdate(sql);
             //Cierre de la conexión
             Conexion.close(conn);
             return true;
