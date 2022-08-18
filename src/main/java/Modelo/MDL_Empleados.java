@@ -43,12 +43,17 @@ public class MDL_Empleados {
     }
     
     //Método para mostrar la tabla
-    public DefaultTableModel empleadoConsultar(){
+    public DefaultTableModel empleadoConsultar(int id, String nombre){
         try{
             //Abrir la conexión
             conn = getConnection();
             //Preparando la consulta
-            String query = "SELECT empleado.idEmpleado AS ID, empleado.nombre AS `NOMBRE`, empleado.apellido AS `APELLIDO`, empleado.usuario AS `USUARIO`, empleado.pass AS `PASSWORD`,empleado.telefono AS `TELEFONO`, empleado.domicilio AS `DOMICILIO`, empleado.fechaNacimiento AS `FECHA NACIMIENTO`, roles.rol AS `ROL` FROM empleado LEFT JOIN roles ON empleado.idRol = roles.idRol WHERE empleado.estatus = 1;";
+            String query = null;
+            if(id == 0){
+                query = "SELECT empleado.idEmpleado AS ID, empleado.nombre AS `NOMBRE`, empleado.apellido AS `APELLIDO`, empleado.usuario AS `USUARIO`, empleado.pass AS `PASSWORD`,empleado.telefono AS `TELEFONO`, empleado.domicilio AS `DOMICILIO`, empleado.fechaNacimiento AS `FECHA NACIMIENTO`, roles.rol AS `ROL` FROM empleado LEFT JOIN roles ON empleado.idRol = roles.idRol WHERE empleado.estatus = 1;";
+            }else if(id == 1){
+                query = "SELECT empleado.idEmpleado AS ID, empleado.nombre AS `NOMBRE`, empleado.apellido AS `APELLIDO`, empleado.usuario AS `USUARIO`, empleado.pass AS `PASSWORD`,empleado.telefono AS `TELEFONO`, empleado.domicilio AS `DOMICILIO`, empleado.fechaNacimiento AS `FECHA NACIMIENTO`, roles.rol AS `ROL` FROM empleado LEFT JOIN roles ON empleado.idRol = roles.idRol WHERE empleado.estatus = 1 AND LOWER(empleado.nombre) LIKE LOWER('%"+nombre+"%');";
+            }
             stmt = conn.prepareStatement(query);
 
             rs = stmt.executeQuery();
@@ -109,6 +114,7 @@ public class MDL_Empleados {
             Conexion.close(conn);
             return true;
         }catch(SQLException ex){
+             ex.printStackTrace(System.out);
             return false;
         }
     }

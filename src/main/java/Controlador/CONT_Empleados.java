@@ -47,6 +47,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         this.vista.btnRegresar.addActionListener(this);
         this.vista.tblEmpleados.addMouseListener(this);
         this.vista.comboxRol.addMouseListener(this);
+        this.vista.btnConsultar.addActionListener(this);
     }
     
     //Método para iniciar la vista
@@ -55,7 +56,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         vista.pack();
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
-        vista.tblEmpleados.setModel(modelo.empleadoConsultar());
+        vista.tblEmpleados.setModel(modelo.empleadoConsultar(0,vista.txtNombre.getText()));
         fillCombox();
         vista.setVisible(true);
     }
@@ -168,7 +169,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
                     vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date) conseguirFecha(vista.txtFechaDeNacimiento.getText()), 
                     conseguirUsuario(vista.txtNombre.getText(),vista.txtApellido.getText()),vista.txtPass.getText(),vista.comboxRol.getSelectedIndex())){ //Ejecución de la consulta
                     JOptionPane.showMessageDialog(null, "Registro insertado exitoso");
-                    this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
+                    this.vista.tblEmpleados.setModel(modelo.empleadoConsultar(0,vista.txtNombre.getText())); //Actualización de la tabla en la vista
                     limpiarCajastexto();
                 }else{
                     JOptionPane.showMessageDialog(null, "No se logro insertar");
@@ -187,7 +188,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
                     ,vista.txtPass.getText(), vista.comboxRol.getSelectedIndex())){ //Ejecución de la consulta
                     JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
                     limpiarCajastexto();
-                    this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
+                    this.vista.tblEmpleados.setModel(modelo.empleadoConsultar(0,vista.txtNombre.getText())); //Actualización de la tabla en la vista
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo actualizar");
                 }
@@ -200,7 +201,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
             }else if(modelo.empleadoEliminar(Integer.parseInt(vista.txtIdEmpleado.getText()))){ //Ejecución de la consulta
                 JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
                 limpiarCajastexto();
-                this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
+                this.vista.tblEmpleados.setModel(modelo.empleadoConsultar(0,vista.txtNombre.getText())); //Actualización de la tabla en la vista
             }else{
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar");
             }
@@ -211,6 +212,12 @@ public class CONT_Empleados implements ActionListener, MouseListener{
             Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
             Ncontrolador.iniciarVista();
             vista.dispose();
+        }else if(vista.btnConsultar == evento.getSource()){
+            if(vista.txtNombre.getText().isEmpty()){
+                this.vista.tblEmpleados.setModel(modelo.empleadoConsultar(0,vista.txtNombre.getText()));
+            }else{
+                this.vista.tblEmpleados.setModel(modelo.empleadoConsultar(1,vista.txtNombre.getText()));
+            }
         }
     }
 
