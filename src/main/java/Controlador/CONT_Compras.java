@@ -16,6 +16,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFrame;
 
 public class CONT_Compras implements ActionListener, MouseListener{
@@ -39,6 +41,9 @@ public class CONT_Compras implements ActionListener, MouseListener{
         this.vista.btnTerminar.addActionListener(this);
         this.vista.comboxProveedor.addActionListener(this);
         this.vista.comboxInsumo.addActionListener(this);
+        this.vista.txtCantidad.addActionListener(this);
+        this.vista.txtTotal.addActionListener(this);
+        this.vista.tblCompras.addMouseListener(this);
     }    
     
     //Método para iniciar la vista
@@ -98,6 +103,75 @@ public class CONT_Compras implements ActionListener, MouseListener{
         }
     }
     
+    //Método para validar la cantidad de producto comprado
+    public boolean validarCantidad(String cantidad){
+        Pattern patron = Pattern.compile("[0-9]+");
+        Matcher matcher = patron.matcher(cantidad);
+        boolean resultado = matcher.matches();
+        if(resultado){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    //Método para obtener el id del insumo
+    public int getIdInsumo(){
+        try {
+            conn = getConnection();
+            
+            String query = "SELECT idinsumos FROM insumos WHERE nombre = '"+vista.comboxInsumo.getSelectedItem().toString()+"';";
+            stm = conn.prepareStatement(query);
+            rs = stm.executeQuery();
+
+            while(rs.next()){
+                return rs.getInt("idinsumos");
+            }        
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        return 5;
+    }
+    
+    //Método para obtener el id del Proveedor
+    public int getIdProveedore(){
+        try {
+            conn = getConnection();
+            
+            String query = "SELECT idProveedor FROM proveedores WHERE nombre = '"+vista.comboxProveedor.getSelectedItem().toString()+"';";
+            stm = conn.prepareStatement(query);
+            rs = stm.executeQuery();
+
+            while(rs.next()){
+                return rs.getInt("idProveedores");
+            }        
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        return 5;
+    }
+    
+    //Método para scar el total de la compras
+    public double sumarTotal(int IdInsumo){
+        Double costo = 0.0, total = 0.0;
+        int cantidad;
+        String n = "";
+        try{
+            conn = getConnection();
+            String query = "SELECT costo FROM insumos WHERE idinsumos = '" + IdInsumo + ";";
+            stm = conn.prepareStatement(query);
+            rs = stm.executeQuery();
+            
+            while(rs.next()){
+                costo = rs.getDouble("costo");
+            }
+        }catch(SQLException ex){
+            return 0;
+        }
+        cantidad = Integer.parseInt(vista.txtCantidad.getText());
+        total = total + (costo * cantidad);
+        return total;
+    }
     
     
     
