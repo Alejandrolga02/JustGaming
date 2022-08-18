@@ -28,6 +28,7 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnRegresar.addActionListener(this);
         this.vista.tblProveedores.addMouseListener(this);
+        this.vista.btnConsultar.addActionListener(this);
     }
     
     public void iniciarVista() {
@@ -35,7 +36,7 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
         vista.pack();
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
-        vista.tblProveedores.setModel(modelo.consultar());
+        vista.tblProveedores.setModel(modelo.consultar(0,vista.txtNombre.getText()));
         vista.setVisible(true);
     }
     
@@ -44,7 +45,7 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
         vista.txtIdProveedor.setText("");
         vista.txtNombre.setText("");
         vista.txtTelefono.setText("");
-        this.vista.tblProveedores.setModel(modelo.consultar());                
+        this.vista.tblProveedores.setModel(modelo.consultar(0,vista.txtNombre.getText()));                
     }
     
     public boolean telefonoValido(String telefono) { // Validacion de telefono
@@ -69,7 +70,7 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
             if(!vista.txtNombre.getText().isEmpty() && !vista.txtDireccion.getText().isEmpty() && isValid){
                 if(modelo.ingresar(vista.txtNombre.getText(), vista.txtTelefono.getText(), vista.txtDireccion.getText())){ // Insercion de datos
                     JOptionPane.showMessageDialog(null, "Registro insertado exitosamente");
-                    this.vista.tblProveedores.setModel(modelo.consultar()); // Actualizar tabla
+                    this.vista.tblProveedores.setModel(modelo.consultar(0,vista.txtNombre.getText())); // Actualizar tabla
                     limpiarCajasTexto();
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo insertar");
@@ -84,7 +85,7 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
             if (!vista.txtIdProveedor.getText().isEmpty()) { // Validacion de campo
                 if(modelo.borrar(Integer.parseInt(vista.txtIdProveedor.getText()))){ // Borrar registro
                     JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
-                    this.vista.tblProveedores.setModel(modelo.consultar()); // Actualizar tabla
+                    this.vista.tblProveedores.setModel(modelo.consultar(0,vista.txtNombre.getText())); // Actualizar tabla
                     limpiarCajasTexto();
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo eliminar");
@@ -100,7 +101,7 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
                 // Actualizacion de datos
                 if(modelo.actualizar(vista.txtNombre.getText(), vista.txtTelefono.getText(), vista.txtDireccion.getText(), Integer.parseInt(vista.txtIdProveedor.getText()))) {
                     JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
-                    this.vista.tblProveedores.setModel(modelo.consultar()); // Actualizar tabla
+                    this.vista.tblProveedores.setModel(modelo.consultar(0,vista.txtNombre.getText())); // Actualizar tabla
                     limpiarCajasTexto();
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo actualizar");
@@ -119,6 +120,12 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
             Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuCompras(Nvista);
             Ncontrolador.iniciarVista();
             vista.dispose();
+        }else if(vista.btnConsultar == evento.getSource()){
+            if(vista.txtNombre.getText().isEmpty()){
+                this.vista.tblProveedores.setModel(modelo.consultar(0,vista.txtNombre.getText()));
+            }else{
+                this.vista.tblProveedores.setModel(modelo.consultar(1,vista.txtNombre.getText()));
+            }
         }
     }
 

@@ -8,6 +8,7 @@ package Modelo;
 
 import static Modelo.Conexion.getConnection;
 import java.sql.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MDL_Proveedores {
@@ -69,10 +70,15 @@ public class MDL_Proveedores {
         }
     }
     
-    public DefaultTableModel consultar() {
+    public DefaultTableModel consultar(int id, String nombre) {
         try {
             conn = getConnection();
-            String query = "SELECT idProveedores, nombre, telefono, direccion FROM proveedores WHERE estatus = 1;";
+                String query = null;
+            if(id == 0){
+                query = "SELECT idProveedores AS ID, nombre AS NOMBRE, telefono AS TELEFONO, direccion AS DIRECCION FROM proveedores WHERE estatus = 1;";
+            }else if(id == 1){
+                query = "SELECT proveedores.idProveedores AS ID, proveedores.nombre AS NOMBRE, proveedores.telefono AS TELEFONO, proveedores.direccion AS DIRECCION FROM proveedores WHERE proveedores.estatus = 1 AND LOWER(proveedores.nombre) LIKE LOWER('%"+nombre+"%');";
+            }
             stmt = conn.prepareStatement(query);
             
             rs = stmt.executeQuery();
@@ -92,8 +98,14 @@ public class MDL_Proveedores {
                 dtm.addRow(fila);
             }
             
+            if (dtm.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "No hay resultados");
+                return consultar(0, "");
+            }
+            
             return dtm;
         } catch (SQLException e) {
+            e.printStackTrace(System.out);
             return null;
         }
     }    

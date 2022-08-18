@@ -44,6 +44,8 @@ public class CONT_Servicios implements ActionListener, MouseListener {
             this.vista.btnEliminar.setEnabled(false);
             this.vista.btnIngresar.setEnabled(false);
         }
+        this.vista.btnConsultar.addActionListener(this);
+
     }
 
     public void iniciarVista() {
@@ -51,7 +53,7 @@ public class CONT_Servicios implements ActionListener, MouseListener {
         vista.pack();
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
-        vista.tblServicios.setModel(modelo.consultar());
+        vista.tblServicios.setModel(modelo.consultar(0,vista.txtServicio.getText()));
         fillCombox();
         vista.setVisible(true);
     }
@@ -60,7 +62,7 @@ public class CONT_Servicios implements ActionListener, MouseListener {
         vista.txtServicio.setText("");
         vista.txtPrecio.setText("");
         vista.txtIdServicio.setText("");
-        this.vista.tblServicios.setModel(modelo.consultar());   
+        this.vista.tblServicios.setModel(modelo.consultar(0,vista.txtServicio.getText()));   
         vista.comboxInsumos.setSelectedIndex(0);
     }
     
@@ -133,7 +135,7 @@ public class CONT_Servicios implements ActionListener, MouseListener {
             if(!vista.txtServicio.getText().isEmpty() && isValid && vista.comboxInsumos.getSelectedIndex() > 0){
                 if(modelo.ingresar(vista.txtServicio.getText(), Float.parseFloat(vista.txtPrecio.getText()), getIdinsumo())){
                     JOptionPane.showMessageDialog(null, "Registro insertado exitosamente");
-                    this.vista.tblServicios.setModel(modelo.consultar());
+                    this.vista.tblServicios.setModel(modelo.consultar(0,vista.txtServicio.getText()));
                     limpiarCajasTexto();
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo insertar");
@@ -148,7 +150,7 @@ public class CONT_Servicios implements ActionListener, MouseListener {
             if (!vista.txtIdServicio.getText().isEmpty()) { // Validacion de campo
                 if(modelo.borrar(Integer.parseInt(vista.txtIdServicio.getText()))){
                     JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
-                    this.vista.tblServicios.setModel(modelo.consultar());
+                    this.vista.tblServicios.setModel(modelo.consultar(0,vista.txtServicio.getText()));
                     limpiarCajasTexto();
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo eliminar");
@@ -162,7 +164,7 @@ public class CONT_Servicios implements ActionListener, MouseListener {
             if(!vista.txtServicio.getText().isEmpty() && isValid && !vista.txtIdServicio.getText().isEmpty() && vista.comboxInsumos.getSelectedIndex() > 0){
                 if(modelo.actualizar(vista.txtServicio.getText(), Float.parseFloat(vista.txtPrecio.getText()), getIdinsumo(), Integer.parseInt(vista.txtIdServicio.getText()))) {
                     JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
-                    this.vista.tblServicios.setModel(modelo.consultar());                
+                    this.vista.tblServicios.setModel(modelo.consultar(0,vista.txtServicio.getText()));                
                     limpiarCajasTexto();
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo actualizar");
@@ -180,6 +182,12 @@ public class CONT_Servicios implements ActionListener, MouseListener {
             Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
             Ncontrolador.iniciarVista();
             vista.dispose();
+        }else if(vista.btnConsultar == evento.getSource()){
+            if(vista.txtServicio.getText().isEmpty()){
+                this.vista.tblServicios.setModel(modelo.consultar(0,vista.txtServicio.getText()));
+            }else{
+                this.vista.tblServicios.setModel(modelo.consultar(1,vista.txtServicio.getText()));
+            }
         }
     }
 

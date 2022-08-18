@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class CONT_Ventas implements ActionListener, MouseListener {
     Connection conn = null;
@@ -29,12 +30,13 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     
     Ventas vista;
     MDL_Ventas modelo;
-        
+    DefaultTableModel dtm = new DefaultTableModel();
+            
     public CONT_Ventas (MDL_Ventas modelo, Ventas vista) {
         this.vista = vista;
         this.modelo = modelo;
         this.vista.comboxCliente.addActionListener(this);
-        this.vista.comboxServicio.addMouseListener(this);
+        this.vista.comboxServicio.addActionListener(this);
         this.vista.txtCantidad.addActionListener(this);
         this.vista.txtTotal.addActionListener(this);
         this.vista.btnTerminar.addActionListener(this);
@@ -43,6 +45,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
         this.vista.btnBorrar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.tblVentas.addMouseListener(this);
+        this.vista.lblDisponibles.setVisible(false);
     }
     
     public void iniciarVista() {
@@ -73,12 +76,11 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             rs = stmt.executeQuery();
             
             while(rs.next()){
-                vista.lblDisponibles.setText("Disponibles: "+rs.getInt("cantidad"));
+                return rs.getInt(1);
             }
-        
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-        }        
+        }
         return 0;
     }
     
@@ -99,17 +101,19 @@ public class CONT_Ventas implements ActionListener, MouseListener {
         return 5;
     }
     
-    public boolean cantidadValida() {
+    public void cantidadValida() {
         try {
             int cantidad = Integer.parseInt(this.vista.txtCantidad.getText());
+            int disponible = disponibilidad();
+            this.vista.lblDisponibles.setVisible(true);
             if(cantidad > 0) { // Cantidad valida
-
+                JOptionPane.showMessageDialog(null, "Introduzca una cantidad valida");
+            } else if (cantidad > disponible) {
+                JOptionPane.showMessageDialog(null, "No contamos con los insumos suficientes");
             }
         } catch (NumberFormatException e) {
             
         }
-        return false;
-
     }
     
     public void fillCombox(int id) {
@@ -143,8 +147,8 @@ public class CONT_Ventas implements ActionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        /*if(vista.btnIngresar == evento.getSource()) { // Boton Ingresar presionado
-            boolean isValid = precioValido(vista.txtPrecio.getText());
+        if(vista.btnIngresar == evento.getSource()) { // Boton Ingresar presionado
+            /*boolean isValid = precioValido(vista.txtPrecio.getText());
             
             if(!vista.txtServicio.getText().isEmpty() && isValid && vista.comboxInsumos.getSelectedIndex() > 0){
                 if(modelo.ingresar(vista.txtServicio.getText(), Float.parseFloat(vista.txtPrecio.getText()), getIdinsumo())){
@@ -159,9 +163,9 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             } else {
                 vista.txtPrecio.setText("");
                 JOptionPane.showMessageDialog(null, "Precio invalido");
-            }
-        }else if(vista.btnEliminar == evento.getSource()){
-            if (!vista.txtIdServicio.getText().isEmpty()) { // Validacion de campo
+            }*/
+        }else if(vista.btnBorrar == evento.getSource()){
+            /*if (!vista.txtIdServicio.getText().isEmpty()) { // Validacion de campo
                 if(modelo.borrar(Integer.parseInt(vista.txtIdServicio.getText()))){
                     JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
                     this.vista.tblServicios.setModel(modelo.consultar());
@@ -188,21 +192,29 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             } else {
                 vista.txtPrecio.setText("");
                 JOptionPane.showMessageDialog(null, "Precio invalido");
-            }
+            }*/
         } else if (vista.btnLimpiar == evento.getSource()) {
             limpiarCajasTexto();
         } else if (vista.btnRegresar == evento.getSource()) {
-            Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
-            Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
+            Vista.MenuVentas Nvista = new Vista.MenuVentas();
+            Controlador.CONT_MenuVentas Ncontrolador = new Controlador.CONT_MenuVentas(Nvista);
             Ncontrolador.iniciarVista();
             vista.dispose();
-        }*/
+        } else if (vista.comboxServicio == evento.getSource()) {
+            
+        }
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        if (this.vista.comboxServicio == e.getSource()) {
-            disponibilidad();
+    public void mouseClicked(MouseEvent evento) {
+        if(vista.tblVentas == evento.getSource()){
+            int  fila = vista.tblVentas.rowAtPoint(evento.getPoint());
+            if (fila > -1){
+                vista.txtCantidad.setText(String.valueOf(vista.tblVentas.getValueAt(fila, 0)));
+                vista.txtTotal.setText(String.valueOf(vista.tblVentas.getValueAt(fila, 1)));
+                vista.txtCantidad.setText(String.valueOf(vista.tblVentas.getValueAt(fila, 2)));
+                //selectItem(String.valueOf(vista.tblServicios.getValueAt(fila, 3)));
+             }
         }
     }
 
@@ -224,5 +236,19 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public class servicio {
+        public int id;
+        public String servicio;
+        public int cantidad;
+        public float total;
+
+        public servicio(int id, String servicio, int cantidad, float total) {
+            this.id = id;
+            this.servicio = servicio;
+            this.cantidad = cantidad;
+            this.total = total;
+        }
     }
 }

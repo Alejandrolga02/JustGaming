@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MDL_Insumos {
@@ -39,12 +40,16 @@ public class MDL_Insumos {
     }
     
     //Método para consultar la tabla de insumos
-    public DefaultTableModel insumosConsultar(){
+    public DefaultTableModel insumosConsultar(int id, String nombre){
         try{
             //Abrir la conexión
             conn = getConnection();
-            //Preparando la sentencia
-            String sql = "SELECT idinsumos,nombre,cantidad,costo FROM insumos WHERE insumos.estatus = 1;";
+            String sql = null;
+            if(id == 0){
+                sql = "SELECT insumos.idinsumos AS ID, insumos.nombre AS INSUMO, insumos.cantidad AS CANTIDAD, insumos.costo AS COSTO FROM insumos WHERE insumos.estatus = 1;";
+            }else if(id == 1){
+                sql = "SELECT insumos.idinsumos AS ID, insumos.nombre AS INSUMO, insumos.cantidad AS CANTIDAD, insumos.costo AS COSTO FROM insumos WHERE insumos.estatus = 1 AND LOWER(insumos.nombre) LIKE LOWER('%"+nombre+"%');";
+            }
             //Ejecución de la sentencias sql
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(sql);
@@ -66,8 +71,13 @@ public class MDL_Insumos {
                 }
                 dtm.addRow(fila);
             }
+            if (dtm.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "No hay resultados");
+                return insumosConsultar(0, "");
+            }
             return dtm;
         }catch(SQLException ex){
+            ex.printStackTrace(System.out);
             return null;
         }
     }
