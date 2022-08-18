@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -38,7 +39,8 @@ public class CONT_InicioSesion implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnEntrar == evento.getSource()) {
-            Conexion.setJDBC(vista.txtUsuario.getText(), vista.txtPass.getText());
+            //Conexion.setJDBC(vista.txtUsuario.getText(), vista.txtPass.getText());
+            Conexion.setUSER(vista.txtUsuario.getText(), vista.txtPass.getText());
             
             if(modelo.login()) {
                 JOptionPane.showMessageDialog(null, "Sesión Iniciada Correctamente");
