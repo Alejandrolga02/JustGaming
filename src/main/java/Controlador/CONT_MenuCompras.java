@@ -39,8 +39,7 @@ public class CONT_MenuCompras implements ActionListener, MouseListener {
         if(vista.btnCompras == evento.getSource()) {
             if (Conexion.getUSER_ID() == 1) {
                 Vista.Compras Nvista = new Vista.Compras();
-                Modelo.MDL_Compras Nmodelo = new Modelo.MDL_Compras();
-                Controlador.CONT_Compras Ncontrolador = new Controlador.CONT_Compras(Nvista, Nmodelo);
+                Controlador.CONT_Compras Ncontrolador = new Controlador.CONT_Compras(Nvista);
                 Ncontrolador.iniciarVista();
                 vista.dispose();
             } else {

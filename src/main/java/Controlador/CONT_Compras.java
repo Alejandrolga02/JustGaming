@@ -5,6 +5,7 @@ Fecha: 18-agosto-2022
 */
 package Controlador;
 
+import Modelo.Conexion;
 import static Modelo.Conexion.getConnection;
 import Modelo.MDL_Compras;
 import Vista.Compras;
@@ -16,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +33,6 @@ public class CONT_Compras implements ActionListener, MouseListener{
     
     //Creacion de los objetos
     Compras vista;
-    MDL_Compras modelo;
     
     //Declaración del array  y la tabla
     DefaultTableModel dtm = new DefaultTableModel();
@@ -112,12 +113,11 @@ public class CONT_Compras implements ActionListener, MouseListener{
     //Método para eliminar un insumo de la compra
     public void eliminarDato() {
         int fila = vista.tblCompras.getSelectedRow();
-        double insumototal = (double) vista.tblCompras.getValueAt(fila, 4);
-        double total = 0.0;
+        float insumototal = Float.parseFloat(String.valueOf(vista.tblCompras.getValueAt(fila, 4)));
+        double total = 0;
         total = Float.parseFloat(vista.txtTotal.getText());
         total = total - insumototal;
         vista.txtTotal.setText(String.valueOf(total));
-
         
         if (fila >= 0) {
             dtm.removeRow(fila);
@@ -128,9 +128,8 @@ public class CONT_Compras implements ActionListener, MouseListener{
     }
     
     //Constructor de parametros
-    public CONT_Compras(Compras vista, MDL_Compras modelo){
+    public CONT_Compras(Compras vista){
         this.vista = vista;
-        this.modelo = modelo;
         this.vista.btnBorrar.addActionListener(this);
         this.vista.btnIngresar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
@@ -156,7 +155,7 @@ public class CONT_Compras implements ActionListener, MouseListener{
     }
     
     //Método para limpiar las cajas de texto
-    public void limpiarCajastexto(){
+    public void limpiarCajasTexto(){
         vista.txtCantidad.setText("");
         vista.comboxInsumo.setSelectedIndex(0);
     }
@@ -248,26 +247,175 @@ public class CONT_Compras implements ActionListener, MouseListener{
         }
     }
     
+    public boolean cantidadValida(String num) {
+        try {
+            int cantidad = Integer.parseInt(num);
+            
+            if(vista.comboxInsumo.getSelectedIndex() <= 0) { // Menor cantidad o 0
+                return true;
+            } else if (cantidad <= 0) { // Mas cantidad que lo existente
+                JOptionPane.showMessageDialog(null, "Introduzca una cantidad valida");
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            e.printStackTrace(System.out);
+        }
+        return false;
+    }
+    
+    public int getProveedor() {
+        try {
+            conn = getConnection();
+            String query = null;
+            if (vista.comboxProveedor.getSelectedIndex() > 0) {
+                query = "SELECT idProveedores FROM proveedores WHERE nombre = '"+vista.comboxProveedor.getSelectedItem().toString()+"';";
+            } else {
+                return 0;
+            }
+            
+            stm = conn.prepareStatement(query);
+            rs = stm.executeQuery();
+
+            while(rs.next()){
+                return rs.getInt("idProveedores");
+            }        
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        return 1;
+    }
+    
+    public void insertarDatos() {
+        try{
+            //Abrir la conexión
+            conn = getConnection();
+            //Preparando la instrucción
+            
+            String query = "INSERT INTO compras(idEmpleado, idProveedor, total) VALUES ("+Conexion.getUSER_ID()+","+getProveedor()+","+Float.parseFloat(vista.txtTotal.getText())+");";
+            //Ejecución de la sentencia
+            Statement stm = conn.createStatement();
+            int register = stm.executeUpdate(query);
+            //Cierre de la conexión
+            Conexion.close(conn);
+        }catch(SQLException ex){
+            
+        }
+    }
+    
+    public int getMaxCompra() {
+        try {
+            conn = getConnection();
+            String query = null;
+            
+            query = "SELECT MAX(compras.idcompras) FROM compras;";
+            
+            stm = conn.prepareStatement(query);
+            rs = stm.executeQuery();
+
+            while(rs.next()){
+                return rs.getInt(1);
+            }     
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        return 1;        
+    }
+    
+    public void insertarDetalles() {
+        try{
+            //Abrir la conexión
+            conn = getConnection();
+            
+            //Preparando la instrucción
+            Object[] datos = new Object[dtm.getColumnCount()];
+            float total = 0;
+            dtm.setRowCount(0);
+            for (CONT_Compras.Insumos insumo : listainsumos) {
+                datos[0] = insumo.id;
+                datos[1] = insumo.insumo;
+                datos[2] = insumo.cantidad;
+                datos[3] = insumo.costo;
+                datos[4] = insumo.totalInsumo;
+                total += insumo.totalInsumo;
+                // INSERT INTO compra_detalles(idCompra, idInsumo, cantidad) VALUES (NULL, '', '', '');
+                String query = "INSERT INTO compra_detalles(idCompra, idInsumo, cantidad) VALUES ("+getMaxCompra()+","+insumo.id+","+insumo.cantidad+");";
+                actualizarInsumo(insumo.id, insumo.cantidad);
+                //Ejecución de la sentencia
+                //Abrir la conexión
+                conn = getConnection();
+                Statement stm = conn.createStatement();
+                int register = stm.executeUpdate(query);
+                //Cierre de la conexión
+            }   
+            Conexion.close(conn);
+        }catch(SQLException ex){
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public void actualizarInsumo(int insumo, int cantidad) {
+        try {
+            //Abrir la conexión
+            conn = getConnection();
+            
+            String query = "UPDATE insumos SET cantidad=cantidad+"+cantidad+" WHERE insumos.idinsumos="+insumo+";";
+            Statement stm = conn.createStatement();
+            int register = stm.executeUpdate(query);
+            Conexion.close(conn);
+            Conexion.close(stm);
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(vista.btnIngresar == evento.getSource()){ //Boton de ingresar un Insumo
-            if(validarCantidad(vista.txtCantidad.getText())){
-                llenarLista();
-                setDatos();
-            }else{
-                vista.txtCantidad.setText("");
-                JOptionPane.showMessageDialog(null, "El campo cantidad solo debe contener numeros sin punto decimal");
+        if(vista.btnIngresar == evento.getSource()) { // Boton Ingresar presionado
+            if (cantidadValida(vista.txtCantidad.getText()) && vista.comboxInsumo.getSelectedIndex() >= 1) { // CAMPOS OK
+                if (duplicadoDato(getInsumos().id)) { // SERVICIO DUPLICADO
+                    cant = cant+Integer.parseInt(this.vista.txtCantidad.getText());
+                    if (cantidadValida(String.valueOf(cant))) {
+                        modificarDato();
+                    }    
+                } else if (cantidadValida(this.vista.txtCantidad.getText())) {
+                    llenarLista();
+                    setDatos();                
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Existencia de campo sin rellenar");
             }
         }else if(vista.btnBorrar == evento.getSource()){
-            eliminarDato();
-            limpiarCajastexto();
-        }else if(vista.btnLimpiar == evento.getSource()){
-            limpiarCajastexto();
-        }else if(vista.btnRegresar == evento.getSource()){
-            Vista.MenuCompras Nvista = new Vista.MenuCompras();
-            Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuCompras(Nvista);
+            if (vista.comboxInsumo.getSelectedIndex() > 0) {
+                eliminarDato();
+                limpiarCajasTexto();
+            } else {
+                JOptionPane.showMessageDialog(null, "Necesitas seleccionar un insumo para eliminarlo");
+            }
+        } else if (vista.btnLimpiar == evento.getSource()) {
+            limpiarCajasTexto();
+        } else if (vista.btnRegresar == evento.getSource()) {
+            Vista.MenuVentas Nvista = new Vista.MenuVentas();
+            Controlador.CONT_MenuVentas Ncontrolador = new Controlador.CONT_MenuVentas(Nvista);
             Ncontrolador.iniciarVista();
             vista.dispose();
+        } else if (vista.comboxInsumo == evento.getSource()) {
+            vista.txtCantidad.setText("1");
+        } else if (vista.btnTerminar == evento.getSource()){
+            if(vista.tblCompras.getRowCount() > 0) {
+                if (getProveedor() != 0) {
+                    insertarDatos();
+                    insertarDetalles();
+                    Vista.Compras Nvista = new Vista.Compras();
+                    Controlador.CONT_Compras Ncontrolador = new Controlador.CONT_Compras(Nvista);
+                    Ncontrolador.iniciarVista();
+                    vista.dispose(); 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Introduzca un proveedor para terminar la venta");
+                }      
+            } else {
+                JOptionPane.showMessageDialog(null, "Introduzca insumos para terminar la venta");
+            }
         }
     }
 

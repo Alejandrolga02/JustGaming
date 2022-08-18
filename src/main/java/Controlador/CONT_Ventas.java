@@ -6,10 +6,8 @@
 
 package Controlador;
 
+import Modelo.Conexion;
 import static Modelo.Conexion.getConnection;
-import Modelo.MDL_DetallesVentas;
-import Modelo.MDL_Ventas;
-import Vista.DetallesVentas;
 import Vista.Ventas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -29,9 +28,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     PreparedStatement stmt = null;
     ResultSet rs = null;
     
-    Ventas vista;
-    MDL_Ventas modelo;
-    
+    Ventas vista;    
     DefaultTableModel dtm = new DefaultTableModel();
     ArrayList<CONT_Ventas.Servicio> listaServicios =  new ArrayList<>();
     int cant;
@@ -66,6 +63,11 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     
     public void eliminarDato() {
         int fila = vista.tblVentas.getSelectedRow();
+        double total = 0.0;
+        float totalServicio = Float.parseFloat(String.valueOf(vista.tblVentas.getValueAt(fila, 4)));
+        total = Float.parseFloat(vista.txtTotal.getText());
+        total = total - totalServicio;
+        vista.txtTotal.setText(String.valueOf(total));
         
         if (fila >= 0) {
             dtm.removeRow(fila);
@@ -98,6 +100,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
                 servicio.cantidad = cant;
                 datos[2] = servicio.cantidad;
                 datos[3] = servicio.precioUnitario;
+                servicio.total = servicio.precioUnitario * servicio.cantidad;                
                 datos[4] = servicio.total;                
             } else {
                 datos[0] = servicio.id;
@@ -109,13 +112,12 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             total += servicio.total;                
             dtm.addRow(datos);
         }
-        vista.tblVentas.setModel(dtm);
         vista.txtTotal.setText(String.valueOf(total));
+        vista.tblVentas.setModel(dtm);
     }
                     
-    public CONT_Ventas (MDL_Ventas modelo, Ventas vista) {
+    public CONT_Ventas (Ventas vista) {
         this.vista = vista;
-        this.modelo = modelo;
         this.vista.comboxCliente.addActionListener(this);
         this.vista.comboxServicio.addActionListener(this);
         this.vista.txtCantidad.addActionListener(this);
@@ -187,7 +189,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             int cantidad = Integer.parseInt(num);
             int disponible = 0;
             if (vista.comboxServicio.getSelectedIndex() > 0) {
-                disponible = disponibilidad(getServicio().id);
+                disponible = disponibilidad(getServicio().insumo);
             } else {
                 return false;
             }
@@ -251,6 +253,112 @@ public class CONT_Ventas implements ActionListener, MouseListener {
         }
     }
 
+    public int getCliente() {
+        try {
+            conn = getConnection();
+            String query = null;
+            if (vista.comboxCliente.getSelectedIndex() > 0) {
+                query = "SELECT idCliente FROM cliente WHERE nombreCompleto = '"+vista.comboxCliente.getSelectedItem().toString()+"';";
+            } else {
+                return 1;
+            }
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                return rs.getInt("idCliente");
+            }        
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        return 1;
+    }
+    
+    public void insertarDatos() {
+        try{
+            //Abrir la conexión
+            conn = getConnection();
+            //Preparando la instrucción
+            
+            
+            String query = "INSERT INTO ventas(idEmpleado, idCliente,total) VALUES ("+Conexion.getUSER_ID()+","+getCliente()+","+Float.parseFloat(vista.txtTotal.getText())+");";
+            //Ejecución de la sentencia
+            Statement stm = conn.createStatement();
+            int register = stm.executeUpdate(query);
+            //Cierre de la conexión
+            Conexion.close(conn);
+        }catch(SQLException ex){
+            
+        }
+    }
+    
+    public int getMaxVenta() {
+        try {
+            conn = getConnection();
+            String query = null;
+            
+            query = "SELECT MAX(ventas.idVenta) FROM ventas;";
+            
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                return rs.getInt(1);
+            }     
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        return 1;        
+    }
+    
+    public void insertarDetalles() {
+        try{
+            //Abrir la conexión
+            conn = getConnection();
+            
+            //Preparando la instrucción
+            Object[] datos = new Object[dtm.getColumnCount()];
+            float total = 0;
+            dtm.setRowCount(0);
+            for (CONT_Ventas.Servicio servicio : listaServicios) {
+                datos[0] = servicio.id;
+                datos[1] = servicio.servicio;
+                datos[2] = servicio.cantidad;
+                datos[3] = servicio.precioUnitario;
+                datos[4] = servicio.total;
+                total += servicio.total;
+                
+                String query = "INSERT INTO ventas_detalle(idVentas, idServicio,cantidad) VALUES ("+getMaxVenta()+","+servicio.id+","+servicio.cantidad+");";
+                actualizarInsumo(servicio.insumo, servicio.cantidad);
+                //Ejecución de la sentencia
+                //Abrir la conexión
+                conn = getConnection();
+                Statement stm = conn.createStatement();
+                int register = stm.executeUpdate(query);
+                //Cierre de la conexión
+            }   
+            Conexion.close(conn);
+        }catch(SQLException ex){
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public void actualizarInsumo(int insumo, int cantidad) {
+        try {
+            //Abrir la conexión
+            conn = getConnection();
+            
+            String query = "UPDATE insumos SET cantidad=cantidad-"+cantidad+" WHERE insumos.idinsumos="+insumo+";";
+            Statement stm = conn.createStatement();
+            int register = stm.executeUpdate(query);
+            Conexion.close(conn);
+            Conexion.close(stm);
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnIngresar == evento.getSource()) { // Boton Ingresar presionado
@@ -268,8 +376,12 @@ public class CONT_Ventas implements ActionListener, MouseListener {
                 JOptionPane.showMessageDialog(null, "Existencia de campo sin rellenar");
             }
         }else if(vista.btnBorrar == evento.getSource()){
-            eliminarDato();
-            limpiarCajasTexto();
+            if (vista.comboxServicio.getSelectedIndex() > 0) {
+                eliminarDato();
+                limpiarCajasTexto();
+            } else {
+                JOptionPane.showMessageDialog(null, "Necesitas seleccionar un servicio para eliminarlo");
+            }
         } else if (vista.btnLimpiar == evento.getSource()) {
             limpiarCajasTexto();
         } else if (vista.btnRegresar == evento.getSource()) {
@@ -284,6 +396,17 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             } else {
                 vista.lblDisponibles.setVisible(true);
                 vista.lblDisponibles.setText("Disponibles: "+disponibilidad(getServicio().insumo));
+            }
+        } else if (vista.btnTerminar == evento.getSource()){
+            if(vista.tblVentas.getRowCount() > 0) {
+                insertarDatos();
+                insertarDetalles();
+                Vista.Ventas Nvista = new Vista.Ventas();
+                Controlador.CONT_Ventas Ncontrolador = new Controlador.CONT_Ventas(Nvista);
+                Ncontrolador.iniciarVista();
+                vista.dispose();                
+            } else {
+                JOptionPane.showMessageDialog(null, "Introduzca servicios para terminar la venta");
             }
         }
     }
