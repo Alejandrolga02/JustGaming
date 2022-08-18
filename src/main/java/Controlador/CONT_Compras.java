@@ -37,6 +37,9 @@ public class CONT_Compras implements ActionListener, MouseListener{
     DefaultTableModel dtm = new DefaultTableModel();
     ArrayList<CONT_Compras.Insumos> listainsumos =  new ArrayList<>();
     
+    int cant;
+    int index;
+    
     //Método para llenar lista
     public void llenarLista(){
         listainsumos.add(getInsumos());
@@ -44,7 +47,7 @@ public class CONT_Compras implements ActionListener, MouseListener{
     
     //Método pra crear la tabla
     public void setModelo() {
-        String[] header = {"ID", "INSUMO", "CANTIDAD", "TOTAL"};
+        String[] header = {"ID", "INSUMO", "CANTIDAD", "COSTO UNITARIO", "TOTAL"};
         dtm.setColumnIdentifiers(header);
         vista.tblCompras.setModel(dtm);
     }
@@ -58,7 +61,8 @@ public class CONT_Compras implements ActionListener, MouseListener{
             datos[0] = insumo.id;
             datos[1] = insumo.insumo;
             datos[2] = insumo.cantidad;
-            datos[3] = insumo.totalInsumo;
+            datos[3] = insumo.costo;
+            datos[4] = insumo.totalInsumo;
             total = (float) (total + insumo.totalInsumo);
             dtm.addRow(datos);
         }
@@ -69,6 +73,12 @@ public class CONT_Compras implements ActionListener, MouseListener{
     //Método para eliminar un insumo de la compra
     public void eliminarDato() {
         int fila = vista.tblCompras.getSelectedRow();
+        double insumototal = (double) vista.tblCompras.getValueAt(fila, 4);
+        double total = 0.0;
+        total = Float.parseFloat(vista.txtTotal.getText());
+        total = total - insumototal;
+        vista.txtTotal.setText(String.valueOf(total));
+
         
         if (fila >= 0) {
             dtm.removeRow(fila);
@@ -86,6 +96,9 @@ public class CONT_Compras implements ActionListener, MouseListener{
         }
         return false;
     }
+    
+    //Método para el conseguite
+    
     
     //Constructor de parametros
     public CONT_Compras(Compras vista, MDL_Compras modelo){
@@ -119,8 +132,6 @@ public class CONT_Compras implements ActionListener, MouseListener{
     public void limpiarCajastexto(){
         vista.txtCantidad.setText("");
         vista.comboxInsumo.setSelectedIndex(0);
-        vista.comboxProveedor.setSelectedIndex(0);
-        this.vista.tblCompras.setModel(null);
     }
     
     //Obtener los insumos
@@ -128,13 +139,13 @@ public class CONT_Compras implements ActionListener, MouseListener{
         try{
             conn = getConnection();
             
-            String sql = "SELECT idinsumos, nombre FROM insumos WHERE nombre = '" + vista.comboxInsumo.getSelectedItem().toString() + "';";
+            String sql = "SELECT idinsumos, nombre, costo FROM insumos WHERE nombre = '" + vista.comboxInsumo.getSelectedItem().toString() + "';";
             stm = conn.prepareStatement(sql);
             rs = stm.executeQuery();
             
             while(rs.next()){
                 return new CONT_Compras.Insumos(rs.getInt("idinsumos"), rs.getString("nombre"), 
-                        Integer.parseInt(vista.txtCantidad.getText()), sumarTotal(rs.getInt("idinsumos")));
+                        Integer.parseInt(vista.txtCantidad.getText()), rs.getDouble("costo"));
             }
             
         }catch(SQLException ex){
@@ -149,7 +160,7 @@ public class CONT_Compras implements ActionListener, MouseListener{
             //Abrir la conexión
             conn = getConnection();
             //Prepara la sentencia sql
-            String sql = "SELECT nombre FROM proveedores;";
+            String sql = "SELECT nombre FROM proveedores WHERE estatus = 1;";
             //Ejecución de la sentencia
             stm = conn.prepareStatement(sql);
             rs = stm.executeQuery();
@@ -168,7 +179,7 @@ public class CONT_Compras implements ActionListener, MouseListener{
             //Abrir la conexión
             conn = getConnection();
             //Prepara la sentencia sql
-            String sql = "SELECT nombre FROM insumos;";
+            String sql = "SELECT nombre FROM insumos WHERE estatus = 1;";
             //Ejecución de la sentencia
             stm = conn.prepareStatement(sql);
             rs = stm.executeQuery();
@@ -190,6 +201,23 @@ public class CONT_Compras implements ActionListener, MouseListener{
             return true;
         }else{
             return false;
+        }
+    }
+    
+    //Seleccionar un item
+    public void selectItem(String insumo) {
+        try {
+            conn = getConnection();
+            
+            String query = "SELECT idinsumos, nombre FROM insumos WHERE nombre = '"+insumo+"';;";
+            stm = conn.prepareStatement(query);
+            rs = stm.executeQuery();
+
+            while(rs.next()){
+                vista.comboxInsumo.setSelectedIndex(rs.getInt("idinsumos"));
+            }        
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
         }
     }
     
@@ -232,44 +260,38 @@ public class CONT_Compras implements ActionListener, MouseListener{
     }
 */
     
-    //Método para sacar el total del insumo
-    public double sumarTotal(int IdInsumo){
-        Double costo = 0.0, total = 0.0;
-        int cantidad;
-        String n = "";
-        try{
-            conn = getConnection();
-            String query = "SELECT costo FROM insumos WHERE idinsumos = '" + IdInsumo + ";";
-            stm = conn.prepareStatement(query);
-            rs = stm.executeQuery();
-            
-            while(rs.next()){
-                costo = rs.getDouble("costo");
-            }
-        }catch(SQLException ex){
-            return 0;
-        }
-        cantidad = Integer.parseInt(vista.txtCantidad.getText());
-        
-        total = (costo * cantidad);
-        return total;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
     @Override
     public void actionPerformed(ActionEvent evento) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(vista.btnIngresar == evento.getSource()){ //Botond einfresar un Insumo
+            if(validarCantidad(vista.txtCantidad.getText())){
+                llenarLista();
+                setDatos();
+            }else{
+                vista.txtCantidad.setText("");
+                JOptionPane.showMessageDialog(null, "El campo cantidad solo debe contener numeros sin punto decimal");
+            }
+        }else if(vista.btnBorrar == evento.getSource()){
+            eliminarDato();
+            limpiarCajastexto();
+        }else if(vista.btnLimpiar == evento.getSource()){
+            limpiarCajastexto();
+        }else if(vista.btnRegresar == evento.getSource()){
+            Vista.MenuCompras Nvista = new Vista.MenuCompras();
+            Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuCompras(Nvista);
+            Ncontrolador.iniciarVista();
+            vista.dispose();
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent evento) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       if(vista.tblCompras == evento.getSource()){
+            int  fila = vista.tblCompras.rowAtPoint(evento.getPoint());
+            if (fila > -1){
+                vista.txtCantidad.setText(String.valueOf(vista.tblCompras.getValueAt(fila, 2)));
+                selectItem(String.valueOf(vista.tblCompras.getValueAt(fila, 1)));
+             }
+        }
     }
 
     @Override
@@ -296,13 +318,15 @@ public class CONT_Compras implements ActionListener, MouseListener{
         int id;
         String insumo;
         int cantidad;
+        double costo;
         double totalInsumo;
         
-        public Insumos(int id, String insumo, int cantidad, double totalInsumo){
+        public Insumos(int id, String insumo, int cantidad,  double costo){
             this.id = id;
             this.insumo = insumo;
             this.cantidad = cantidad;
-            this.totalInsumo = totalInsumo;
+            this.totalInsumo = (cantidad * costo);
+            this.costo = costo;
         }
     }
     
