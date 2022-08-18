@@ -45,6 +45,45 @@ public class CONT_Compras implements ActionListener, MouseListener{
         listainsumos.add(getInsumos());
     }
     
+    //Dato duplicado
+    public boolean duplicadoDato(int id) {
+        index = id;
+        for (CONT_Compras.Insumos insumo : listainsumos) {
+            if(id == insumo.id) {
+                cant = insumo.cantidad;
+                insumo.totalInsumo = insumo.cantidad * insumo.costo;
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void modificarDato() {
+        Object[] datos = new Object[dtm.getColumnCount()];
+        float total = 0;
+        dtm.setRowCount(0);
+        for (CONT_Compras.Insumos insumo : listainsumos) {
+            if (insumo.id == index) {
+                datos[0] = insumo.id;
+                datos[1] = insumo.insumo;
+                insumo.cantidad = cant;
+                datos[2] = insumo.cantidad;
+                datos[3] = insumo.costo;
+                datos[4] = insumo.totalInsumo;                
+            } else {
+                datos[0] = insumo.id;
+                datos[1] = insumo.insumo;
+                datos[2] = insumo.cantidad;
+                datos[3] = insumo.costo;
+                datos[4] = insumo.totalInsumo;
+            }
+            total += insumo.totalInsumo;                
+            dtm.addRow(datos);
+        }
+        vista.tblCompras.setModel(dtm);
+        vista.txtTotal.setText(String.valueOf(total));
+    }
+    
     //Método pra crear la tabla
     public void setModelo() {
         String[] header = {"ID", "INSUMO", "CANTIDAD", "COSTO UNITARIO", "TOTAL"};
@@ -82,23 +121,11 @@ public class CONT_Compras implements ActionListener, MouseListener{
         
         if (fila >= 0) {
             dtm.removeRow(fila);
+            listainsumos.remove(fila);
         } else {
             JOptionPane.showConfirmDialog(null, "Seleccione una Fila");
         }
     }
-    
-    //Método para el ingresos duplicados
-    public boolean duplicadoDato(int id) {
-        for (CONT_Compras.Insumos insumo : listainsumos) {
-            if(id == insumo.id) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    //Método para el conseguite
-    
     
     //Constructor de parametros
     public CONT_Compras(Compras vista, MDL_Compras modelo){
@@ -221,48 +248,9 @@ public class CONT_Compras implements ActionListener, MouseListener{
         }
     }
     
-    //Método para obtener el id del insumo
-    /*
-    public int getIdInsumo(){
-        try {
-            conn = getConnection();
-            
-            String query = "SELECT idinsumos FROM insumos WHERE nombre = '"+vista.comboxInsumo.getSelectedItem().toString()+"';";
-            stm = conn.prepareStatement(query);
-            rs = stm.executeQuery();
-
-            while(rs.next()){
-                return rs.getInt("idinsumos");
-            }        
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        }
-        return 5;
-    }
-    */
-    
-    //Método para obtener el id del Proveedor
-    /*public int getIdProveedore(){
-        try {
-            conn = getConnection();
-            
-            String query = "SELECT idProveedor FROM proveedores WHERE nombre = '"+vista.comboxProveedor.getSelectedItem().toString()+"';";
-            stm = conn.prepareStatement(query);
-            rs = stm.executeQuery();
-
-            while(rs.next()){
-                return rs.getInt("idProveedores");
-            }        
-        } catch (SQLException ex) {
-            ex.printStackTrace(System.out);
-        }
-        return 5;
-    }
-*/
-    
     @Override
     public void actionPerformed(ActionEvent evento) {
-        if(vista.btnIngresar == evento.getSource()){ //Botond einfresar un Insumo
+        if(vista.btnIngresar == evento.getSource()){ //Boton de ingresar un Insumo
             if(validarCantidad(vista.txtCantidad.getText())){
                 llenarLista();
                 setDatos();
