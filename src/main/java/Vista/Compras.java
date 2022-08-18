@@ -213,8 +213,8 @@ public class Compras extends javax.swing.JFrame {
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnRegresar;
     public javax.swing.JButton btnTerminar;
-    private javax.swing.JComboBox<String> comboxInsumo;
-    private javax.swing.JComboBox<String> comboxProveedor;
+    public javax.swing.JComboBox<String> comboxInsumo;
+    public javax.swing.JComboBox<String> comboxProveedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCantidad;
