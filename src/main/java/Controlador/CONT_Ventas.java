@@ -34,6 +34,8 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     
     DefaultTableModel dtm = new DefaultTableModel();
     ArrayList<CONT_Ventas.Servicio> listaServicios =  new ArrayList<>();
+    int cant;
+    int index;
     
     public void llenarLista() {
         listaServicios.add(getServicio());
@@ -68,13 +70,15 @@ public class CONT_Ventas implements ActionListener, MouseListener {
         if (fila >= 0) {
             dtm.removeRow(fila);
         } else {
-            JOptionPane.showConfirmDialog(null, "Seleccione una Fila");
+            JOptionPane.showMessageDialog(null, "Seleccione una Fila");
         }
     }
     
     public boolean duplicadoDato(int id) {
         for (CONT_Ventas.Servicio servicio : listaServicios) {
             if(id == servicio.id) {
+                cant = servicio.cantidad;
+                index = vista.tblVentas.getSelectedRow();
                 return true;
             }
         }
@@ -82,7 +86,18 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     }
     
     public void modificarDato() {
-        
+        float total = 0;
+        dtm.setRowCount(0);
+        for (CONT_Ventas.Servicio servicio : listaServicios) {
+            if (servicio.id)
+            datos[2] = servicio.cantidad;
+            datos[3] = servicio.precioUnitario;
+            datos[4] = servicio.total;
+            total += servicio.total;
+            dtm.addRow(datos);
+        }
+        vista.tblVentas.setModel(dtm);
+        vista.txtTotal.setText(String.valueOf(total));
     }
                     
     public CONT_Ventas (MDL_Ventas modelo, Ventas vista) {
@@ -113,7 +128,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     }
     
     public void limpiarCajasTexto(){
-        vista.txtCantidad.setText("");
+        vista.txtCantidad.setText("1");
         vista.comboxServicio.setSelectedIndex(0);
         vista.lblDisponibles.setVisible(false);
     }
@@ -219,7 +234,10 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnIngresar == evento.getSource()) { // Boton Ingresar presionado
-            if (duplicadoDato(getServicio().id)) {
+            if (duplicadoDato(getServicio().id)) { // SERVICIO DUPLICADO
+                cantidadValida(String.valueOf(cant));
+                cant = cant+Integer.parseInt(this.vista.txtCantidad.getText());
+                cantidadValida(String.valueOf(cant));
                 modificarDato();
             } else if (cantidadValida(this.vista.txtCantidad.getText())) {
                 llenarLista();
@@ -229,6 +247,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             }
         }else if(vista.btnBorrar == evento.getSource()){
             eliminarDato();
+            limpiarCajasTexto();
         } else if (vista.btnLimpiar == evento.getSource()) {
             limpiarCajasTexto();
         } else if (vista.btnRegresar == evento.getSource()) {
