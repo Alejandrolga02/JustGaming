@@ -16,9 +16,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class CONT_Compras implements ActionListener, MouseListener{
     //Atributos de la clase
@@ -29,6 +32,60 @@ public class CONT_Compras implements ActionListener, MouseListener{
     //Creacion de los objetos
     Compras vista;
     MDL_Compras modelo;
+    
+    //Declaración del array  y la tabla
+    DefaultTableModel dtm = new DefaultTableModel();
+    ArrayList<CONT_Compras.Insumos> listainsumos =  new ArrayList<>();
+    
+    //Método para llenar lista
+    public void llenarLista(){
+        listainsumos.add(getInsumos());
+    }
+    
+    //Método pra crear la tabla
+    public void setModelo() {
+        String[] header = {"ID", "INSUMO", "CANTIDAD", "TOTAL"};
+        dtm.setColumnIdentifiers(header);
+        vista.tblCompras.setModel(dtm);
+    }
+    
+    //Método para ingresar los datos a la tabla
+    public void setDatos() {
+        Object[] datos = new Object[dtm.getColumnCount()];
+        float total = 0;
+        dtm.setRowCount(0);
+        for (CONT_Compras.Insumos insumo : listainsumos) {
+            datos[0] = insumo.id;
+            datos[1] = insumo.insumo;
+            datos[2] = insumo.cantidad;
+            datos[3] = insumo.totalInsumo;
+            total = (float) (total + insumo.totalInsumo);
+            dtm.addRow(datos);
+        }
+        vista.tblCompras.setModel(dtm);
+        vista.txtTotal.setText(String.valueOf(total));
+    }
+    
+    //Método para eliminar un insumo de la compra
+    public void eliminarDato() {
+        int fila = vista.tblCompras.getSelectedRow();
+        
+        if (fila >= 0) {
+            dtm.removeRow(fila);
+        } else {
+            JOptionPane.showConfirmDialog(null, "Seleccione una Fila");
+        }
+    }
+    
+    //Método para el ingresos duplicados
+    public boolean duplicadoDato(int id) {
+        for (CONT_Compras.Insumos insumo : listainsumos) {
+            if(id == insumo.id) {
+                return true;
+            }
+        }
+        return false;
+    }
     
     //Constructor de parametros
     public CONT_Compras(Compras vista, MDL_Compras modelo){
@@ -54,6 +111,7 @@ public class CONT_Compras implements ActionListener, MouseListener{
         vista.setLocationRelativeTo(null);
         comboProveedores();
         comboInsumos();
+        this.setModelo();
         vista.setVisible(true);
     }
     
@@ -63,6 +121,26 @@ public class CONT_Compras implements ActionListener, MouseListener{
         vista.comboxInsumo.setSelectedIndex(0);
         vista.comboxProveedor.setSelectedIndex(0);
         this.vista.tblCompras.setModel(null);
+    }
+    
+    //Obtener los insumos
+    public CONT_Compras.Insumos getInsumos(){
+        try{
+            conn = getConnection();
+            
+            String sql = "SELECT idinsumos, nombre FROM insumos WHERE nombre = '" + vista.comboxInsumo.getSelectedItem().toString() + "';";
+            stm = conn.prepareStatement(sql);
+            rs = stm.executeQuery();
+            
+            while(rs.next()){
+                return new CONT_Compras.Insumos(rs.getInt("idinsumos"), rs.getString("nombre"), 
+                        Integer.parseInt(vista.txtCantidad.getText()), sumarTotal(rs.getInt("idinsumos")));
+            }
+            
+        }catch(SQLException ex){
+            ex.printStackTrace(System.out);
+        }
+        return null;
     }
     
     //Método para obtener los proveedores en el comboBox
@@ -116,6 +194,7 @@ public class CONT_Compras implements ActionListener, MouseListener{
     }
     
     //Método para obtener el id del insumo
+    /*
     public int getIdInsumo(){
         try {
             conn = getConnection();
@@ -132,9 +211,10 @@ public class CONT_Compras implements ActionListener, MouseListener{
         }
         return 5;
     }
+    */
     
     //Método para obtener el id del Proveedor
-    public int getIdProveedore(){
+    /*public int getIdProveedore(){
         try {
             conn = getConnection();
             
@@ -150,8 +230,9 @@ public class CONT_Compras implements ActionListener, MouseListener{
         }
         return 5;
     }
+*/
     
-    //Método para scar el total de la compras
+    //Método para sacar el total del insumo
     public double sumarTotal(int IdInsumo){
         Double costo = 0.0, total = 0.0;
         int cantidad;
@@ -170,7 +251,7 @@ public class CONT_Compras implements ActionListener, MouseListener{
         }
         cantidad = Integer.parseInt(vista.txtCantidad.getText());
         
-        total = total + (costo * cantidad);
+        total = (costo * cantidad);
         return total;
     }
     
@@ -211,11 +292,18 @@ public class CONT_Compras implements ActionListener, MouseListener{
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    public class insumos{
-        int idproveedores;
-        int idinsumos;
+    public class Insumos{
+        int id;
+        String insumo;
         int cantidad;
-        double total;
+        double totalInsumo;
+        
+        public Insumos(int id, String insumo, int cantidad, double totalInsumo){
+            this.id = id;
+            this.insumo = insumo;
+            this.cantidad = cantidad;
+            this.totalInsumo = totalInsumo;
+        }
     }
     
 }
