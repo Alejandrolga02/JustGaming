@@ -104,7 +104,7 @@ public class MDL_DetallesCompras {
         try {
             conn = getConnection();
             
-            String query = "SELECT compra_detalles.idInsumo AS ID, insumos.nombre AS INSUMO, compra_detalles.cantidad AS CANTIDAD FROM compra_detalles LEFT JOIN insumos ON compra_detalles.idInsumo = insumos.idinsumos WHERE compra_detalles.idCompra = "+id+";";
+            String query = "SELECT compra_detalles.idInsumo AS ID, insumos.nombre AS INSUMO, compra_detalles.cantidad AS CANTIDAD, insumos.costo*compra_detalles.cantidad AS COSTO FROM compra_detalles LEFT JOIN insumos ON compra_detalles.idInsumo = insumos.idinsumos WHERE compra_detalles.idCompra = "+id+";";
             stmt = conn.prepareStatement(query);
             
             rs = stmt.executeQuery();

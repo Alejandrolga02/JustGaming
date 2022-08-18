@@ -65,6 +65,7 @@ public class DetallesVentas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalles Venta");
+        setResizable(false);
 
         txtCliente.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
@@ -102,6 +103,7 @@ public class DetallesVentas extends javax.swing.JFrame {
 
             }
         ));
+        tblVentas.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tblVentas);
 
         txtTotal.setEditable(false);
@@ -121,6 +123,7 @@ public class DetallesVentas extends javax.swing.JFrame {
 
             }
         ));
+        tblDetallesVentas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblDetallesVentas);
 
         btnConsultar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N

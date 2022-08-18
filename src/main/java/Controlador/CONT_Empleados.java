@@ -16,10 +16,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-//import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-//import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
@@ -58,6 +56,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
         vista.tblEmpleados.setModel(modelo.empleadoConsultar());
+        fillCombox();
         vista.setVisible(true);
     }
     
@@ -69,6 +68,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         vista.txtNombre.setText("");
         vista.txtApellido.setText("");
         vista.txtTelefono.setText("");
+        vista.comboxRol.setSelectedIndex(0);
     }
     
     //Método para obtener el usuario
@@ -121,19 +121,34 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         try {
             conn = getConnection();
 
-            String query = null;
-
-            query = "SELECT idServicio, servicio FROM servicios;";
+            String query = "SELECT rol FROM roles;";
 
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
             
             while(rs.next()){
-                vista.comboxRol.addItem(rs.getString("nombreCompleto"));
+                vista.comboxRol.addItem(rs.getString("rol"));
             }
         
         } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    
+    public void selectItem(String rol) {
+        try {
+            conn = getConnection();
+
+            String query = "SELECT idRol ,rol FROM roles WHERE rol = '"+rol+"';";
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
             
+            while(rs.next()){
+                vista.comboxRol.setSelectedIndex(rs.getInt("idRol"));
+            }
+        
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
         }
     }
     
@@ -149,7 +164,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
             }else if(isValid && valido){  //Validación del campo telefono
                 if(modelo.empleadoInsertar(vista.txtNombre.getText(), vista.txtApellido.getText(), 
                     vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date) conseguirFecha(vista.txtFechaDeNacimiento.getText()), 
-                    conseguirUsuario(vista.txtNombre.getText(),vista.txtApellido.getText()), vista.comboxRol.getSelectedIndex()+1)){ //Ejecución de la consulta
+                    conseguirUsuario(vista.txtNombre.getText(),vista.txtApellido.getText()), vista.comboxRol.getSelectedIndex())){ //Ejecución de la consulta
                     JOptionPane.showMessageDialog(null, "Registro insertado exitoso");
                     this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
                     limpiarCajastexto();
@@ -167,7 +182,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
             }else if(isValid && valido){ //Validación del telefono
                 if(modelo.empleadoActualizar(Integer.parseInt(vista.txtIdEmpleado.getText()), vista.txtNombre.getText(), vista.txtApellido.getText()
                     , vista.txtTelefono.getText(), vista.txtDomicilio.getText(), (java.sql.Date)conseguirFecha(vista.txtFechaDeNacimiento.getText())
-                    , vista.comboxRol.getSelectedIndex()+1)){ //Ejecución de la consulta
+                    , vista.comboxRol.getSelectedIndex())){ //Ejecución de la consulta
                     JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
                     limpiarCajastexto();
                     this.vista.tblEmpleados.setModel(modelo.empleadoConsultar()); //Actualización de la tabla en la vista
@@ -213,10 +228,10 @@ public class CONT_Empleados implements ActionListener, MouseListener{
                 vista.txtIdEmpleado.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 0)));
                 vista.txtNombre.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 1)));
                 vista.txtApellido.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 2)));
-                vista.txtTelefono.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 3)));
-                vista.txtDomicilio.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 4)));
-                vista.txtFechaDeNacimiento.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 5)));
-                //vista.comboxRol.setSelectedIndex(Integer.valueOf(vista.tblEmpleados.getValueAt(fila, 7)+1));
+                vista.txtTelefono.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 4)));
+                vista.txtDomicilio.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 5)));
+                vista.txtFechaDeNacimiento.setText(String.valueOf(vista.tblEmpleados.getValueAt(fila, 6)));
+                selectItem(vista.tblEmpleados.getValueAt(fila, 7).toString());
             }
         }
     }

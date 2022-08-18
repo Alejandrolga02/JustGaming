@@ -34,6 +34,7 @@ public class MenuCompras extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú de Compras");
+        setResizable(false);
 
         btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/addC.png"))); // NOI18N
 

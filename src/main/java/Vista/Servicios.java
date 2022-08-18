@@ -37,9 +37,12 @@ public class Servicios extends javax.swing.JFrame {
         lblServicio = new javax.swing.JLabel();
         lblIdServicio = new javax.swing.JLabel();
         txtIdServicio = new javax.swing.JTextField();
+        comboxInsumos = new javax.swing.JComboBox<>();
+        lblInsumo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Servicios");
+        setResizable(false);
 
         tblServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -49,6 +52,7 @@ public class Servicios extends javax.swing.JFrame {
 
             }
         ));
+        tblServicios.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblServicios);
 
         btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
@@ -85,6 +89,12 @@ public class Servicios extends javax.swing.JFrame {
         txtIdServicio.setEditable(false);
         txtIdServicio.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
 
+        comboxInsumos.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        comboxInsumos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un insumo" }));
+
+        lblInsumo.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblInsumo.setText("Insumo:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,16 +107,6 @@ public class Servicios extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblPrecio)
-                                    .addComponent(lblServicio)
-                                    .addComponent(lblIdServicio))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPrecio)
-                                    .addComponent(txtServicio)
-                                    .addComponent(txtIdServicio)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +119,21 @@ public class Servicios extends javax.swing.JFrame {
                                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btnLimpiar)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblPrecio)
+                                    .addComponent(lblServicio)
+                                    .addComponent(lblIdServicio)
+                                    .addComponent(lblInsumo))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(comboxInsumos, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(txtPrecio)
+                                    .addComponent(txtServicio)
+                                    .addComponent(txtIdServicio))))
                         .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
@@ -141,6 +155,10 @@ public class Servicios extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblPrecio)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblInsumo)
+                    .addComponent(comboxInsumos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnLimpiar)
@@ -196,8 +214,10 @@ public class Servicios extends javax.swing.JFrame {
     public javax.swing.JButton btnIngresar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnRegresar;
+    public javax.swing.JComboBox<String> comboxInsumos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblIdServicio;
+    private javax.swing.JLabel lblInsumo;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblServicio;
     private javax.swing.JLabel lblTitulo;

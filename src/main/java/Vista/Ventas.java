@@ -54,6 +54,7 @@ public class Ventas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventas");
+        setResizable(false);
 
         lblCliente.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblCliente.setText("Cliente:");

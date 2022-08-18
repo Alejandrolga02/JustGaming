@@ -48,8 +48,7 @@ public class MDL_Empleados {
             //Abrir la conexión
             conn = getConnection();
             //Preparando la consulta
-            String query = "SELECT empleado.idEmpleado,empleado.nombre,empleado.apellido,empleado.telefono,empleado.domicilio,empleado.fechaNacimiento,"
-                    + "empleado.usuario,empleado.idRol FROM empleado INNER JOIN roles ON empleado.idRol = roles.idRol WHERE empleado.estatus = 1;";
+            String query = "SELECT empleado.idEmpleado AS ID, empleado.nombre AS `NOMBRE`, empleado.apellido AS `APELLIDO`, empleado.usuario AS `USUARIO`, empleado.telefono AS `TELEFONO`, empleado.domicilio AS `DOMICILIO`, empleado.fechaNacimiento AS `FECHA NACIMIENTO`, roles.rol AS `ROL` FROM empleado LEFT JOIN roles ON empleado.idRol = roles.idRol WHERE empleado.estatus = 1;";
             stmt = conn.prepareStatement(query);
 
             rs = stmt.executeQuery();

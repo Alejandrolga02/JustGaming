@@ -48,6 +48,7 @@ public class Empleados extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleados");
+        setResizable(false);
 
         tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -57,6 +58,7 @@ public class Empleados extends javax.swing.JFrame {
 
             }
         ));
+        tblEmpleados.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblEmpleados);
 
         btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N

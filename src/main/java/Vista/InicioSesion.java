@@ -35,6 +35,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar Sesión");
+        setResizable(false);
 
         lblUsuario.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         lblUsuario.setLabelFor(txtUsuario);
@@ -57,6 +58,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
         jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton1.setRequestFocusEnabled(false);

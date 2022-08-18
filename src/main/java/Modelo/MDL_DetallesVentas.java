@@ -105,7 +105,7 @@ public class MDL_DetallesVentas {
         try {
             conn = getConnection();
             
-            String query = "SELECT ventas_detalle.idServicio AS ID, servicios.servicio AS INSUMO, ventas_detalle.cantidad AS CANTIDAD FROM ventas_detalle LEFT JOIN servicios ON ventas_detalle.idServicio = servicios.idServicio WHERE ventas_detalle.idVentas = "+id+";";
+            String query = "SELECT ventas_detalle.idServicio AS ID, servicios.servicio AS INSUMO, ventas_detalle.cantidad AS CANTIDAD, servicios.precio*ventas_detalle.cantidad AS PRECIO FROM ventas_detalle LEFT JOIN servicios ON ventas_detalle.idServicio = servicios.idServicio WHERE ventas_detalle.idVentas = "+id+";";
             stmt = conn.prepareStatement(query);
             
             rs = stmt.executeQuery();

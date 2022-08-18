@@ -53,6 +53,7 @@ public class Clientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clientes");
+        setResizable(false);
 
         lblTitulo.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         lblTitulo.setText("Clientes");
@@ -101,6 +102,7 @@ public class Clientes extends javax.swing.JFrame {
 
             }
         ));
+        tblClientes.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblClientes);
 
         btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N

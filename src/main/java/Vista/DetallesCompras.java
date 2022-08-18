@@ -86,6 +86,7 @@ public class DetallesCompras extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalles de las Compras");
+        setResizable(false);
 
         lblIdCompra.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblIdCompra.setText("Id Compra:");
@@ -117,6 +118,7 @@ public class DetallesCompras extends javax.swing.JFrame {
 
             }
         ));
+        tblCompras.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tblCompras);
 
         btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
@@ -133,6 +135,7 @@ public class DetallesCompras extends javax.swing.JFrame {
 
             }
         ));
+        tblDetallesCompras.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tblDetallesCompras);
 
         btnConsultar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N

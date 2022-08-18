@@ -54,6 +54,7 @@ public class Proveedores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proveedores");
+        setResizable(false);
 
         tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,6 +64,7 @@ public class Proveedores extends javax.swing.JFrame {
 
             }
         ));
+        tblProveedores.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblProveedores);
 
         btnLimpiar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N

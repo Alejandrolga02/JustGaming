@@ -5,12 +5,17 @@ Fecha: 13-agosto-2022
 */
 package Controlador;
 
+import static Modelo.Conexion.getConnection;
 import Modelo.MDL_Insumos;
 import Vista.Insumos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
@@ -73,10 +78,7 @@ public class CONT_Insumos implements ActionListener, MouseListener{
             return false;
         }
     }
-    
-    
-    
-    
+        
     //Método para las acciones de los botes
     @Override
     public void actionPerformed(ActionEvent evento) {

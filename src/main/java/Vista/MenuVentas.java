@@ -37,6 +37,7 @@ public class MenuVentas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Ventas");
+        setResizable(false);
 
         btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/addV.png"))); // NOI18N
 

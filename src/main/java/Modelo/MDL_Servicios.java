@@ -15,10 +15,10 @@ public class MDL_Servicios {
     PreparedStatement stmt = null;
     ResultSet rs = null;
     
-    public boolean ingresar(String nombre, float precio) {
+    public boolean ingresar(String nombre, float precio, int insumo) {
         try {
             conn = getConnection();
-            String query = "INSERT INTO servicios(`servicio`, `precio`) VALUES ('"+nombre+"',"+precio+")";
+            String query = "INSERT INTO servicios(`servicio`, `precio`, `idinsumo`) VALUES ('"+nombre+"',"+precio+","+insumo+")";
             stmt = conn.prepareStatement(query);
             int result = stmt.executeUpdate(query);
                         
@@ -33,10 +33,10 @@ public class MDL_Servicios {
         }
     }
     
-    public boolean actualizar(String nombre, float precio, int id) {
+    public boolean actualizar(String nombre, float precio, int insumo, int id) {
         try {
             conn = getConnection();
-            String query = "UPDATE servicios SET servicio='"+nombre+"', precio="+precio+" WHERE idServicio = "+id+"";
+            String query = "UPDATE servicios SET servicio='"+nombre+"', precio="+precio+", idinsumo="+insumo+" WHERE idServicio = "+id+"";
             stmt = conn.prepareStatement(query);
             int result = stmt.executeUpdate(query);
                         
@@ -72,7 +72,7 @@ public class MDL_Servicios {
     public DefaultTableModel consultar() {
         try {
             conn = getConnection();
-            String query = "SELECT idServicio, servicio, precio FROM servicios WHERE estatus = 1;";
+            String query = "SELECT servicios.idServicio AS ID, servicios.servicio AS SERVICIO, servicios.precio AS PRECIO, insumos.nombre AS INSUMO FROM servicios LEFT JOIN insumos ON servicios.idInsumo = insumos.idinsumos WHERE servicios.estatus = 1;";
             stmt = conn.prepareStatement(query);
             
             rs = stmt.executeQuery();
