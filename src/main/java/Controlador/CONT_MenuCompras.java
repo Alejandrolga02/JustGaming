@@ -6,12 +6,14 @@
 
 package Controlador;
 
+import Modelo.Conexion;
 import Vista.MenuCompras;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class CONT_MenuCompras implements ActionListener, MouseListener {
     private MenuCompras vista;
@@ -35,23 +37,35 @@ public class CONT_MenuCompras implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnCompras == evento.getSource()) {
-            Vista.Compras Nvista = new Vista.Compras();
-            Modelo.MDL_Compras Nmodelo = new Modelo.MDL_Compras();
-            Controlador.CONT_Compras Ncontrolador = new Controlador.CONT_Compras(Nvista, Nmodelo);
-            Ncontrolador.iniciarVista();
-            vista.dispose();
+            if (Conexion.getUSER_ID() == 1) {
+                /*Vista.Ventas Nvista = new Vista.Ventas();
+                Modelo.MDL_Ventas Nmodelo = new Modelo.MDL_Ventas();
+                Controlador.CONT_Ventas Ncontrolador = new Controlador.CONT_Ventas(Nmodelo, Nvista);
+                Ncontrolador.iniciarVista();*/
+                vista.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No tienes permiso para entrar");
+            }
         } else if (vista.btnDetalles == evento.getSource()) {
-            Vista.DetallesCompras Nvista = new Vista.DetallesCompras();
-            Modelo.MDL_DetallesCompras Nmodelo = new Modelo.MDL_DetallesCompras();
-            Controlador.CONT_DetallesCompras Ncontrolador = new CONT_DetallesCompras(Nmodelo, Nvista);
-            Ncontrolador.iniciarVista();
-            vista.dispose();        
+            if (Conexion.getUSER_ID() == 1) {            
+                Vista.DetallesCompras Nvista = new Vista.DetallesCompras();
+                Modelo.MDL_DetallesCompras Nmodelo = new Modelo.MDL_DetallesCompras();
+                Controlador.CONT_DetallesCompras Ncontrolador = new CONT_DetallesCompras(Nmodelo, Nvista);
+                Ncontrolador.iniciarVista();
+                vista.dispose(); 
+            } else {
+                JOptionPane.showMessageDialog(null, "No tienes permiso para entrar");
+            }                
         } else if (vista.btnProveedores == evento.getSource()) {
-            Vista.Proveedores Nvista = new Vista.Proveedores();
-            Modelo.MDL_Proveedores Nmodelo = new Modelo.MDL_Proveedores();
-            Controlador.CONT_Proveedores Ncontrolador = new CONT_Proveedores(Nmodelo, Nvista);
-            Ncontrolador.iniciarVista();
-            vista.dispose();            
+            if (Conexion.getUSER_ID() == 1) {            
+                Vista.Proveedores Nvista = new Vista.Proveedores();
+                Modelo.MDL_Proveedores Nmodelo = new Modelo.MDL_Proveedores();
+                Controlador.CONT_Proveedores Ncontrolador = new CONT_Proveedores(Nmodelo, Nvista);
+                Ncontrolador.iniciarVista();
+                vista.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No tienes permiso para entrar");
+            }            
         }else if (vista.btnRegresar == evento.getSource()) {
             Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
             Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);

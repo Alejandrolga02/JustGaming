@@ -6,6 +6,7 @@
 
 package Controlador;
 
+import Modelo.Conexion;
 import static Modelo.Conexion.getConnection;
 import Modelo.MDL_Servicios;
 import Vista.Servicios;
@@ -38,6 +39,11 @@ public class CONT_Servicios implements ActionListener, MouseListener {
         this.vista.btnRegresar.addActionListener(this);
         this.vista.tblServicios.addMouseListener(this);
         this.vista.comboxInsumos.addMouseListener(this);
+        if (Conexion.getUSER_ROL() != 1) {
+            this.vista.btnActualizar.setEnabled(false);
+            this.vista.btnEliminar.setEnabled(false);
+            this.vista.btnIngresar.setEnabled(false);
+        }
     }
 
     public void iniciarVista() {

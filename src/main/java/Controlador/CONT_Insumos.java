@@ -5,6 +5,7 @@ Fecha: 13-agosto-2022
 */
 package Controlador;
 
+import Modelo.Conexion;
 import static Modelo.Conexion.getConnection;
 import Modelo.MDL_Insumos;
 import Vista.Insumos;
@@ -37,6 +38,11 @@ public class CONT_Insumos implements ActionListener, MouseListener{
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnRegresar.addActionListener(this);
         this.vista.tblInsumos.addMouseListener(this);
+        if (Conexion.getUSER_ROL() != 1) {
+            this.vista.btnActualizar.setEnabled(false);
+            this.vista.btnElimina.setEnabled(false);
+            this.vista.btnIngresar.setEnabled(false);
+        }
     }
     
     //Método para iniciar la vista

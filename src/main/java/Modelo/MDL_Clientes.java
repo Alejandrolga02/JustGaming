@@ -39,12 +39,17 @@ public class MDL_Clientes {
     }
     
     //Método para mostrar la tabla clientes
-    public DefaultTableModel clientesConsultar(){
+    public DefaultTableModel clientesConsultar(int id, String nombre){
         try{
             //Abrir la conexion
             conn = getConnection();
             //Preparando la instruccion
-            String sql = "SELECT idCliente,nombreCompleto,telefono,correoElectronico,domicilio FROM cliente WHERE cliente.estatus = 1;";
+            String sql = null;
+            if (id == 0) { // CONSULTA GENERAL
+                sql = "SELECT idCliente,nombreCompleto,telefono,correoElectronico,domicilio FROM cliente WHERE cliente.estatus = 1;";
+            } else if (id == 1){ // NOMBRE
+                sql = "SELECT idCliente,nombreCompleto,telefono,correoElectronico,domicilio FROM cliente WHERE cliente.estatus = 1 AND LOWER(cliente.nombreCompleto) LIKE LOWER('%"+nombre+"%');";
+            }
             //Ejecucución de la sentencia
             Statement stm = conn.createStatement();
             ResultSet rs = stm.executeQuery(sql);

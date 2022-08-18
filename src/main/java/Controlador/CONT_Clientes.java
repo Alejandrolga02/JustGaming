@@ -5,6 +5,7 @@ Fecha: 13-agosto-2022
 */
 package Controlador;
 
+import Modelo.Conexion;
 import Modelo.MDL_Clientes;
 import Vista.Clientes;
 import java.awt.event.ActionEvent;
@@ -29,8 +30,13 @@ public class CONT_Clientes implements ActionListener, MouseListener{
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnIngresar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnConsultar.addActionListener(this);
         this.vista.btnRegresar.addActionListener(this);
         this.vista.tblClientes.addMouseListener(this);
+        if (Conexion.getUSER_ROL() != 1) {
+            this.vista.btnActualizar.setEnabled(false);
+            this.vista.btnEliminar.setEnabled(false);
+        }
     }
     
     //Método para iniciar la vista
@@ -39,7 +45,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
         vista.pack();
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
-        vista.tblClientes.setModel(modelo.clientesConsultar());
+        vista.tblClientes.setModel(modelo.clientesConsultar(0,this.vista.txtNombre.getText()));
         vista.setVisible(true);
     }
     
@@ -50,6 +56,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
         vista.txtIdCliente.setText("");
         vista.txtNombre.setText("");
         vista.txtTelefono.setText("");
+        vista.tblClientes.setModel(modelo.clientesConsultar(0,this.vista.txtNombre.getText()));
     }
     
     //Validación de que el numero no contenga caracteres
@@ -91,7 +98,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
                 if(modelo.clientesInsertar(vista.txtNombre.getText(), vista.txtTelefono.getText(),  //Se eejecuta la consulta
                     vista.txtCorreo.getText(), vista.txtDomicilio.getText())){
                     JOptionPane.showMessageDialog(null, "Registro insertado exitoso");
-                    this.vista.tblClientes.setModel(modelo.clientesConsultar()); //Se actualiza la tabla en la vista
+                    this.vista.tblClientes.setModel(modelo.clientesConsultar(0,this.vista.txtNombre.getText())); //Se actualiza la tabla en la vista
                     limpiarCajastexto();
                 }else{   //Ocurrio un error
                     JOptionPane.showMessageDialog(null, "No se pudo insertar");
@@ -108,7 +115,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
                 if(modelo.clienteActualizar(Integer.parseInt(vista.txtIdCliente.getText()),vista.txtNombre.getText(), vista.txtTelefono.getText(), 
                     vista.txtCorreo.getText(), vista.txtDomicilio.getText())){ //Se ejecuta la sentencia 
                     JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
-                    this.vista.tblClientes.setModel(modelo.clientesConsultar()); //Se actualiza la tabla en la vista
+                    this.vista.tblClientes.setModel(modelo.clientesConsultar(0,this.vista.txtNombre.getText())); //Se actualiza la tabla en la vista
                     limpiarCajastexto();
                 }else{ //Ocurrio un error
                     JOptionPane.showMessageDialog(null, "No se pudo actualizar");
@@ -121,7 +128,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
                 JOptionPane.showMessageDialog(null, "Campo IdCliente esta vacio");
             }else if(modelo.clienteEliminar(Integer.parseInt(vista.txtIdCliente.getText()))){ //Se ejecuta la sentencia
                 JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
-                this.vista.tblClientes.setModel(modelo.clientesConsultar());  //Se actualiza la tabla en la vista
+                this.vista.tblClientes.setModel(modelo.clientesConsultar(0,this.vista.txtNombre.getText()));  //Se actualiza la tabla en la vista
                 limpiarCajastexto();
             }else{ //Ocurrio un error
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar");
@@ -133,6 +140,12 @@ public class CONT_Clientes implements ActionListener, MouseListener{
             Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
             Ncontrolador.iniciarVista();
             vista.dispose();
+        } else if (vista.btnConsultar == evento.getSource()) {
+            if (vista.txtNombre.getText().isEmpty()) { // CLIENTE VACIO
+                this.vista.tblClientes.setModel(modelo.clientesConsultar(0,this.vista.txtNombre.getText()));
+            } else {
+                this.vista.tblClientes.setModel(modelo.clientesConsultar(1,this.vista.txtNombre.getText()));
+            }
         }
     }
 

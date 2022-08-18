@@ -6,12 +6,14 @@
 
 package Controlador;
 
+import Modelo.Conexion;
 import Vista.MenuPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class CONT_MenuPrincipal implements ActionListener, MouseListener{
     private MenuPrincipal vista;
@@ -55,16 +57,24 @@ public class CONT_MenuPrincipal implements ActionListener, MouseListener{
             Ncontrolador.iniciarVista();
             vista.dispose();
         } else if (vista.btnCompras == evento.getSource()) {
-            Vista.MenuCompras Nvista = new Vista.MenuCompras();
-            Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuCompras(Nvista);
-            Ncontrolador.iniciarVista();
-            vista.dispose();
+            if (Conexion.getUSER_ID() == 1) {
+                Vista.MenuCompras Nvista = new Vista.MenuCompras();
+                Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuCompras(Nvista);
+                Ncontrolador.iniciarVista();
+                vista.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No tienes permiso para entrar");
+            }
         } else if (vista.btnEmpleados == evento.getSource()) {
-            Vista.Empleados Nvista = new Vista.Empleados();
-            Modelo.MDL_Empleados Nmodelo = new Modelo.MDL_Empleados();
-            Controlador.CONT_Empleados Ncontrolador = new Controlador.CONT_Empleados(Nmodelo, Nvista);
-            Ncontrolador.iniciarVista();
-            vista.dispose();
+            if (Conexion.getUSER_ID() == 1) {
+                Vista.Empleados Nvista = new Vista.Empleados();
+                Modelo.MDL_Empleados Nmodelo = new Modelo.MDL_Empleados();
+                Controlador.CONT_Empleados Ncontrolador = new Controlador.CONT_Empleados(Nmodelo, Nvista);
+                Ncontrolador.iniciarVista();
+                vista.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "No tienes permiso para entrar");
+            }
         } else if (vista.btnServicios == evento.getSource()) {
             Vista.Servicios Nvista = new Vista.Servicios();
             Modelo.MDL_Servicios Nmodelo = new Modelo.MDL_Servicios();

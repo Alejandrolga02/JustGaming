@@ -34,7 +34,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
         this.vista = vista;
         this.modelo = modelo;
         this.vista.comboxCliente.addActionListener(this);
-        this.vista.comboxServicio.addActionListener(this);
+        this.vista.comboxServicio.addMouseListener(this);
         this.vista.txtCantidad.addActionListener(this);
         this.vista.txtTotal.addActionListener(this);
         this.vista.btnTerminar.addActionListener(this);
@@ -60,25 +60,43 @@ public class CONT_Ventas implements ActionListener, MouseListener {
         vista.txtTotal.setText("");
         vista.comboxCliente.setSelectedIndex(0);
         vista.comboxServicio.setSelectedIndex(0);
+        vista.lblDisponibles.setVisible(false);
     }
     
     public int disponibilidad() {
         try {
             conn = getConnection();
 
-            String query = "SELECT nombre FROM insumos;";
+            String query = "SELECT servicios.idServicio, insumos.cantidad FROM servicios LEFT JOIN insumos ON servicios.idInsumo = insumos.idinsumos WHERE servicios.idServicio = "+getIdServicio()+";";
 
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
             
             while(rs.next()){
-                
+                vista.lblDisponibles.setText("Disponibles: "+rs.getInt("cantidad"));
             }
         
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }        
         return 0;
+    }
+    
+    public int getIdServicio() {
+        try {
+            conn = getConnection();
+            
+            String query = "SELECT idServicio FROM servicios WHERE servicio = '"+vista.comboxServicio.getSelectedItem().toString()+"';";
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                return rs.getInt("idServicio");
+            }        
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+        return 5;
     }
     
     public boolean cantidadValida() {
@@ -101,9 +119,9 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             String query = null;
 
             if (id == 0) {
-                query = "SELECT idCliente, nombreCompleto FROM cliente WHERE idCliente != 1;";
+                query = "SELECT idCliente, nombreCompleto FROM cliente WHERE idCliente != 1 AND estatus = 1;";
             } else {
-                query = "SELECT idServicio, servicio FROM servicios;";
+                query = "SELECT idServicio, servicio FROM servicios WHERE estatus = 1;";
             }
 
             stmt = conn.prepareStatement(query);
@@ -115,10 +133,9 @@ public class CONT_Ventas implements ActionListener, MouseListener {
                 }
             } else {
                 while(rs.next()){
-                    vista.comboxServicio.addItem(rs.getString("servicio"));                
+                    vista.comboxServicio.addItem(rs.getString("servicio"));
                 }
-            }           
-        
+            }
         } catch (SQLException ex) {
             
         }
@@ -184,7 +201,9 @@ public class CONT_Ventas implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (this.vista.comboxServicio == e.getSource()) {
+            disponibilidad();
+        }
     }
 
     @Override
