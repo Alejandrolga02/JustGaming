@@ -169,6 +169,7 @@ public class CONT_Compras implements ActionListener, MouseListener{
             return 0;
         }
         cantidad = Integer.parseInt(vista.txtCantidad.getText());
+        
         total = total + (costo * cantidad);
         return total;
     }
@@ -208,6 +209,13 @@ public class CONT_Compras implements ActionListener, MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public class insumos{
+        int idproveedores;
+        int idinsumos;
+        int cantidad;
+        double total;
     }
     
 }
