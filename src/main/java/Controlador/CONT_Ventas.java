@@ -69,16 +69,18 @@ public class CONT_Ventas implements ActionListener, MouseListener {
         
         if (fila >= 0) {
             dtm.removeRow(fila);
+            listaServicios.remove(fila);
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una Fila");
         }
     }
     
     public boolean duplicadoDato(int id) {
+        index = id;
         for (CONT_Ventas.Servicio servicio : listaServicios) {
             if(id == servicio.id) {
                 cant = servicio.cantidad;
-                index = vista.tblVentas.getSelectedRow();
+                servicio.total = servicio.cantidad * servicio.precioUnitario;
                 return true;
             }
         }
@@ -86,14 +88,25 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     }
     
     public void modificarDato() {
+        Object[] datos = new Object[dtm.getColumnCount()];
         float total = 0;
         dtm.setRowCount(0);
         for (CONT_Ventas.Servicio servicio : listaServicios) {
-            if (servicio.id)
-            datos[2] = servicio.cantidad;
-            datos[3] = servicio.precioUnitario;
-            datos[4] = servicio.total;
-            total += servicio.total;
+            if (servicio.id == index) {
+                datos[0] = servicio.id;
+                datos[1] = servicio.servicio;
+                servicio.cantidad = cant;
+                datos[2] = servicio.cantidad;
+                datos[3] = servicio.precioUnitario;
+                datos[4] = servicio.total;                
+            } else {
+                datos[0] = servicio.id;
+                datos[1] = servicio.servicio;
+                datos[2] = servicio.cantidad;
+                datos[3] = servicio.precioUnitario;
+                datos[4] = servicio.total;
+            }
+            total += servicio.total;                
             dtm.addRow(datos);
         }
         vista.tblVentas.setModel(dtm);
@@ -143,10 +156,11 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             rs = stmt.executeQuery();
             
             while(rs.next()){
-                return rs.getInt(1);
+                return rs.getInt("cantidad");
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
+            return 0;
         }
         return 0;
     }
@@ -171,7 +185,13 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     public boolean cantidadValida(String num) {
         try {
             int cantidad = Integer.parseInt(num);
-            int disponible = disponibilidad(getServicio().id);
+            int disponible = 0;
+            if (vista.comboxServicio.getSelectedIndex() > 0) {
+                disponible = disponibilidad(getServicio().id);
+            } else {
+                return false;
+            }
+            
             if(cantidad <= 0) { // Menor cantidad o 0
                 JOptionPane.showMessageDialog(null, "Introduzca una cantidad valida");
                 return false;
@@ -234,16 +254,18 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnIngresar == evento.getSource()) { // Boton Ingresar presionado
-            if (duplicadoDato(getServicio().id)) { // SERVICIO DUPLICADO
-                cantidadValida(String.valueOf(cant));
-                cant = cant+Integer.parseInt(this.vista.txtCantidad.getText());
-                cantidadValida(String.valueOf(cant));
-                modificarDato();
-            } else if (cantidadValida(this.vista.txtCantidad.getText())) {
-                llenarLista();
-                setDatos();                
+            if (cantidadValida(vista.txtCantidad.getText()) && vista.comboxServicio.getSelectedIndex() >= 1) { // CAMPOS OK
+                if (duplicadoDato(getServicio().id)) { // SERVICIO DUPLICADO
+                    cant = cant+Integer.parseInt(this.vista.txtCantidad.getText());
+                    if (cantidadValida(String.valueOf(cant))) {
+                        modificarDato();
+                    }    
+                } else if (cantidadValida(this.vista.txtCantidad.getText())) {
+                    llenarLista();
+                    setDatos();                
+                }
             } else {
-                vista.txtCantidad.setText("1");
+                JOptionPane.showMessageDialog(null, "Existencia de campo sin rellenar");
             }
         }else if(vista.btnBorrar == evento.getSource()){
             eliminarDato();
@@ -256,6 +278,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             Ncontrolador.iniciarVista();
             vista.dispose();
         } else if (vista.comboxServicio == evento.getSource()) {
+            vista.txtCantidad.setText("1");
             if (vista.comboxServicio.getSelectedIndex() == 0) {
                 vista.lblDisponibles.setVisible(false);
             } else {
