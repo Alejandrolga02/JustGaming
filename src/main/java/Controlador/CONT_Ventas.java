@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class CONT_Ventas implements ActionListener, MouseListener {
     Connection conn = null;
@@ -28,7 +29,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     
     Ventas vista;
     MDL_Ventas modelo;
-    
+        
     public CONT_Ventas (MDL_Ventas modelo, Ventas vista) {
         this.vista = vista;
         this.modelo = modelo;
@@ -59,6 +60,38 @@ public class CONT_Ventas implements ActionListener, MouseListener {
         vista.txtTotal.setText("");
         vista.comboxCliente.setSelectedIndex(0);
         vista.comboxServicio.setSelectedIndex(0);
+    }
+    
+    public int disponibilidad() {
+        try {
+            conn = getConnection();
+
+            String query = "SELECT nombre FROM insumos;";
+
+            stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                
+            }
+        
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }        
+        return 0;
+    }
+    
+    public boolean cantidadValida() {
+        try {
+            int cantidad = Integer.parseInt(this.vista.txtCantidad.getText());
+            if(cantidad > 0) { // Cantidad valida
+
+            }
+        } catch (NumberFormatException e) {
+            
+        }
+        return false;
+
     }
     
     public void fillCombox(int id) {
@@ -92,8 +125,61 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void actionPerformed(ActionEvent evento) {
+        /*if(vista.btnIngresar == evento.getSource()) { // Boton Ingresar presionado
+            boolean isValid = precioValido(vista.txtPrecio.getText());
+            
+            if(!vista.txtServicio.getText().isEmpty() && isValid && vista.comboxInsumos.getSelectedIndex() > 0){
+                if(modelo.ingresar(vista.txtServicio.getText(), Float.parseFloat(vista.txtPrecio.getText()), getIdinsumo())){
+                    JOptionPane.showMessageDialog(null, "Registro insertado exitosamente");
+                    this.vista.tblServicios.setModel(modelo.consultar());
+                    limpiarCajasTexto();
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se pudo insertar");
+                }                
+            } else if (isValid) {
+                JOptionPane.showMessageDialog(null, "Faltan insertar datos");
+            } else {
+                vista.txtPrecio.setText("");
+                JOptionPane.showMessageDialog(null, "Precio invalido");
+            }
+        }else if(vista.btnEliminar == evento.getSource()){
+            if (!vista.txtIdServicio.getText().isEmpty()) { // Validacion de campo
+                if(modelo.borrar(Integer.parseInt(vista.txtIdServicio.getText()))){
+                    JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
+                    this.vista.tblServicios.setModel(modelo.consultar());
+                    limpiarCajasTexto();
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+                }                
+            } else {
+                JOptionPane.showMessageDialog(null, "Se necesita el Id para eliminar");                
+            }
+        }else if(vista.btnActualizar == evento.getSource()){
+            boolean isValid = precioValido(vista.txtPrecio.getText());
+            
+            if(!vista.txtServicio.getText().isEmpty() && isValid && !vista.txtIdServicio.getText().isEmpty() && vista.comboxInsumos.getSelectedIndex() > 0){
+                if(modelo.actualizar(vista.txtServicio.getText(), Float.parseFloat(vista.txtPrecio.getText()), getIdinsumo(), Integer.parseInt(vista.txtIdServicio.getText()))) {
+                    JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
+                    this.vista.tblServicios.setModel(modelo.consultar());                
+                    limpiarCajasTexto();
+                }else{
+                    JOptionPane.showMessageDialog(null, "No se pudo actualizar");
+                }                
+            } else if (isValid) {
+                JOptionPane.showMessageDialog(null, "Faltan insertar datos");
+            } else {
+                vista.txtPrecio.setText("");
+                JOptionPane.showMessageDialog(null, "Precio invalido");
+            }
+        } else if (vista.btnLimpiar == evento.getSource()) {
+            limpiarCajasTexto();
+        } else if (vista.btnRegresar == evento.getSource()) {
+            Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
+            Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
+            Ncontrolador.iniciarVista();
+            vista.dispose();
+        }*/
     }
 
     @Override

@@ -17,21 +17,25 @@ public class MDL_InicioSesion {
     public boolean login() {
         try {
             conn = getConnection();
-            String query = "SELECT idEmpleado, usuario FROM empleado WHERE usuario=\""+Conexion.getJDBC_USER()+"\"";
+            String query = "SELECT idEmpleado, usuario, idRol, pass FROM empleado WHERE usuario=\""+Conexion.getUSER()+"\"";
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
             while(rs.next()) {
                 Conexion.setUSER_ID(rs.getInt("idEmpleado"));
-            }
-            Conexion.close(rs);
-            Conexion.close(stmt);
-            Conexion.close(conn);
-            
-            return true;
+                Conexion.setUSER_ROL(rs.getInt("idRol"));
+                
+                if(rs.getString("pass").equals(Conexion.getUSER_PASS())) {
+                    Conexion.close(rs);
+                    Conexion.close(stmt);
+                    Conexion.close(conn);
+                    return true;
+                }
+            }            
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
             conn = null;
             return false;
         }
-    }
+        return false;
+    }  
 }
