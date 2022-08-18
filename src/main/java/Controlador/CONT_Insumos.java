@@ -99,9 +99,11 @@ public class CONT_Insumos implements ActionListener, MouseListener{
                         JOptionPane.showMessageDialog(null, "No se pudo insertar");
                     }
                 }else{
+                    vista.txtCosto.setText("");
                     JOptionPane.showMessageDialog(null, "El campo costo sole debe contener numeros");
                 }
             }else{
+                vista.txtCantidad.setText("");
                 JOptionPane.showMessageDialog(null, "El campo cantidad solo debe contener numeros sin punto decimal");
             }
         }else if(vista.btnActualizar == evento.getSource()){
@@ -119,9 +121,11 @@ public class CONT_Insumos implements ActionListener, MouseListener{
                          JOptionPane.showMessageDialog(null, "No se pudo actualizar");
                     }
                 }else{
+                    vista.txtCosto.setText("");
                     JOptionPane.showMessageDialog(null, "El campo costo sole debe contener numeros");
                 }
             }else{
+                vista.txtCantidad.setText("");
                 JOptionPane.showMessageDialog(null, "El campo cantidad solo debe contener numeros sin punto decimal");
             }
         }else if(vista.btnElimina == evento.getSource()){
