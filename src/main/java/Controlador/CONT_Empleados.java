@@ -71,6 +71,7 @@ public class CONT_Empleados implements ActionListener, MouseListener{
         vista.txtTelefono.setText("");
         vista.comboxRol.setSelectedIndex(0);
         vista.txtPass.setText("");
+        this.vista.tblEmpleados.setModel(modelo.empleadoConsultar(0,vista.txtNombre.getText()));
     }
     
     //Método para obtener el usuario

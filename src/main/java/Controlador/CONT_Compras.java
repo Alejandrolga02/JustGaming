@@ -395,8 +395,8 @@ public class CONT_Compras implements ActionListener, MouseListener{
         } else if (vista.btnLimpiar == evento.getSource()) {
             limpiarCajasTexto();
         } else if (vista.btnRegresar == evento.getSource()) {
-            Vista.MenuVentas Nvista = new Vista.MenuVentas();
-            Controlador.CONT_MenuVentas Ncontrolador = new Controlador.CONT_MenuVentas(Nvista);
+            Vista.MenuCompras Nvista = new Vista.MenuCompras();
+            Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuCompras(Nvista);
             Ncontrolador.iniciarVista();
             vista.dispose();
         } else if (vista.comboxInsumo == evento.getSource()) {

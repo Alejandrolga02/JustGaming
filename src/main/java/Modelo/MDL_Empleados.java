@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MDL_Empleados {
@@ -72,7 +73,10 @@ public class MDL_Empleados {
                 }
                 dtm.addRow(fila);
             }
-            
+            if (dtm.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "No hay resultados");
+                return empleadoConsultar(0, "");
+            }
             return dtm;
         }catch(SQLException ex){
             ex.printStackTrace(System.out);
