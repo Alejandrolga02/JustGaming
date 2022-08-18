@@ -20,7 +20,4 @@ public class MDL_Ventas {
     PreparedStatement stmt = null;
     ResultSet rs = null;
     
-    public boolean añadir() {
-        
-    }
 }
