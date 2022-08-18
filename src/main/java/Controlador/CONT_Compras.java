@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JFrame;
 
 public class CONT_Compras implements ActionListener, MouseListener{
     //Atributos de la clase
@@ -34,7 +35,21 @@ public class CONT_Compras implements ActionListener, MouseListener{
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnRegresar.addActionListener(this);
         this.vista.btnTerminar.addActionListener(this);
+        this.vista.comboxProveedor.addActionListener(this);
+        this.vista.comboxInsumo.addActionListener(this);
     }    
+    
+    //Método para iniciar la vista
+    public void iniciarVista(){
+        vista.setTitle("Compras");
+        vista.pack();
+        vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        vista.setLocationRelativeTo(null);
+        
+        vista.setVisible(true);
+    }
+    
+    
     
     
     @Override
