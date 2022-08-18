@@ -17,7 +17,7 @@ public class MDL_InicioSesion {
     public boolean login() {
         try {
             conn = getConnection();
-            String query = "SELECT idEmpleado, usuario, idRol, pass FROM empleado WHERE usuario=\""+Conexion.getUSER()+"\"";
+            String query = "SELECT idEmpleado, usuario, idRol, pass FROM empleado WHERE usuario=\""+Conexion.getUSER()+"\" WHERE estatus=1";
             stmt = conn.prepareStatement(query);
             rs = stmt.executeQuery();
             while(rs.next()) {
