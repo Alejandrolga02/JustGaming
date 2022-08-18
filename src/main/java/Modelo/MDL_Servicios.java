@@ -8,6 +8,7 @@ package Modelo;
 
 import static Modelo.Conexion.*;
 import java.sql.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MDL_Servicios {
@@ -69,10 +70,15 @@ public class MDL_Servicios {
         }
     }
     
-    public DefaultTableModel consultar() {
+    public DefaultTableModel consultar(int id, String nombre) {
         try {
             conn = getConnection();
-            String query = "SELECT servicios.idServicio AS ID, servicios.servicio AS SERVICIO, servicios.precio AS PRECIO, insumos.nombre AS INSUMO FROM servicios LEFT JOIN insumos ON servicios.idInsumo = insumos.idinsumos WHERE servicios.estatus = 1;";
+            String query = null;
+            if(id == 0){
+                query = "SELECT servicios.idServicio AS ID, servicios.servicio AS SERVICIO, servicios.precio AS PRECIO, insumos.nombre AS INSUMO FROM servicios LEFT JOIN insumos ON servicios.idInsumo = insumos.idinsumos WHERE servicios.estatus = 1;";
+            }else if(id == 1){
+                query = "SELECT servicios.idServicio AS ID, servicios.servicio AS SERVICIO, servicios.precio AS PRECIO, insumos.nombre AS INSUMO FROM servicios LEFT JOIN insumos ON servicios.idInsumo = insumos.idinsumos WHERE servicios.estatus = 1 AND LOWER(servicios.servicio) LIKE LOWER('%"+nombre+"%');";
+            }
             stmt = conn.prepareStatement(query);
             
             rs = stmt.executeQuery();
@@ -91,9 +97,13 @@ public class MDL_Servicios {
                 }
                 dtm.addRow(fila);
             }
-            
+            if (dtm.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "No hay resultados");
+                return consultar(0, "");
+            }
             return dtm;
         } catch (SQLException e) {
+            e.printStackTrace(System.out);
             return null;
         }
     }

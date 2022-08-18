@@ -39,6 +39,7 @@ public class Insumos extends javax.swing.JFrame {
         txtIdInsumo = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
         btnElimina = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Insumos");
@@ -99,6 +100,14 @@ public class Insumos extends javax.swing.JFrame {
         btnElimina.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnElimina.setText("Eliminar");
 
+        btnConsultar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +135,10 @@ public class Insumos extends javax.swing.JFrame {
                                     .addComponent(txtNombre)
                                     .addComponent(txtCosto)
                                     .addComponent(txtIdInsumo)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,7 +179,8 @@ public class Insumos extends javax.swing.JFrame {
                     .addComponent(btnLimpiar)
                     .addComponent(btnIngresar)
                     .addComponent(btnActualizar)
-                    .addComponent(btnElimina))
+                    .addComponent(btnElimina)
+                    .addComponent(btnConsultar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -179,6 +192,10 @@ public class Insumos extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +235,7 @@ public class Insumos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnConsultar;
     public javax.swing.JButton btnElimina;
     public javax.swing.JButton btnIngresar;
     public javax.swing.JButton btnLimpiar;

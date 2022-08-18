@@ -37,6 +37,7 @@ public class CONT_Insumos implements ActionListener, MouseListener{
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnRegresar.addActionListener(this);
         this.vista.tblInsumos.addMouseListener(this);
+        this.vista.btnConsultar.addActionListener(this);
     }
     
     //Método para iniciar la vista
@@ -45,7 +46,7 @@ public class CONT_Insumos implements ActionListener, MouseListener{
         vista.pack();
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.setLocationRelativeTo(null);
-        vista.tblInsumos.setModel(modelo.insumosConsultar());
+        vista.tblInsumos.setModel(modelo.insumosConsultar(0,vista.txtNombre.getText()));
         vista.setVisible(true);
     }
     
@@ -55,6 +56,7 @@ public class CONT_Insumos implements ActionListener, MouseListener{
         vista.txtCosto.setText("");
         vista.txtIdInsumo.setText("");
         vista.txtNombre.setText("");
+        this.vista.tblInsumos.setModel(modelo.insumosConsultar(0,vista.txtNombre.getText()));
     }
     
     //Validación de solo numeros
@@ -93,7 +95,7 @@ public class CONT_Insumos implements ActionListener, MouseListener{
                     if(modelo.insumosInsertar(vista.txtNombre.getText(), Integer.parseInt(vista.txtCantidad.getText()), 
                              Float.parseFloat(vista.txtCosto.getText()))){//Validación de la consulta
                         JOptionPane.showMessageDialog(null, "Registro insertado exitoso");
-                        this.vista.tblInsumos.setModel(modelo.insumosConsultar());
+                        this.vista.tblInsumos.setModel(modelo.insumosConsultar(0,vista.txtNombre.getText()));
                         limpiarCajastexto();
                     }else{
                         JOptionPane.showMessageDialog(null, "No se pudo insertar");
@@ -115,7 +117,7 @@ public class CONT_Insumos implements ActionListener, MouseListener{
                     if(modelo.insumosActualizar(Integer.parseInt(vista.txtIdInsumo.getText()), vista.txtNombre.getText(), 
                             Integer.parseInt(vista.txtCantidad.getText()), Float.parseFloat(vista.txtCosto.getText()))){
                         JOptionPane.showMessageDialog(null, "Registro actualizado");
-                        this.vista.tblInsumos.setModel(modelo.insumosConsultar());
+                        this.vista.tblInsumos.setModel(modelo.insumosConsultar(0,vista.txtNombre.getText()));
                         limpiarCajastexto();
                     }else{
                          JOptionPane.showMessageDialog(null, "No se pudo actualizar");
@@ -133,7 +135,7 @@ public class CONT_Insumos implements ActionListener, MouseListener{
                 JOptionPane.showMessageDialog(null, "El campo de Id Insumo esta vacio");
             }else if(modelo.insumosEliminar(Integer.parseInt(vista.txtIdInsumo.getText()))){
                 JOptionPane.showMessageDialog(null, "Registro eliminado exitosamente");
-                this.vista.tblInsumos.setModel(modelo.insumosConsultar());
+                this.vista.tblInsumos.setModel(modelo.insumosConsultar(0,vista.txtNombre.getText()));
                 limpiarCajastexto();
             }else{
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar");
@@ -144,10 +146,16 @@ public class CONT_Insumos implements ActionListener, MouseListener{
             Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
             Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
             Ncontrolador.iniciarVista();
-            vista.dispose();
+            vista.dispose(); 
+        }else if(vista.btnConsultar == evento.getSource()){
+            if(vista.txtNombre.getText().isEmpty()){
+                this.vista.tblInsumos.setModel(modelo.insumosConsultar(0,vista.txtNombre.getText()));
+            }else{
+                this.vista.tblInsumos.setModel(modelo.insumosConsultar(1,vista.txtNombre.getText()));
+            }
+    
         }
     }
-    
     
     
     
