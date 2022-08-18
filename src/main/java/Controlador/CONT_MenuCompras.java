@@ -35,10 +35,10 @@ public class CONT_MenuCompras implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(vista.btnCompras == evento.getSource()) {
-            /*Vista.Ventas Nvista = new Vista.Ventas();
-            Modelo.MDL_Ventas Nmodelo = new Modelo.MDL_Ventas();
-            Controlador.CONT_Ventas Ncontrolador = new Controlador.CONT_Ventas(Nmodelo, Nvista);
-            Ncontrolador.iniciarVista();*/
+            Vista.Compras Nvista = new Vista.Compras();
+            Modelo.MDL_Compras Nmodelo = new Modelo.MDL_Compras();
+            Controlador.CONT_Compras Ncontrolador = new Controlador.CONT_Compras(Nvista, Nmodelo);
+            Ncontrolador.iniciarVista();
             vista.dispose();
         } else if (vista.btnDetalles == evento.getSource()) {
             Vista.DetallesCompras Nvista = new Vista.DetallesCompras();

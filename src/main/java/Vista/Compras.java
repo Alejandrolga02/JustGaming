@@ -72,11 +72,11 @@ public class Compras extends javax.swing.JFrame {
         btnRegresar.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         btnRegresar.setText("Regresar");
 
-        comboxProveedor.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        comboxProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        comboxProveedor.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        comboxProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un proveedor" }));
 
-        comboxInsumo.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
-        comboxInsumo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {  }));
+        comboxInsumo.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        comboxInsumo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un insumo" }));
 
         btnTerminar.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         btnTerminar.setText("Terminar venta");
