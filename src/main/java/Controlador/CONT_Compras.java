@@ -151,12 +151,13 @@ public class CONT_Compras implements ActionListener, MouseListener{
         comboProveedores();
         comboInsumos();
         this.setModelo();
+        this.vista.txtCantidad.setText("1");
         vista.setVisible(true);
     }
     
     //Método para limpiar las cajas de texto
     public void limpiarCajasTexto(){
-        vista.txtCantidad.setText("");
+        vista.txtCantidad.setText("1");
         vista.comboxInsumo.setSelectedIndex(0);
     }
     
@@ -377,10 +378,12 @@ public class CONT_Compras implements ActionListener, MouseListener{
                     cant = cant+Integer.parseInt(this.vista.txtCantidad.getText());
                     if (cantidadValida(String.valueOf(cant))) {
                         modificarDato();
+                        limpiarCajasTexto();
                     }    
                 } else if (cantidadValida(this.vista.txtCantidad.getText())) {
                     llenarLista();
-                    setDatos();                
+                    setDatos();
+                    limpiarCajasTexto();
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Existencia de campo sin rellenar");

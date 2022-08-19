@@ -368,10 +368,12 @@ public class CONT_Ventas implements ActionListener, MouseListener {
                     cant = cant+Integer.parseInt(this.vista.txtCantidad.getText());
                     if (cantidadValida(String.valueOf(cant))) {
                         modificarDato();
+                        limpiarCajasTexto();
                     }    
                 } else if (cantidadValida(this.vista.txtCantidad.getText())) {
                     llenarLista();
-                    setDatos();                
+                    setDatos();
+                    limpiarCajasTexto();
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Existencia de campo sin rellenar");
