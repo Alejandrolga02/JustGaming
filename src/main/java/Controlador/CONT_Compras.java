@@ -7,7 +7,6 @@ package Controlador;
 
 import Modelo.Conexion;
 import static Modelo.Conexion.getConnection;
-import Modelo.MDL_Compras;
 import Vista.Compras;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -140,6 +139,7 @@ public class CONT_Compras implements ActionListener, MouseListener{
         this.vista.txtCantidad.addActionListener(this);
         this.vista.txtTotal.addActionListener(this);
         this.vista.tblCompras.addMouseListener(this);
+        this.vista.btnProveedores.addActionListener(this);
     }    
     
     //Método para iniciar la vista
@@ -416,6 +416,12 @@ public class CONT_Compras implements ActionListener, MouseListener{
             } else {
                 JOptionPane.showMessageDialog(null, "Introduzca insumos para terminar la venta");
             }
+        } else if (vista.btnProveedores == evento.getSource()) {
+                Vista.Proveedores Nvista = new Vista.Proveedores();
+                Modelo.MDL_Proveedores Nmodelo = new Modelo.MDL_Proveedores();
+                Controlador.CONT_Proveedores Ncontrolador = new Controlador.CONT_Proveedores(Nmodelo, Nvista, true);
+                Ncontrolador.iniciarVista();
+                vista.dispose();
         }
     }
 

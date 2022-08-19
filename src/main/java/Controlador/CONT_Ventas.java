@@ -63,7 +63,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
     
     public void eliminarDato() {
         int fila = vista.tblVentas.getSelectedRow();
-        double total = 0.0;
+        float total = 0;
         float totalServicio = Float.parseFloat(String.valueOf(vista.tblVentas.getValueAt(fila, 4)));
         total = Float.parseFloat(vista.txtTotal.getText());
         total = total - totalServicio;
@@ -129,6 +129,7 @@ public class CONT_Ventas implements ActionListener, MouseListener {
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.tblVentas.addMouseListener(this);
         this.vista.lblDisponibles.setVisible(false);
+        this.vista.btnClientes.addActionListener(this);
     }
     
     public void iniciarVista() {
@@ -408,6 +409,12 @@ public class CONT_Ventas implements ActionListener, MouseListener {
             } else {
                 JOptionPane.showMessageDialog(null, "Introduzca servicios para terminar la venta");
             }
+        } else if (vista.btnClientes == evento.getSource()) {
+            Vista.Clientes Nvista = new Vista.Clientes();
+            Modelo.MDL_Clientes Nmodelo = new Modelo.MDL_Clientes();
+            Controlador.CONT_Clientes Ncontrolador = new Controlador.CONT_Clientes(Nmodelo, Nvista, true);
+            Ncontrolador.iniciarVista();
+            vista.dispose();
         }
     }
 

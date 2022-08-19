@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 public class InicioSesion extends javax.swing.JFrame {
     
     /**
@@ -12,6 +15,15 @@ public class InicioSesion extends javax.swing.JFrame {
      */
     public InicioSesion() {
         initComponents();
+        setIconImage(getIconImage());
+    }
+    
+    // Logo
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/logo.png"));
+
+        return retValue;
     }
 
     /**
@@ -31,7 +43,7 @@ public class InicioSesion extends javax.swing.JFrame {
         btnEntrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        logo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar Sesión");
@@ -56,24 +68,24 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setFocusPainted(false);
-        jButton1.setFocusable(false);
-        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.setRequestFocusEnabled(false);
-        jButton1.setRolloverEnabled(false);
-        jButton1.setVerifyInputWhenFocusTarget(false);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        logo.setBorderPainted(false);
+        logo.setFocusPainted(false);
+        logo.setFocusable(false);
+        logo.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        logo.setRequestFocusEnabled(false);
+        logo.setRolloverEnabled(false);
+        logo.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
@@ -168,11 +180,11 @@ public class InicioSesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     public javax.swing.JButton btnEntrar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblContra;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JButton logo;
     public javax.swing.JPasswordField txtPass;
     public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

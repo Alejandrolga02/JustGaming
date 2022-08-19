@@ -21,9 +21,10 @@ public class CONT_Clientes implements ActionListener, MouseListener{
     //Atributos necesarios
     MDL_Clientes modelo;
     Clientes vista;
+    private boolean ventas = false;
     
     //Constructor de parametros
-    public CONT_Clientes(MDL_Clientes modelo, Clientes vista){
+    public CONT_Clientes(MDL_Clientes modelo, Clientes vista, boolean ventas){
         this.modelo = modelo;
         this.vista = vista;
         this.vista.btnActualizar.addActionListener(this);
@@ -33,6 +34,7 @@ public class CONT_Clientes implements ActionListener, MouseListener{
         this.vista.btnConsultar.addActionListener(this);
         this.vista.btnRegresar.addActionListener(this);
         this.vista.tblClientes.addMouseListener(this);
+        this.ventas = ventas;
         if (Conexion.getUSER_ROL() != 1) {
             this.vista.btnActualizar.setEnabled(false);
             this.vista.btnEliminar.setEnabled(false);
@@ -136,10 +138,17 @@ public class CONT_Clientes implements ActionListener, MouseListener{
         }else if(vista.btnLimpiar == evento.getSource()){  //Boton de limpiar las cajas de texto
             limpiarCajastexto();
         }else if(vista.btnRegresar == evento.getSource()){ //Boton de regresar la vista
-            Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
-            Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
-            Ncontrolador.iniciarVista();
-            vista.dispose();
+            if (this.ventas) {
+                Vista.Ventas Nvista = new Vista.Ventas();
+                Controlador.CONT_Ventas Ncontrolador = new Controlador.CONT_Ventas(Nvista);
+                Ncontrolador.iniciarVista();
+                vista.dispose();
+            } else {
+                Vista.MenuPrincipal Nvista = new Vista.MenuPrincipal();
+                Controlador.CONT_MenuPrincipal Ncontrolador = new Controlador.CONT_MenuPrincipal(Nvista);
+                Ncontrolador.iniciarVista();
+                vista.dispose();                
+            }
         } else if (vista.btnConsultar == evento.getSource()) {
             if (vista.txtNombre.getText().isEmpty()) { // CLIENTE VACIO
                 this.vista.tblClientes.setModel(modelo.clientesConsultar(0,this.vista.txtNombre.getText()));
@@ -148,9 +157,6 @@ public class CONT_Clientes implements ActionListener, MouseListener{
             }
         }
     }
-
-    
-    
 
     @Override
     public void mouseClicked(MouseEvent evento) { //Evento para selecionar un campo de la tabla
@@ -166,12 +172,6 @@ public class CONT_Clientes implements ActionListener, MouseListener{
        }
     }
 
-    
-    
-    
-    
-    
-    
     @Override
     public void mousePressed(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

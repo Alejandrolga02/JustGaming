@@ -6,6 +6,9 @@
 
 package Vista;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author los67
@@ -17,6 +20,15 @@ public class MenuVentas extends javax.swing.JFrame {
      */
     public MenuVentas() {
         initComponents();
+        setIconImage(getIconImage());
+    }
+    
+    // Logo
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/logo.png"));
+
+        return retValue;
     }
 
     /**
@@ -41,11 +53,11 @@ public class MenuVentas extends javax.swing.JFrame {
 
         btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/addV.png"))); // NOI18N
 
-        lblVentas.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblVentas.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         lblVentas.setLabelFor(btnVentas);
         lblVentas.setText("Ventas");
 
-        lblDetalles.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lblDetalles.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         lblDetalles.setLabelFor(btnDetalles);
         lblDetalles.setText("Detalles");
 

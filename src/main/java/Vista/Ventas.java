@@ -6,6 +6,8 @@
 
 package Vista;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -23,6 +25,15 @@ public class Ventas extends javax.swing.JFrame {
      */
     public Ventas() {
         initComponents();
+        setIconImage(getIconImage());
+    }
+    
+    // Logo
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/logo.png"));
+
+        return retValue;
     }
 
     /**
@@ -52,6 +63,7 @@ public class Ventas extends javax.swing.JFrame {
         comboxCliente = new javax.swing.JComboBox<>();
         comboxServicio = new javax.swing.JComboBox<>();
         lblDisponibles = new javax.swing.JLabel();
+        btnClientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventas");
@@ -123,6 +135,9 @@ public class Ventas extends javax.swing.JFrame {
         lblDisponibles.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         lblDisponibles.setText("Disponibles:");
 
+        btnClientes.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        btnClientes.setText("Clientes");
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -159,8 +174,9 @@ public class Ventas extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(btnIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))
                         .addGap(18, 18, 18))))
         );
         bgLayout.setVerticalGroup(
@@ -168,28 +184,29 @@ public class Ventas extends javax.swing.JFrame {
             .addGroup(bgLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(btnRegresar)
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addComponent(lblTitulo)
                 .addGap(18, 18, 18)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(comboxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCliente)
-                    .addComponent(btnLimpiar))
+                    .addComponent(btnClientes))
                 .addGap(18, 18, 18)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblServicio)
                     .addComponent(comboxServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIngresar))
+                    .addComponent(btnLimpiar))
                 .addGap(18, 18, 18)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblTotal1)
-                    .addComponent(btnBorrar)
                     .addComponent(lblDisponibles)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngresar))
                 .addGap(18, 18, 18)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblTotal)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -257,6 +274,7 @@ public class Ventas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     public javax.swing.JButton btnBorrar;
+    public javax.swing.JButton btnClientes;
     public javax.swing.JButton btnIngresar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnRegresar;

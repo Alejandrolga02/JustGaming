@@ -6,6 +6,9 @@
 
 package Vista;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author los67
@@ -15,6 +18,15 @@ public class DetallesVentas extends javax.swing.JFrame {
     /** Creates new form DetallesVentas */
     public DetallesVentas() {
         initComponents();
+        setIconImage(getIconImage());
+    }
+    
+    // Logo
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/logo.png"));
+
+        return retValue;
     }
 
     /** This method is called from within the constructor to

@@ -6,6 +6,8 @@ Fecha: 26-junio-2022
 package Vista;
 
 import java.awt.Container;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class MenuCompras extends javax.swing.JFrame {
     Container contenedor = this.getContentPane();
@@ -13,6 +15,15 @@ public class MenuCompras extends javax.swing.JFrame {
     
     public MenuCompras() {
         initComponents();
+        setIconImage(getIconImage());
+    }
+    
+    // Logo
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("images/logo.png"));
+
+        return retValue;
     }
 
     /**

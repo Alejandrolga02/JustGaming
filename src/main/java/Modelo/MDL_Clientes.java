@@ -46,9 +46,9 @@ public class MDL_Clientes {
             //Preparando la instruccion
             String sql = null;
             if (id == 0) { // CONSULTA GENERAL
-                sql = "SELECT idCliente,nombreCompleto,telefono,correoElectronico,domicilio FROM cliente WHERE cliente.estatus = 1;";
+                sql = "SELECT idCliente AS ID,nombreCompleto AS 'NOMBRE COMPLETO',telefono AS 'TELFEFONO',correoElectronico AS 'CORREO ELECTRONICO',domicilio AS DOMICILIO FROM cliente WHERE cliente.estatus = 1;";
             } else if (id == 1){ // NOMBRE
-                sql = "SELECT idCliente,nombreCompleto,telefono,correoElectronico,domicilio FROM cliente WHERE cliente.estatus = 1 AND LOWER(cliente.nombreCompleto) LIKE LOWER('%"+nombre+"%');";
+                sql = "SELECT idCliente AS ID,nombreCompleto AS 'NOMBRE COMPLETO',telefono AS 'TELFEFONO',correoElectronico AS 'CORREO ELECTRONICO',domicilio AS DOMICILIO FROM cliente WHERE cliente.estatus = 1 AND LOWER(cliente.nombreCompleto) LIKE LOWER('%"+nombre+"%');";
             }
             //Ejecucución de la sentencia
             Statement stm = conn.createStatement();

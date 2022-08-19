@@ -18,10 +18,12 @@ import javax.swing.JOptionPane;
 public class CONT_Proveedores implements ActionListener, MouseListener {
     Proveedores vista;
     MDL_Proveedores modelo;
+    private boolean Compras = false;
     
-    public CONT_Proveedores(MDL_Proveedores modelo, Proveedores vista) {
+    public CONT_Proveedores(MDL_Proveedores modelo, Proveedores vista, boolean Compras) {
         this.vista = vista;
         this.modelo = modelo;
+        this.Compras = Compras;
         this.vista.btnIngresar.addActionListener(this);
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
@@ -116,10 +118,18 @@ public class CONT_Proveedores implements ActionListener, MouseListener {
         } else if (vista.btnLimpiar == evento.getSource()) { // Boton Limpiar Presionado
             limpiarCajasTexto();
         } else if (vista.btnRegresar == evento.getSource()) { // Boton Regresar Presionado
-            Vista.MenuCompras Nvista = new Vista.MenuCompras();
-            Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuCompras(Nvista);
-            Ncontrolador.iniciarVista();
-            vista.dispose();
+            if (this.Compras) {
+                Vista.Compras Nvista = new Vista.Compras();
+                Controlador.CONT_Compras Ncontrolador = new Controlador.CONT_Compras(Nvista);
+                Ncontrolador.iniciarVista();
+                vista.dispose();
+            } else {
+                Vista.MenuCompras Nvista = new Vista.MenuCompras();
+                Controlador.CONT_MenuCompras Ncontrolador = new Controlador.CONT_MenuCompras(Nvista);
+                Ncontrolador.iniciarVista();
+                vista.dispose();
+            }
+
         }else if(vista.btnConsultar == evento.getSource()){
             if(vista.txtNombre.getText().isEmpty()){
                 this.vista.tblProveedores.setModel(modelo.consultar(0,vista.txtNombre.getText()));
