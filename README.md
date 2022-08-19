@@ -13,7 +13,7 @@ del mismo.
 
 Es de resaltar que este programa fue planteado como una adición a un sistema de ventas existente.
 
-# Objetivos
+## Objetivos
 - Satisfacer la necesidad del control de los servicios. 
 - Implementar una base de datos completamente aparte del punto de venta.
 - Hacer un programa sencillo y abierto a actualizaciones futuras.
